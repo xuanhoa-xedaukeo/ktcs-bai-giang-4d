@@ -1309,8 +1309,8 @@
     </div>
 
     <div class="pill-switcher" role="group" aria-label="Chọn giọng đọc Nam hoặc Nữ">
-      <button class="pill-btn gold-active active" id="btnVoiceMale" onclick="setVoiceGender('male', true)">👨 Nam</button>
-      <button class="pill-btn gold-active" id="btnVoiceFemale" onclick="setVoiceGender('female', true)">👩 Nữ</button>
+      <button class="pill-btn gold-active" id="btnVoiceMale" onclick="setVoiceGender('male', true)">👨 Nam</button>
+      <button class="pill-btn gold-active active" id="btnVoiceFemale" onclick="setVoiceGender('female', true)">👩 Nữ Ấm Áp</button>
     </div>
 
     <div class="speed-slider-pill" title="Đổi tốc độ đọc ngay tại từ đang nói (Mid-Sentence Resume)">
@@ -3456,7 +3456,7 @@
     }
 
     let isAutoLecturing = false;
-    let voiceGender = "male";
+    let voiceGender = "female";
     let speechRate = 1.0;
     let speechSessionId = 0;
     let currentUtterance = null;
@@ -3512,11 +3512,34 @@
     function selectSystemVoice(gender) {
       if (!("speechSynthesis" in window)) return null;
       const voices = window.speechSynthesis.getVoices() || [];
-      const viVoices = voices.filter(v => v.lang && v.lang.toLowerCase().includes("vi"));
+      const viVoices = voices.filter(v => v.lang && (v.lang.toLowerCase().includes("vi") || v.lang.toLowerCase().replace("_", "-").startsWith("vi")));
       if (gender === "female") {
-        return viVoices.find(v => /hoaimy|linh|female|nữ|nu|google/i.test(v.name) && !/\ban\b/i.test(v.name)) || viVoices[0] || null;
+        // Uu tien 1: Microsoft HoaiMy Online Natural (Giong nu Viet Nam tu nhien, am ap so 1 tren Windows/Edge)
+        const naturalHoaiMy = viVoices.find(v => /hoaimy.*natural/i.test(v.name));
+        if (naturalHoaiMy) return naturalHoaiMy;
+
+        // Uu tien 2: Giong HoaiMy tieu chuan
+        const anyHoaiMy = viVoices.find(v => /hoaimy/i.test(v.name));
+        if (anyHoaiMy) return anyHoaiMy;
+
+        // Uu tien 3: Cac giong nu tieng Viet (Linh, Mai, Huong, Chi, Thao, Female...)
+        const femaleVi = viVoices.find(v => /female|nữ|nu|linh|mai|chi|huong|thao/i.test(v.name) && !/\ban\b|namminh|male|nam/i.test(v.name));
+        if (femaleVi) return femaleVi;
+
+        // Uu tien 4: Google tieng Viet
+        const googleVi = viVoices.find(v => /google/i.test(v.name));
+        if (googleVi) return googleVi;
+
+        return viVoices[0] || null;
       }
-      return viVoices.find(v => /namminh|\ban\b|male|nam/i.test(v.name)) || viVoices[0] || null;
+      const maleVi = viVoices.find(v => /namminh|\ban\b|male|nam/i.test(v.name));
+      return maleVi || viVoices.find(v => !/hoaimy|linh|mai|chi|huong/i.test(v.name)) || viVoices[0] || null;
+    }
+
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        if ("speechSynthesis" in window) window.speechSynthesis.getVoices();
+      };
     }
 
     function playSlideNarration(slideIdx, autoAdvance, startCharIndex) {
@@ -3542,7 +3565,7 @@
       utter.rate = speechRate;
       const matchedVoice = selectSystemVoice(voiceGender);
       if (matchedVoice) utter.voice = matchedVoice;
-      utter.pitch = voiceGender === "female" ? 1.22 : 0.88;
+      utter.pitch = voiceGender === "female" ? 1.0 : 0.9;
 
       speechStartedAtMs = performance.now();
 
