@@ -3477,7 +3477,79 @@
         .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "");
     }
 
+        let currentTtsAudio = null;
+    let ttsAudioQueue = [];
+    let isPlayingAudioQueue = false;
+
+    function stopAllTtsAudio() {
+      ttsAudioQueue = [];
+      isPlayingAudioQueue = false;
+      if (currentTtsAudio) {
+        currentTtsAudio.pause();
+        currentTtsAudio.src = "";
+        currentTtsAudio = null;
+      }
+    }
+
+    function splitTextForGoogleTts(text) {
+      if (!text) return [];
+      const sentences = text.match(/[^.!?,\n]+[.!?,\n]*/g) || [text];
+      const chunks = [];
+      let buf = "";
+      sentences.forEach(s => {
+        const trimmed = s.trim();
+        if (!trimmed) return;
+        if ((buf + " " + trimmed).trim().length <= 130) {
+          buf = (buf + " " + trimmed).trim();
+        } else {
+          if (buf) chunks.push(buf);
+          buf = trimmed;
+        }
+      });
+      if (buf) chunks.push(buf);
+      return chunks;
+    }
+
+    function playGoogleCloudViTts(fullText, mySession, onFinished) {
+      stopAllTtsAudio();
+      const chunks = splitTextForGoogleTts(fullText);
+      if (chunks.length === 0) {
+        if (onFinished) onFinished();
+        return;
+      }
+
+      let cIdx = 0;
+      isPlayingAudioQueue = true;
+
+      function playNextChunk() {
+        if (mySession !== speechSessionId || !isAutoLecturing || !isPlayingAudioQueue || cIdx >= chunks.length) {
+          stopAllTtsAudio();
+          if (onFinished && mySession === speechSessionId && isAutoLecturing) onFinished();
+          return;
+        }
+
+        const chunk = chunks[cIdx];
+        cIdx++;
+        const url = "https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q=" + encodeURIComponent(chunk);
+        const aud = new Audio(url);
+        currentTtsAudio = aud;
+        aud.playbackRate = Math.max(0.85, Math.min(1.4, speechRate));
+
+        aud.onended = () => {
+          playNextChunk();
+        };
+        aud.onerror = () => {
+          playNextChunk();
+        };
+        aud.play().catch(() => {
+          playNextChunk();
+        });
+      }
+
+      playNextChunk();
+    }
     function cancelSpeechSession() {
+      stopAllTtsAudio();
       speechSessionId++;
       activeTimers.forEach(t => clearTimeout(t));
       activeTimers = [];
@@ -3558,13 +3630,37 @@
         el.classList.toggle("narrating-glow", idx === slideIdx);
       });
 
-      if (!("speechSynthesis" in window) || !remainingText) return;
+      if (!remainingText) return;
+
+      const matchedVoice = selectSystemVoice(voiceGender);
+
+      // NẾU HỆ THỐNG WINDOWS/TRÌNH DUYỆT KHÔNG CÓ VOICE TIẾNG VIỆT THẬT:
+      // TỰ ĐỘNG DÙNG GOOGLE CLOUD TTS NỮ TIẾNG VIỆT 100% CHUẨN XÁC, NGỌT NGÀO & ẤM ÁP!
+      if (!matchedVoice) {
+        showVoiceToast("🌸 Giọng Nữ Tiếng Việt Ấm Áp (Google Cloud)");
+        playGoogleCloudViTts(remainingText, mySession, () => {
+          if (mySession !== speechSessionId || !isAutoLecturing) return;
+          const nextVis = findVisibleSlide(slideIdx, 1);
+          if (autoAdvance && nextVis !== -1) {
+            const tid = setTimeout(() => {
+              if (mySession !== speechSessionId || !isAutoLecturing) return;
+              goToSlide(nextVis, false);
+              playSlideNarration(nextVis, true, 0);
+            }, 550);
+            activeTimers.push(tid);
+          } else {
+            stopAutoLecture();
+          }
+        });
+        return;
+      }
+
+      if (!("speechSynthesis" in window)) return;
 
       const utter = new SpeechSynthesisUtterance(remainingText);
       utter.lang = "vi-VN";
       utter.rate = speechRate;
-      const matchedVoice = selectSystemVoice(voiceGender);
-      if (matchedVoice) utter.voice = matchedVoice;
+      utter.voice = matchedVoice;
       utter.pitch = voiceGender === "female" ? 1.0 : 0.9;
 
       speechStartedAtMs = performance.now();
