@@ -2943,7 +2943,7 @@
         return;
       }
 
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04");
+      try {
         statusEl.textContent = `⏳ Đang đọc file PDF 16:9 "${file.name}"...`;
         const arrayBuf = await file.arrayBuffer();
         const pdfDoc = await window.pdfjsLib.getDocument({ data: arrayBuf }).promise;
@@ -3144,7 +3144,7 @@
       SLIDES_DATA = JSON.parse(JSON.stringify(DEFAULT_MASTER_SLIDES));
       currentSlide = 0;
       hiddenSlides.clear();
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04"); localStorage.removeItem(SLIDES_STORAGE_KEY); } catch (e) {}
+      try { localStorage.removeItem(SLIDES_STORAGE_KEY); } catch (e) {}
       renderExtractedPagesEditor();
       renderAllSlides();
       showVoiceToast("🔄 Đã khôi phục dữ liệu gốc!");
@@ -3158,13 +3158,13 @@
     }
 
     function saveSlidesToStorage() {
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04");
+      try {
         localStorage.setItem(SLIDES_STORAGE_KEY, JSON.stringify(SLIDES_DATA));
       } catch (e) {}
     }
 
     function loadSlidesFromStorage() {
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04");
+      try {
         const raw = localStorage.getItem(SLIDES_STORAGE_KEY);
         if (raw) {
           const parsed = JSON.parse(raw);
@@ -3366,7 +3366,7 @@
       if (shouldHide) hiddenSlides.add(idx);
       else hiddenSlides.delete(idx);
 
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04");
+      try {
         localStorage.setItem(HIDE_STORAGE_KEY, JSON.stringify(Array.from(hiddenSlides)));
       } catch (e) {}
 
@@ -3415,7 +3415,7 @@
 
     function showAllSlides() {
       hiddenSlides.clear();
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04"); localStorage.setItem(HIDE_STORAGE_KEY, "[]"); } catch (e) {}
+      try { localStorage.setItem(HIDE_STORAGE_KEY, "[]"); } catch (e) {}
       renderAllSlides();
       renderHideModalList();
       showVoiceToast("👁 Đã hiện tất cả các trang!");
@@ -3426,7 +3426,7 @@
       SLIDES_DATA.forEach((_, idx) => {
         if (idx !== currentSlide) hiddenSlides.add(idx);
       });
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04"); localStorage.setItem(HIDE_STORAGE_KEY, JSON.stringify(Array.from(hiddenSlides))); } catch (e) {}
+      try { localStorage.setItem(HIDE_STORAGE_KEY, JSON.stringify(Array.from(hiddenSlides))); } catch (e) {}
       renderAllSlides();
       renderHideModalList();
       showVoiceToast("🎯 Đã giữ lại trang hiện tại!");
@@ -3443,7 +3443,7 @@
         const firstVis = findVisibleSlide(-1, 1);
         if (firstVis !== -1) currentSlide = firstVis;
       }
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04"); localStorage.setItem(HIDE_STORAGE_KEY, JSON.stringify(Array.from(hiddenSlides))); } catch (e) {}
+      try { localStorage.setItem(HIDE_STORAGE_KEY, JSON.stringify(Array.from(hiddenSlides))); } catch (e) {}
       renderAllSlides();
       renderHideModalList();
     }
@@ -3642,15 +3642,15 @@
 
       const rawScript = SLIDES_DATA[slideIdx].script || SLIDES_DATA[slideIdx].title;
       currentFullSpokenText = toSpokenVietnameseText(rawScript);
-      document.getElementById("teleprompterText").textContent = "🎙️ " + (currentFullSpokenText || rawScript);
+      document.getElementById("teleprompterText").textContent = "ðŸŽ™ï¸ " + (currentFullSpokenText || rawScript);
 
       document.querySelectorAll(".slide-inner").forEach((el, idx) => {
         el.classList.toggle("narrating-glow", idx === slideIdx);
       });
 
-      // 1. NẾU SLIDE CÓ ÂM THANH GIỌNG NỮ TIẾNG VIỆT NHÚNG SẴN (BASE64 MP3): PHÁT TRỰC TIẾP 100% TIẾNG VIỆT CHUẨN!
+      // 1. PHÃT TRá»°C TIáº¾P FILE Ã‚M THANH GIá»ŒNG Ná»® TIáº¾NG VIá»†T NHÃšNG Sáº´N 100%
       if (SLIDES_DATA[slideIdx].audioBase64) {
-        showVoiceToast("🌸 Giọng Nữ Tiếng Việt Chuẩn 100%");
+        showVoiceToast("ðŸŒ¸ Giá»ng Ná»¯ Tiáº¿ng Viá»‡t Chuáº©n 100%");
         const aud = new Audio(SLIDES_DATA[slideIdx].audioBase64);
         currentEmbeddedAudio = aud;
         aud.playbackRate = Math.max(0.8, Math.min(1.5, speechRate));
@@ -3679,64 +3679,10 @@
         });
         return;
       }
-      const mySession = cancelSpeechSession();
-      if (!isAutoLecturing || !SLIDES_DATA[slideIdx]) return;
 
-      const rawScript = SLIDES_DATA[slideIdx].script || SLIDES_DATA[slideIdx].title;
-      currentFullSpokenText = toSpokenVietnameseText(rawScript);
-      baseOffsetAtStart = Math.max(0, Math.min(startCharIndex || 0, currentFullSpokenText.length - 1));
-      currentCharOffset = baseOffsetAtStart;
-
-      const remainingText = currentFullSpokenText.slice(baseOffsetAtStart).trim();
-      document.getElementById("teleprompterText").textContent = "🎙️ " + (remainingText || rawScript);
-
-      document.querySelectorAll(".slide-inner").forEach((el, idx) => {
-        el.classList.toggle("narrating-glow", idx === slideIdx);
-      });
-
-      if (!remainingText) return;
-
-      const matchedVoice = selectSystemVoice(voiceGender);
-
-      // NẾU HỆ THỐNG WINDOWS/TRÌNH DUYỆT KHÔNG CÓ VOICE TIẾNG VIỆT THẬT:
-      // TỰ ĐỘNG DÙNG GOOGLE CLOUD TTS NỮ TIẾNG VIỆT 100% CHUẨN XÁC, NGỌT NGÀO & ẤM ÁP!
-      if (!matchedVoice) {
-        showVoiceToast("🌸 Giọng Nữ Tiếng Việt Ấm Áp (Google Cloud)");
-        playGoogleCloudViTts(remainingText, mySession, () => {
-          if (mySession !== speechSessionId || !isAutoLecturing) return;
-          const nextVis = findVisibleSlide(slideIdx, 1);
-          if (autoAdvance && nextVis !== -1) {
-            const tid = setTimeout(() => {
-              if (mySession !== speechSessionId || !isAutoLecturing) return;
-              goToSlide(nextVis, false);
-              playSlideNarration(nextVis, true, 0);
-            }, 550);
-            activeTimers.push(tid);
-          } else {
-            stopAutoLecture();
-          }
-        });
-        return;
-      }
-
-      if (!("speechSynthesis" in window)) return;
-
-      const utter = new SpeechSynthesisUtterance(remainingText);
-      utter.lang = "vi-VN";
-      utter.rate = speechRate;
-      utter.voice = matchedVoice;
-      utter.pitch = voiceGender === "female" ? 1.0 : 0.9;
-
-      speechStartedAtMs = performance.now();
-
-      utter.onboundary = (ev) => {
-        if (mySession !== speechSessionId) return;
-        if (typeof ev.charIndex === "number") {
-          currentCharOffset = baseOffsetAtStart + ev.charIndex;
-        }
-      };
-
-      utter.onend = () => {
+      // 2. Náº¾U KHÃ”NG CÃ“ AUDIO NHÃšNG Sáº´N: DÃ™NG GOOGLE CLOUD TTS TIáº¾NG VIá»†T
+      showVoiceToast("ðŸŒ¸ Giá»ng Ná»¯ Tiáº¿ng Viá»‡t (Google Cloud)");
+      playGoogleCloudViTts(currentFullSpokenText, mySession, () => {
         if (mySession !== speechSessionId || !isAutoLecturing) return;
         const nextVis = findVisibleSlide(slideIdx, 1);
         if (autoAdvance && nextVis !== -1) {
@@ -3744,16 +3690,12 @@
             if (mySession !== speechSessionId || !isAutoLecturing) return;
             goToSlide(nextVis, false);
             playSlideNarration(nextVis, true, 0);
-          }, 650);
+          }, 550);
           activeTimers.push(tid);
         } else {
           stopAutoLecture();
         }
-      };
-
-      utter.onerror = () => {};
-      currentUtterance = utter;
-      // window.speechSynthesis.speak(utter) BI XOA DE TRANH GIONG TIENG ANH CUA WINDOWS
+      });
     }
 
     function resumeMidSentenceOnVoiceOrSpeedChange() {
@@ -3911,7 +3853,7 @@
 
     function sfxChime() {
       if (!sfxOn) return;
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04");
+      try {
         ensureAudioCtx();
         [528, 792].forEach((freq, i) => {
           const t = AC.currentTime + i * 0.09;
@@ -3932,7 +3874,7 @@
 
     function sfxWhoosh() {
       if (!sfxOn) return;
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04");
+      try {
         ensureAudioCtx();
         const t = AC.currentTime;
         const o = AC.createOscillator();
@@ -4325,7 +4267,7 @@
       if (!file) return;
       const reader = new FileReader();
       reader.onload = (e) => {
-        try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04");
+        try {
           const parsed = JSON.parse(e.target.result);
           if (Array.isArray(parsed) && parsed.length > 0) {
             SLIDES_DATA = parsed;
@@ -4412,7 +4354,7 @@ Start-Process "https://xuanhoa-xedaukeo.github.io/$RepoName/posts/$Stamp/"`;
       ta.value = text;
       document.body.appendChild(ta);
       ta.select();
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04"); document.execCommand("copy"); } catch (e) {}
+      try { document.execCommand("copy"); } catch (e) {}
       ta.remove();
       showVoiceToast("📋 " + toastMsg);
     }
@@ -4538,7 +4480,7 @@ Start-Process "https://xuanhoa-xedaukeo.github.io/$RepoName/posts/$Stamp/"`;
     animateStars();
 
     (function initStudioApp() {
-      try { localStorage.removeItem("ktcs_html4d_studio_slides_v01"); localStorage.removeItem("ktcs_html4d_studio_slides_v02"); localStorage.removeItem("ktcs_html4d_studio_slides_v03"); localStorage.removeItem("ktcs_html4d_studio_slides_v04");
+      try {
         const savedHidden = localStorage.getItem(HIDE_STORAGE_KEY);
         if (savedHidden) {
           JSON.parse(savedHidden).forEach(n => {
