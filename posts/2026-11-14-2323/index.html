@@ -1,0 +1,4368 @@
+﻿<!DOCTYPE html>
+<!--
+  ==========================================================================
+  FRAMEWORK MASTER TEMPLATE: KTCSxAI HTML 4D SLIDE & WEBSITE GENERATOR
+  PHIÊN BẢN: V04 (Chuẩn 16:9 Living HTML 4D + Bộ 4 Thẻ Bài Lật 3D Tương Phản)
+  HỖ TRỢ: Tự động tạo bài giảng & website từ chủ đề / file PDF NotebookLM
+  ==========================================================================
+-->
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QUẢN TRỊ CẢM XÚC - CHUYỂN HÓA RÁC TÂM TRÍ THÀNH ĐÓA HOA TỰ TẠI - 16:9 Living HTML 4D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Dancing+Script:wght@700&family=Patrick+Hand&family=Playfair+Display:ital,wght@0,700;0,800;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <style>
+    :root {
+      --bg-deep: #030712;
+      --bg-navy: #0a1428;
+      --bg-card: rgba(9, 18, 38, 0.96);
+      --bg-panel: rgba(7, 14, 32, 0.94);
+      --crimson: #cf2030;
+      --gold-primary: #f5c451;
+      --gold-light: #ffe9ad;
+      --gold-dark: #c48a10;
+      --cyan-sky: #38bdf8;
+      --emerald-peace: #34d399;
+      --rose-warm: #fb7185;
+      --text-main: #ffffff;
+      --text-muted: #e2e8f0;
+      --border-glass: rgba(245, 196, 81, 0.48);
+      --shadow-elevated: 0 20px 55px rgba(0, 0, 0, 0.88);
+      --font-body: 'Be Vietnam Pro', sans-serif;
+      --font-heading: 'Playfair Display', serif;
+      --card-radius: 20px;
+      --topbar-h: 62px;
+      --bottomdock-h: 58px;
+    }
+
+    body.style-realistic {
+      --bg-deep: #07121c;
+      --bg-navy: #0e2233;
+      --bg-card: rgba(12, 28, 42, 0.96);
+      --bg-panel: rgba(16, 36, 54, 0.94);
+      --gold-primary: #38bdf8;
+      --gold-light: #e0f2fe;
+      --gold-dark: #0284c7;
+      --cyan-sky: #34d399;
+      --emerald-peace: #fbbf24;
+      --border-glass: rgba(56, 189, 248, 0.52);
+    }
+
+    body.style-infographic {
+      --bg-deep: #0b192c;
+      --bg-navy: #1e3e62;
+      --bg-card: rgba(15, 34, 60, 0.96);
+      --bg-panel: rgba(22, 48, 82, 0.92);
+      --gold-primary: #ff6500;
+      --gold-light: #ffd1a6;
+      --gold-dark: #cc5200;
+      --cyan-sky: #00d2ff;
+      --emerald-peace: #00f5d4;
+      --border-glass: rgba(0, 210, 255, 0.55);
+    }
+
+    body.style-painting {
+      --bg-deep: #1b1128;
+      --bg-navy: #2b1b3f;
+      --bg-card: rgba(42, 24, 64, 0.95);
+      --bg-panel: rgba(56, 32, 84, 0.88);
+      --gold-primary: #f472b6;
+      --gold-light: #fce7f3;
+      --gold-dark: #db2777;
+      --cyan-sky: #c084fc;
+      --emerald-peace: #fbbf24;
+      --border-glass: rgba(244, 114, 182, 0.55);
+    }
+
+    body.style-handdrawn {
+      --bg-deep: #f4ebd9;
+      --bg-navy: #efe2c8;
+      --bg-card: #fffdf7;
+      --bg-panel: #faf3e3;
+      --gold-primary: #b45309;
+      --gold-light: #991b1b;
+      --gold-dark: #92400e;
+      --cyan-sky: #0369a1;
+      --emerald-peace: #15803d;
+      --rose-warm: #be123c;
+      --text-main: #1e293b;
+      --text-muted: #334155;
+      --border-glass: #991b1b;
+      --shadow-elevated: 6px 8px 0px rgba(153, 27, 27, 0.22);
+      --font-body: 'Patrick Hand', 'Be Vietnam Pro', cursive;
+      --font-heading: 'Dancing Script', 'Playfair Display', cursive;
+      background-image: radial-gradient(rgba(120, 53, 15, 0.15) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    body.style-handdrawn .slide-inner { border: 3px dashed #991b1b; }
+    body.style-handdrawn .senior-panel { border: 2px solid #92400e; }
+    body.style-handdrawn .state-old-lg { color: #be123c; }
+    body.style-handdrawn .state-new-lg { color: #15803d; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow: hidden;
+      transition: background-color 0.35s ease, color 0.35s ease;
+    }
+
+    body.mode-scroll, html.mode-scroll,
+    body.workspace-converter, html.workspace-converter,
+    body.workspace-skill, html.workspace-skill {
+      height: auto !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+    }
+
+    #cosmosCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hud-topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--topbar-h);
+      background: rgba(4, 7, 17, 0.96);
+      backdrop-filter: blur(22px);
+      border-bottom: 2px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      z-index: 1000;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .hud-topbar::-webkit-scrollbar { display: none; }
+
+    .workspace-tabs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(15, 29, 60, 0.95);
+      padding: 3px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(245, 196, 81, 0.55);
+      flex-shrink: 0;
+    }
+
+    .ws-tab-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 0.73rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .ws-tab-btn.active {
+      background: linear-gradient(135deg, #cf2030, #f59e0b);
+      color: #ffffff;
+      box-shadow: 0 0 14px rgba(245, 158, 11, 0.5);
+    }
+
+    .hud-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .slide-select-dropdown, .style-select-dropdown {
+      background: rgba(14, 29, 62, 0.96);
+      color: #ffe9ad;
+      border: 1px solid rgba(245, 196, 81, 0.45);
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+    }
+    .slide-select-dropdown { max-width: 175px; }
+    .style-select-dropdown { border-color: rgba(56, 189, 248, 0.55); color: #38bdf8; max-width: 150px; }
+
+    .pill-switcher {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: rgba(12, 27, 58, 0.95);
+      padding: 3px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.42);
+    }
+
+    .pill-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 0.71rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .pill-btn.active {
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
+      color: #fff;
+    }
+    .pill-btn.gold-active.active {
+      background: linear-gradient(135deg, #f5c451, #c48a10);
+      color: #030714;
+      font-weight: 800;
+    }
+
+    .speed-slider-pill {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(12, 27, 58, 0.95);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(52, 211, 153, 0.45);
+      color: #fff;
+      font-size: 0.71rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .speed-step-btn {
+      background: rgba(255, 255, 255, 0.14);
+      border: none;
+      color: #ffe9ad;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .top-speed-range {
+      width: 56px;
+      accent-color: #34d399;
+      cursor: pointer;
+    }
+    .speed-val-badge {
+      color: #34d399;
+      font-weight: 800;
+      min-width: 34px;
+      text-align: center;
+    }
+
+    .btn-hud-action {
+      background: rgba(245, 196, 81, 0.16);
+      border: 1px solid rgba(245, 196, 81, 0.45);
+      color: #ffe9ad;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 0.71rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .btn-hud-action:hover, .btn-hud-action.active { background: #f5c451; color: #030714; }
+    .btn-hud-action.primary-speak {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      border-color: rgba(255,255,255,0.4);
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.45);
+    }
+    .btn-hud-action.primary-speak.speaking {
+      background: linear-gradient(135deg, #f59e0b, #dc2626);
+    }
+    .btn-hud-action.crimson-qr {
+      background: linear-gradient(135deg, #cf2030, #f59e0b);
+      color: #fff;
+      border-color: #ffe9ad;
+    }
+
+    .hide-count-badge {
+      display: inline-block;
+      min-width: 16px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: #fb7185;
+      color: #1a0509;
+      font-size: 0.67rem;
+      text-align: center;
+    }
+    .hide-count-badge.zero {
+      background: rgba(255,255,255,0.22);
+      color: #fff;
+    }
+
+    .deck-progress {
+      position: fixed;
+      left: 0;
+      top: var(--topbar-h);
+      height: 4px;
+      width: 0;
+      z-index: 1001;
+      background: linear-gradient(90deg, #cf2030, #f5c451, #38bdf8);
+      box-shadow: 0 0 10px #f5c451;
+      transition: width 0.45s ease;
+    }
+
+    .voice-toast {
+      position: fixed;
+      top: 70px;
+      right: 18px;
+      background: rgba(6, 19, 45, 0.96);
+      border: 2px solid #f5c451;
+      color: #ffe9ad;
+      padding: 8px 15px;
+      border-radius: 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      z-index: 3000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.85);
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: all 0.25s ease;
+    }
+    .voice-toast.show { opacity: 1; transform: translateY(0); }
+
+    .deck-viewport {
+      position: relative;
+      width: 100vw;
+      height: calc(100vh - var(--topbar-h) - var(--bottomdock-h));
+      margin-top: var(--topbar-h);
+      z-index: 10;
+      overflow: hidden;
+    }
+    body.mode-scroll .deck-viewport {
+      height: auto !important;
+      overflow: visible !important;
+      margin-bottom: 78px;
+    }
+
+    .slides-track {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+    body.mode-horizontal .slides-track { flex-direction: row; }
+    body.mode-vertical .slides-track { flex-direction: column; }
+    body.mode-scroll .slides-track {
+      display: block !important;
+      height: auto !important;
+      transform: none !important;
+      padding-bottom: 76px;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      width: 100vw;
+      min-width: 100vw;
+      height: calc(100vh - var(--topbar-h) - var(--bottomdock-h));
+      padding: 5px 0.6vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    body.mode-scroll .slide {
+      height: auto !important;
+      min-height: 85vh;
+      padding: 14px 1vw;
+      margin-bottom: 16px;
+    }
+    body.mode-scroll .slide.is-hidden { display: none !important; }
+
+    .slide-inner {
+      width: 98.8vw;
+      height: 100%;
+      background: var(--bg-card);
+      backdrop-filter: blur(22px);
+      border: 2px solid var(--border-glass);
+      border-radius: var(--card-radius);
+      padding: 0.9vh 1.2vw 1.1vh;
+      box-shadow: var(--shadow-elevated);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .slide-inner::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #cf2030, var(--gold-primary), var(--cyan-sky), var(--gold-primary), #cf2030);
+    }
+    .slide-inner.narrating-glow {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 42px rgba(245, 196, 81, 0.42), var(--shadow-elevated);
+    }
+
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.7vh;
+      padding-bottom: 0.5vh;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .slide-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .slide-num-pill {
+      background: linear-gradient(135deg, #cf2030, #f59e0b);
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.76rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .slide-title {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: clamp(1.12rem, 2.5vh, 1.85rem);
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1.18;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .slide-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .header-hide-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(251, 113, 133, 0.14);
+      border: 1px solid rgba(251, 113, 133, 0.5);
+      color: #ffe4e8;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .header-hide-label input { accent-color: #fb7185; width: 14px; height: 14px; cursor: pointer; }
+
+    .btn-slide-voice {
+      background: rgba(52, 211, 153, 0.18);
+      border: 1.5px solid rgba(52, 211, 153, 0.65);
+      color: var(--emerald-peace);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-slide-voice:hover { background: var(--emerald-peace); color: #030714; }
+
+    .senior-stage {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 1.32fr 0.98fr;
+      gap: 1vw;
+      align-items: stretch;
+      transition: grid-template-columns 0.35s ease;
+    }
+    body.stage-wide-16x9 .senior-stage {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      overflow-y: auto;
+      gap: 10px;
+    }
+    body.stage-wide-16x9 .flip-cards-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    body.stage-wide-16x9 .bullet-list-4d {
+      display: none;
+    }
+
+    .senior-panel {
+      background: var(--bg-panel);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 16px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 0;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      position: relative;
+      gap: 8px;
+    }
+    .senior-panel.visual-panel-16x9 {
+      padding: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: radial-gradient(circle at 50% 50%, #0d1f3d 0%, #020611 100%);
+    }
+
+    .giant-art-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: calc(100vh - var(--topbar-h) - var(--bottomdock-h) - 135px);
+      margin: 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid var(--border-glass);
+      background: radial-gradient(circle at 50% 45%, #0b1c38 0%, #02050d 100%);
+      transition: transform 0.22s ease-out, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 38px rgba(0, 0, 0, 0.75), 0 0 25px rgba(56, 189, 248, 0.18);
+    }
+    body.style-handdrawn .giant-art-frame {
+      background: radial-gradient(circle at 50% 45%, #fffdf7 0%, #efe2c8 100%);
+    }
+
+    .pdf-image-16x9-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .giant-art-frame img.bg-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain !important;
+      display: block;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+      animation: livingFloat16x9 9s ease-in-out infinite alternate;
+      filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.75));
+    }
+
+    @keyframes livingFloat16x9 {
+      0% { transform: scale(0.992) translateY(0px); }
+      50% { transform: scale(1.0) translateY(-4px); }
+      100% { transform: scale(0.995) translateY(3px); }
+    }
+
+    .giant-art-frame.zoom-focus-0 img.bg-photo {
+      animation: none;
+      transform: scale(1.42) translate(14%, 12%);
+    }
+    .giant-art-frame.zoom-focus-1 img.bg-photo {
+      animation: none;
+      transform: scale(1.42) translate(-14%, 12%);
+    }
+    .giant-art-frame.zoom-focus-2 img.bg-photo {
+      animation: none;
+      transform: scale(1.42) translate(14%, -12%);
+    }
+    .giant-art-frame.zoom-focus-3 img.bg-photo {
+      animation: none;
+      transform: scale(1.42) translate(-14%, -12%);
+    }
+
+    .fx-living-overlay-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .magnifier-lens-4d {
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      border: 3px solid #f5c451;
+      box-shadow: 0 0 32px rgba(245, 196, 81, 0.85), inset 0 0 18px rgba(56, 189, 248, 0.5);
+      pointer-events: none;
+      z-index: 8;
+      display: none;
+      background-repeat: no-repeat;
+      background-color: #030712;
+      transform: translate(-50%, -50%);
+    }
+    .giant-art-frame.lens-active .magnifier-lens-4d {
+      display: block;
+    }
+
+    .hotspot-layer-4d {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+    .hotspot-pin-4d {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(245, 196, 81, 0.92);
+      color: #030714;
+      font-weight: 900;
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      pointer-events: auto;
+      box-shadow: 0 0 0 0 rgba(245, 196, 81, 0.8);
+      animation: hotspotPulse 2.2s infinite;
+      border: 2px solid #fff;
+      transition: transform 0.2s;
+    }
+    .hotspot-pin-4d:hover {
+      transform: scale(1.25);
+      background: #34d399;
+    }
+    @keyframes hotspotPulse {
+      0% { box-shadow: 0 0 0 0 rgba(245, 196, 81, 0.85); }
+      70% { box-shadow: 0 0 0 14px rgba(245, 196, 81, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 196, 81, 0); }
+    }
+
+    .visual-svg-stage {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .visual-svg-stage svg {
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      display: block;
+    }
+
+    .anim-float { animation: float4D 4.2s ease-in-out infinite; }
+    .anim-pulse { animation: pulse4D 2.8s ease-in-out infinite; transform-origin: center; }
+    .anim-spin { animation: spin4D 18s linear infinite; transform-origin: center; }
+    .anim-spin-rev { animation: spinRev4D 24s linear infinite; transform-origin: center; }
+    .anim-dash { stroke-dasharray: 12 8; animation: dashFlow 1.8s linear infinite; }
+
+    @keyframes float4D {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes pulse4D {
+      0%, 100% { transform: scale(0.96); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+    @keyframes spin4D {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinRev4D {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes dashFlow {
+      to { stroke-dashoffset: -40; }
+    }
+
+    .photo-tools {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      z-index: 9;
+      opacity: 0.35;
+      transition: opacity 0.25s;
+    }
+    .giant-art-frame:hover .photo-tools { opacity: 1; }
+    .photo-tools label, .photo-tools button {
+      background: rgba(4, 7, 17, 0.88);
+      color: #ffe9ad;
+      border: 1px solid rgba(245, 196, 81, 0.65);
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 0.69rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .photo-tools label:hover, .photo-tools button:hover, .photo-tools button.active {
+      background: #f5c451;
+      color: #030714;
+    }
+
+    .right-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 0.6vh;
+    }
+    .btn-flip-all {
+      background: rgba(56, 189, 248, 0.16);
+      border: 1px solid rgba(56, 189, 248, 0.55);
+      color: var(--cyan-sky);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .btn-flip-all:hover { background: var(--cyan-sky); color: #030714; }
+
+    .flip-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.65vw;
+      margin-bottom: 0.7vh;
+      flex: 1;
+    }
+
+    .flip-card-3d {
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .flip-card-inner {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      animation: flipBounceIn 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes flipBounceIn {
+      0% { transform: perspective(800px) rotateY(75deg) scale(0.96); opacity: 0.5; }
+      100% { transform: perspective(800px) rotateY(0deg) scale(1); opacity: 1; }
+    }
+
+    .flip-face {
+      position: relative;
+      width: 100%;
+      flex: 1;
+      border-radius: 13px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 5px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+      word-break: break-word;
+    }
+
+    .flip-front {
+      background: linear-gradient(145deg, rgba(207, 32, 48, 0.24), rgba(15, 23, 42, 0.96));
+      border: 1.5px solid rgba(251, 113, 133, 0.55);
+    }
+    body.style-handdrawn .flip-front {
+      background: #fff1f2;
+      border: 2px dashed #be123c;
+    }
+
+    .flip-back {
+      display: none;
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.28), rgba(12, 32, 54, 0.96));
+      border: 2px solid var(--emerald-peace);
+      box-shadow: 0 0 22px rgba(52, 211, 153, 0.28);
+    }
+    .flip-card-3d.flipped .flip-front {
+      display: none;
+    }
+    .flip-card-3d.flipped .flip-back {
+      display: flex;
+    }
+    body.style-handdrawn .flip-back {
+      background: #f0fdf4;
+      border: 2px solid #15803d;
+    }
+
+    .flip-slice-thumb {
+      width: 100%;
+      height: 54px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      margin-bottom: 4px;
+      flex-shrink: 0;
+    }
+
+    .flip-badge {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: clamp(0.66rem, 1.25vh, 0.8rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 4px;
+    }
+    .flip-front .flip-badge {
+      background: rgba(251, 113, 133, 0.2);
+      color: #fda4af;
+    }
+    .flip-back .flip-badge {
+      background: rgba(52, 211, 153, 0.24);
+      color: #6ee7b7;
+    }
+    body.style-handdrawn .flip-front .flip-badge { color: #be123c; }
+    body.style-handdrawn .flip-back .flip-badge { color: #15803d; }
+
+    .flip-title {
+      font-size: clamp(0.84rem, 1.65vh, 1.08rem);
+      font-weight: 800;
+      color: var(--gold-light);
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+    .flip-desc {
+      font-size: clamp(0.76rem, 1.48vh, 0.96rem);
+      line-height: 1.38;
+      color: var(--text-muted);
+    }
+
+    .bullet-list-4d {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55vh;
+      margin-bottom: 0.6vh;
+    }
+    .bullet-item-4d {
+      font-size: clamp(0.84rem, 1.7vh, 1.18rem);
+      line-height: 1.38;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 4px solid var(--gold-primary);
+      padding: 0.55vh 0.8vw;
+      border-radius: 0 10px 10px 0;
+    }
+    .bullet-item-4d strong { color: var(--text-main); font-weight: 800; }
+    .bullet-item-4d a { color: var(--cyan-sky); text-decoration: underline; font-weight: 700; }
+
+    .transform-row-large {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: rgba(148, 163, 184, 0.1);
+      border: 2px solid rgba(245, 196, 81, 0.45);
+      padding: 7px 12px;
+      border-radius: 13px;
+      margin-top: 3px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .transform-row-large:hover {
+      border-color: var(--emerald-peace);
+      box-shadow: 0 0 18px rgba(52, 211, 153, 0.25);
+    }
+    .state-old-lg {
+      color: #fecdd3;
+      font-weight: 700;
+      font-size: clamp(0.8rem, 1.65vh, 1.12rem);
+      flex: 1;
+    }
+    .verb-bridge-lg {
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+      color: #030714;
+      font-weight: 900;
+      font-size: clamp(0.68rem, 1.4vh, 0.92rem);
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .state-new-lg {
+      color: var(--emerald-peace);
+      font-weight: 800;
+      font-size: clamp(0.8rem, 1.65vh, 1.12rem);
+      flex: 1;
+      text-align: right;
+    }
+
+    .widget-box-4d {
+      margin-top: 5px;
+      padding: 7px 10px;
+      border-radius: 11px;
+      background: rgba(4, 12, 28, 0.65);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+    body.style-handdrawn .widget-box-4d {
+      background: rgba(255, 255, 255, 0.75);
+      border-color: #92400e;
+    }
+
+    .interactive-btn-lg {
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+      color: #030714;
+      border: none;
+      padding: 7px 15px;
+      border-radius: 999px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-weight: 800;
+      font-size: clamp(0.8rem, 1.6vh, 1.06rem);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(245, 196, 81, 0.35);
+      transition: transform 0.2s;
+    }
+    .interactive-btn-lg:hover { transform: translateY(-2px); }
+
+    .studio-workspace {
+      display: none;
+      margin-top: var(--topbar-h);
+      padding: 20px 2vw 86px;
+      max-width: 1680px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 20;
+    }
+    body.workspace-converter #converterWorkspace { display: block; }
+    body.workspace-skill #skillWorkspace { display: block; }
+    body.workspace-converter #deckViewport,
+    body.workspace-skill #deckViewport { display: none !important; }
+
+    .studio-banner {
+      background: linear-gradient(135deg, rgba(15, 29, 62, 0.96), rgba(30, 20, 56, 0.95));
+      border: 2px solid var(--gold-primary);
+      border-radius: 20px;
+      padding: 18px 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.65);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .dropzone-card {
+      background: rgba(10, 22, 48, 0.92);
+      border: 3px dashed #38bdf8;
+      border-radius: 20px;
+      padding: 22px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      margin-bottom: 18px;
+    }
+    .dropzone-card:hover, .dropzone-card.dragover {
+      border-color: #f5c451;
+      background: rgba(245, 196, 81, 0.12);
+    }
+
+    .converter-controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+      background: rgba(8, 17, 38, 0.92);
+      border: 1px solid rgba(245, 196, 81, 0.35);
+      border-radius: 16px;
+      padding: 14px 16px;
+    }
+    .ctrl-field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #ffe9ad;
+      margin-bottom: 4px;
+    }
+    .ctrl-field select, .ctrl-field input {
+      width: 100%;
+      background: #040d21;
+      color: #fff;
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      padding: 7px 10px;
+      border-radius: 9px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .extracted-pages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .page-editor-card {
+      background: rgba(12, 24, 52, 0.95);
+      border: 1.5px solid rgba(245, 196, 81, 0.45);
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.55);
+    }
+    .page-editor-card img.thumb-preview {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      background: #020611;
+    }
+    .page-editor-card input, .page-editor-card textarea, .page-editor-card select {
+      width: 100%;
+      background: rgba(4, 9, 22, 0.9);
+      color: #fff;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: 8px;
+      padding: 6px 9px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 0.8rem;
+    }
+    .page-editor-card textarea { min-height: 54px; resize: vertical; }
+
+    .bottom-studio-dock {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: var(--bottomdock-h);
+      background: rgba(4, 7, 17, 0.96);
+      backdrop-filter: blur(20px);
+      border-top: 2px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .dock-nav-cluster {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .nav-action-btn {
+      background: rgba(245, 196, 81, 0.18);
+      border: 1px solid rgba(245, 196, 81, 0.48);
+      color: #ffe9ad;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .nav-action-btn:hover { background: #f5c451; color: #030714; }
+
+    .dots-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .slide-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .slide-dot.active {
+      width: 22px;
+      background: #f5c451;
+      box-shadow: 0 0 10px #f5c451;
+    }
+    .slide-dot.is-hidden { display: none; }
+
+    .dock-teleprompter-stage {
+      flex: 1;
+      height: 40px;
+      background: rgba(12, 27, 58, 0.92);
+      border: 1.5px solid rgba(245, 196, 81, 0.42);
+      border-radius: 999px;
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .dock-teleprompter-stage.active-speaking {
+      border-color: #34d399;
+      box-shadow: 0 0 18px rgba(52, 211, 153, 0.35);
+    }
+    .voice-wave-bars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 18px;
+      flex-shrink: 0;
+      opacity: 0.35;
+    }
+    .dock-teleprompter-stage.active-speaking .voice-wave-bars { opacity: 1; }
+    .voice-wave-bars span {
+      width: 4px;
+      height: 8px;
+      background: #34d399;
+      border-radius: 99px;
+    }
+    .dock-teleprompter-stage.active-speaking .voice-wave-bars span {
+      animation: waveBounce 0.75s infinite ease-in-out;
+    }
+    .voice-wave-bars span:nth-child(2) { animation-delay: 0.15s; height: 14px; }
+    .voice-wave-bars span:nth-child(3) { animation-delay: 0.3s; height: 18px; background: #f5c451; }
+    .voice-wave-bars span:nth-child(4) { animation-delay: 0.45s; height: 10px; }
+    @keyframes waveBounce {
+      0%, 100% { transform: scaleY(0.4); }
+      50% { transform: scaleY(1.15); }
+    }
+
+    .teleprompter-text {
+      flex: 1;
+      font-size: clamp(0.82rem, 0.98vw, 0.98rem);
+      font-weight: 700;
+      color: #ffe9ad;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dock-hide-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(251, 113, 133, 0.55);
+      background: rgba(251, 113, 133, 0.14);
+      color: #ffe4e8;
+      font-size: 0.74rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .dock-hide-check input { width: 15px; height: 15px; accent-color: #fb7185; cursor: pointer; }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.92);
+      backdrop-filter: blur(16px);
+      z-index: 2500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-card {
+      width: 100%;
+      max-width: 820px;
+      max-height: 88vh;
+      overflow-y: auto;
+      background: #081530;
+      border: 2px solid #f5c451;
+      border-radius: 24px;
+      padding: 22px 26px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.95);
+      color: #fff;
+    }
+
+    .hide-list {
+      max-height: 52vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .hide-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+    .hide-row.is-hidden { opacity: 0.58; border-style: dashed; border-color: #fb7185; }
+    .hide-row.is-hidden .hide-row-title { text-decoration: line-through; }
+
+    .code-box-pre {
+      background: #030816;
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      border-radius: 12px;
+      padding: 14px;
+      font-family: Consolas, monospace;
+      font-size: 0.82rem;
+      color: #38bdf8;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      margin: 10px 0;
+    }
+
+    @media (max-width: 1150px) {
+      .senior-stage { grid-template-columns: 1fr; }
+      .flip-cards-grid { grid-template-columns: 1fr 1fr; }
+      .extracted-pages-grid { grid-template-columns: 1fr; }
+      .dots-wrapper { display: none; }
+    }
+  </style>
+</head>
+<body class="mode-horizontal style-cinematic workspace-deck">
+
+  <canvas id="cosmosCanvas"></canvas>
+  <div class="voice-toast" id="voiceToast">QUẢN TRỊ CẢM XÚC - CHUYỂN HÓA RÁC TÂM TRÍ THÀNH ĐÓA HOA TỰ TẠI</div>
+  <div class="deck-progress" id="deckProgress"></div>
+
+  <header class="hud-topbar">
+    <div class="workspace-tabs" role="tablist">
+      <button class="ws-tab-btn active" id="tabBtnDeck" onclick="switchWorkspace('deck')">
+        🎬 Trình Chiếu 4D (<span id="totalSlidesBadge">0</span>)
+      </button>
+      <button class="ws-tab-btn" id="tabBtnConverter" onclick="switchWorkspace('converter')">
+        🛠️ Xưởng PDF NotebookLM ➔ HTML 4D
+      </button>
+      <button class="ws-tab-btn" id="tabBtnSkill" onclick="switchWorkspace('skill')">
+        🤖 Đóng Gói Skill &amp; GitHub
+      </button>
+    </div>
+
+    <div class="hud-group">
+      <select class="slide-select-dropdown" id="slideJumpSelect" onchange="goToSlide(parseInt(this.value, 10), true)" aria-label="Chọn nhanh trang thuyết trình"></select>
+
+      <select class="style-select-dropdown" id="artStyleSelect" onchange="setVisualArtStyle(this.value)" aria-label="Chọn 5 phong cách nghệ thuật">
+        <option value="cinematic">🎬 Điện Ảnh 4D</option>
+        <option value="realistic">📸 Chân Thực Sắc Nét</option>
+        <option value="infographic">📊 Đồ Họa Infographic</option>
+        <option value="painting">🎨 Bức Vẽ Nghệ Thuật</option>
+        <option value="handdrawn">✍️ Viết Tay Sketchnote</option>
+      </select>
+    </div>
+
+    <div class="pill-switcher" role="group" aria-label="Chế độ lật trang">
+      <button class="pill-btn active" id="btnModeHorizontal" onclick="setDeckMode('horizontal')">↔ Ngang</button>
+      <button class="pill-btn" id="btnModeVertical" onclick="setDeckMode('vertical')">↕ Dọc</button>
+      <button class="pill-btn" id="btnModeScroll" onclick="setDeckMode('scroll')">☰ Toàn Trang</button>
+    </div>
+
+    <div class="pill-switcher" role="group" aria-label="Chọn giọng đọc Nam hoặc Nữ">
+      <button class="pill-btn gold-active active" id="btnVoiceMale" onclick="setVoiceGender('male', true)">👨 Nam</button>
+      <button class="pill-btn gold-active" id="btnVoiceFemale" onclick="setVoiceGender('female', true)">👩 Nữ</button>
+    </div>
+
+    <div class="speed-slider-pill" title="Đổi tốc độ đọc ngay tại từ đang nói (Mid-Sentence Resume)">
+      <button class="speed-step-btn" onclick="stepSpeechSpeed(-0.1)">-</button>
+      <input type="range" class="top-speed-range" id="topSpeedSlider" min="0.5" max="1.8" step="0.05" value="1.0" oninput="onTopSpeedInput(this.value)" onchange="onTopSpeedCommit(this.value)" />
+      <button class="speed-step-btn" onclick="stepSpeechSpeed(0.1)">+</button>
+      <span class="speed-val-badge" id="topSpeedVal">1.00x</span>
+    </div>
+
+    <div class="speed-slider-pill" title="Nhạc nền nhẹ 432Hz &amp; Hiệu ứng âm thanh">
+      <button class="pill-btn" id="btnMusicToggle" onclick="toggleMusic()">🎵 Nhạc</button>
+      <input type="range" id="musicVolSlider" min="0" max="100" value="35" style="width:50px; accent-color:#f5c451;" oninput="setMusicVol(this.value)" aria-label="Âm lượng nhạc nền" />
+      <button class="pill-btn active" id="btnSfxToggle" onclick="toggleSfx()">🔔 SFX</button>
+    </div>
+
+    <div class="hud-group">
+      <button class="btn-hud-action primary-speak" id="btnMasterSpeak" onclick="toggleAutoLecture()">
+        <span id="speakIcon">🎙️</span>
+        <span id="speakLabel">BẤM NÚT NÓI</span>
+      </button>
+      <button class="btn-hud-action" id="btnToggleWide16x9" onclick="toggleWide16x9Stage()" title="Phóng rộng khung ảnh 16:9 cực đại hoặc chia cột Thẻ Lật">
+        📺 Cực Đại 16:9
+      </button>
+      <button class="btn-hud-action" onclick="flipAllCardsOnCurrentSlide()" title="Lật đồng loạt toàn bộ thẻ bài tương phản (Phím R)">
+        🔄 Lật Thẻ
+      </button>
+      <button class="btn-hud-action" onclick="openHideModal()" title="Quản lý Ẩn/Hiện từng trang (Phím H)">
+        👁 Ẩn Trang <span class="hide-count-badge zero" id="hideCountBadge">0</span>
+      </button>
+      <button class="btn-hud-action crimson-qr" onclick="openQrModal()">
+        💳 Mã QR ACB
+      </button>
+      <button class="btn-hud-action" onclick="exportStandaloneHtml4D()" title="Tải trọn bộ bài giảng thành 1 file HTML 4D độc lập">
+        📥 Tải HTML 4D
+      </button>
+      <button class="btn-hud-action" onclick="toggleFullScreen()" title="Phóng toàn màn hình giữ nguyên trang hiện tại">
+        ⛶
+      </button>
+    </div>
+  </header>
+
+  <main class="deck-viewport" id="deckViewport">
+    <div class="slides-track" id="slidesTrack"></div>
+  </main>
+
+  <section class="studio-workspace" id="converterWorkspace" aria-label="Xưởng chuyển hóa PDF NotebookLM sang HTML 4D">
+    <div class="studio-banner">
+      <div>
+        <span class="slide-tag">🛠️ XƯỞNG CHUYỂN HÓA TỰ ĐỘNG • KHUNG NGANG 16:9 NGUYÊN BẢN + HIỆU ỨNG ĐỘNG 4D TRÊN ẢNH</span>
+        <h2 style="font-size:1.62rem; font-weight:900; color:#ffe9ad; margin-top:4px;">
+          Xưởng Chuyển Hóa PDF NotebookLM ➔ Slide 16:9 Sống Động &amp; Bộ 4 Thẻ Lật Tương Phản
+        </h2>
+        <p style="color:#cbd5e1; font-size:0.9rem; margin-top:4px;">
+          Giữ nguyên 100% khung hình ngang 16:9 của NotebookLM (không bị cắt góc), phủ trực tiếp hiệu ứng hạt ánh sáng 4D, kính lúp soi chi tiết và tự động cắt 4 vùng ảnh vào <strong>Bộ 4 Thẻ Bài Lật 3D Tương Phản</strong>.
+        </p>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="interactive-btn-lg" onclick="applyExtractedToLiveDeck()">
+          🚀 Áp Dụng Vào Trình Chiếu 4D Ngay
+        </button>
+        <button class="interactive-btn-lg" style="background:linear-gradient(135deg,#10b981,#059669); color:#fff;" onclick="exportStandaloneHtml4D()">
+          ⚡ Xuất File Bài Giảng HTML 4D (.html)
+        </button>
+        <button class="btn-hud-action" style="padding:9px 15px;" onclick="exportSlidesJson()">
+          📦 Xuất JSON
+        </button>
+      </div>
+    </div>
+
+    <div class="converter-controls-grid">
+      <div class="ctrl-field">
+        <label for="pdfScaleSelect">1. Độ phân giải trích xuất ảnh PDF 16:9 (Scale):</label>
+        <select id="pdfScaleSelect">
+          <option value="1.5">1.5x HD Nhanh (Mượt nhẹ)</option>
+          <option value="2.0" selected>2.0x Full HD Retina (Chuẩn Zoom 16:9)</option>
+          <option value="2.8">2.8x Ultra 4K Sắc Nét</option>
+        </select>
+      </div>
+      <div class="ctrl-field">
+        <label for="pdfCropModeSelect">2. Tỷ lệ khung hình trích xuất:</label>
+        <select id="pdfCropModeSelect">
+          <option value="full" selected>Nguyên bản 16:9 Toàn Trang (Không cắt viền)</option>
+          <option value="right_half">Cắt lấy nửa phải trang PDF</option>
+          <option value="left_half">Cắt lấy nửa trái trang PDF</option>
+          <option value="center_art">Cắt khung trung tâm trang PDF</option>
+        </select>
+      </div>
+      <div class="ctrl-field">
+        <label for="pdfCourseTagInput">3. Nhãn Thương Hiệu &amp; Chủ Đề:</label>
+        <input type="text" id="pdfCourseTagInput" value="🏛️ KTCSxAI • ĐÂY ĐO ĐỜI, ĐẾCH ĐỂ ĐỜI ĐO" />
+      </div>
+      <div class="ctrl-field">
+        <label for="pdfBridgeVerbSelect">4. Động từ cầu nối Chuyển Hóa (Thay dấu ==>):</label>
+        <select id="pdfBridgeVerbSelect">
+          <option value="TRỞ THÀNH" selected>TRỞ THÀNH</option>
+          <option value="TẠO NÊN">TẠO NÊN</option>
+          <option value="TRỞ NÊN">TRỞ NÊN</option>
+          <option value="VƯỢT LÊN THÀNH">VƯỢT LÊN THÀNH</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="dropzone-card" id="pdfDropZone" onclick="document.getElementById('pdfFileInput').click()">
+      <input type="file" id="pdfFileInput" accept="application/pdf,.pdf" style="display:none;" onchange="handlePdfFileSelect(event)" />
+      <div style="font-size:2.7rem; margin-bottom:6px;">📄 (16:9) ➔ ✨ 4D Motion + 🎴 4 Thẻ Lật</div>
+      <h3 style="font-size:1.25rem; font-weight:800; color:#ffe9ad;">
+        Chọn File PDF từ Google NotebookLM (Hoặc Kéo &amp; Thả file .PDF vào khung này)
+      </h3>
+      <p style="color:#94a3b8; font-size:0.88rem; margin-top:5px;" id="pdfProgressStatus">
+        Sẵn sàng xử lý file PDF 16:9 từ NotebookLM: hiển thị trọn vẹn khung ngang 16:9, tự động tạo hiệu ứng động 4D và cắt 4 vùng chi tiết vào Bộ Thẻ Bài Lật Tương Phản.
+      </p>
+      <div style="margin-top:12px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap;" onclick="event.stopPropagation()">
+        <button class="interactive-btn-lg" onclick="document.getElementById('pdfFileInput').click()">
+          📂 Chọn File PDF Từ Máy
+        </button>
+        <button class="btn-hud-action" style="padding:8px 14px;" onclick="addBlankCustomSlide()">
+          ➕ Thêm Trang Slide Mới Thủ Công
+        </button>
+        <label class="btn-hud-action" style="padding:8px 14px; cursor:pointer;">
+          📥 Nhập JSON
+          <input type="file" accept=".json,application/json" style="display:none;" onchange="importSlidesJson(event)" />
+        </label>
+        <button class="btn-hud-action" style="padding:8px 14px;" onclick="resetToDefaultMasterDeck()">
+          🔄 Khôi Phục Dữ Liệu Gốc
+        </button>
+      </div>
+    </div>
+
+    <div id="extractedPagesContainer" class="extracted-pages-grid"></div>
+  </section>
+
+  <section class="studio-workspace" id="skillWorkspace" aria-label="Đóng gói Skill và Xuất bản GitHub Pages">
+    <div class="studio-banner">
+      <div>
+        <span class="slide-tag">🤖 HỆ SINH THÁI TỰ HÀNH GEMINI SPARK &amp; GITHUB PAGES TUANGEMINI</span>
+        <h2 style="font-size:1.6rem; font-weight:900; color:#ffe9ad; margin-top:4px;">
+          Bộ Câu Lệnh AI-to-AI, Skill V04 &amp; Lệnh Đẩy Bài Mới Lên Đầu GitHub Pages
+        </h2>
+      </div>
+      <button class="interactive-btn-lg" onclick="switchWorkspace('deck')">
+        🎬 Quay Lại Màn Hình Trình Chiếu 4D
+      </button>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div class="page-editor-card">
+        <span class="slide-tag">🚀 KẾT NỐI TRỰC TIẾP GITHUB PAGES • TÀI KHOẢN TUANGEMINI</span>
+        <h3 style="font-size:1.2rem; color:#ffe9ad; font-weight:800;">
+          1. Đưa Bài Giảng Mới Lên Đầu Website GitHub (Không Ghi Đè Bài Cũ)
+        </h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div>
+            <label style="font-size:0.78rem; color:#38bdf8; font-weight:700;">Tên Kho Chứa GitHub (Repo Slug):</label>
+            <input type="text" id="ghRepoSlugInput" value="ktcs-bai-giang-4d" oninput="updateGitHubPowerShellBox()" />
+          </div>
+          <div>
+            <label style="font-size:0.78rem; color:#ffe9ad; font-weight:700;">Tiêu đề bài giảng mới:</label>
+            <input type="text" id="ghPostTitleInput" value="QUẢN TRỊ CẢM XÚC - CHUYỂN HÓA RÁC TÂM TRÍ THÀNH ĐÓA HOA TỰ TẠI" oninput="updateGitHubPowerShellBox()" />
+          </div>
+        </div>
+        <div id="ghLiveUrlBox" style="background:rgba(52,211,153,0.12); border:1px solid #34d399; color:#34d399; padding:8px 12px; border-radius:10px; font-weight:800; font-size:0.84rem;">
+          https://xuanhoa-xedaukeo.github.io/ktcs-bai-giang-4d/
+        </div>
+        <pre class="code-box-pre" id="ghPowerShellCode"></pre>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="interactive-btn-lg" onclick="exportStandaloneHtml4D()">
+            📥 B1. Tải File HTML 4D Về Máy
+          </button>
+          <button class="interactive-btn-lg" style="background:linear-gradient(135deg,#38bdf8,#0284c7); color:#fff;" onclick="copyTextFromElement('ghPowerShellCode', 'Đã sao chép lệnh PowerShell đẩy bài mới lên đầu GitHub Pages!')">
+            📋 B2. Sao Chép Lệnh PowerShell 1-Click
+          </button>
+        </div>
+      </div>
+
+      <div class="page-editor-card">
+        <span class="slide-tag">🧠 KỸ NĂNG AI-TO-AI CHUẨN MASTER-SKILL</span>
+        <h3 style="font-size:1.2rem; color:#ffe9ad; font-weight:800;">
+          2. Câu Lệnh Giao Việc Tự Động Hóa
+        </h3>
+        <pre class="code-box-pre" id="skillPromptTemplateBox">Hãy chuyển hóa chủ đề này thành file bài giảng tương tác HTML 4D chuẩn V04:
+- Khung 16:9 nguyên bản không cắt viền
+- Bộ 4 Thẻ Bài Lật 3D Tương Phản (Góc nhìn cũ ➔ Chuyển hóa mới)
+- Động từ cầu nối chuyển hóa (TRỞ THÀNH, TẠO NÊN, VƯỢT LÊN THÀNH...)
+- Kịch bản giảng Teleprompter cho giọng đọc AI Nam/Nữ Mid-Sentence Resume
+- Đồ họa động 4D sống động</pre>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="interactive-btn-lg" onclick="copyTextFromElement('skillPromptTemplateBox', 'Đã sao chép câu lệnh!')">
+            📋 Sao Chép Câu Lệnh
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bottom-studio-dock" aria-label="Thanh Phụ đề và Điều hướng">
+    <div class="dock-nav-cluster">
+      <button class="nav-action-btn" onclick="prevSlide()" id="btnPrevNav">◀ Trang Trước</button>
+      <div class="dots-wrapper" id="dotsContainer"></div>
+    </div>
+
+    <div class="dock-teleprompter-stage" id="teleprompterBar">
+      <div class="voice-wave-bars">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="teleprompter-text" id="teleprompterText">
+        🎙️ KTCSxAI V04
+      </div>
+      <button class="pill-btn" id="btnStopInline" style="background:rgba(251,113,133,0.25); color:#fecdd3; display:none;" onclick="stopAutoLecture()">⏹ Dừng</button>
+    </div>
+
+    <div class="dock-nav-cluster">
+      <label class="dock-hide-check" title="Phím tắt: H">
+        <input type="checkbox" id="chkShowCurrent" checked onchange="toggleShowSlide(currentSlide, this.checked)" />
+        ✓ Hiển thị trang này
+      </label>
+      <button class="nav-action-btn" onclick="nextSlide()" id="btnNextNav">Trang Tiếp ▶</button>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="hideModal" onclick="closeHideModal()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.15); padding-bottom:10px; margin-bottom:12px;">
+        <div>
+          <span class="slide-tag">🗂️ QUẢN LÝ ẨN / HIỆN TỪNG TRANG SLIDE (HIDE SLIDE)</span>
+          <h3 style="font-size:1.35rem; color:#ffe9ad;">Danh sách các trang hiển thị khi thuyết trình</h3>
+          <div id="hideSummaryText" style="font-size:0.84rem; color:#cbd5e1; margin-top:4px;"></div>
+        </div>
+        <button class="btn-hud-action" onclick="closeHideModal()">✕ Đóng</button>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px;">
+        <button class="btn-hud-action" onclick="showAllSlides()">👁 Hiện tất cả các trang</button>
+        <button class="btn-hud-action" onclick="hideAllExceptCurrent()">🎯 Chỉ giữ lại trang đang xem</button>
+        <button class="btn-hud-action" onclick="invertHiddenSlides()">🔄 Đảo lựa chọn Ẩn/Hiện</button>
+      </div>
+      <div class="hide-list" id="hideListContainer"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="qrModal" onclick="closeQrModal()">
+    <div class="modal-card" style="max-width:640px; text-align:center; background:#ffffff; color:#0f172a; border:6px solid #f5c451;" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <span style="background:#cf2030; color:#fff; font-weight:800; font-size:0.82rem; padding:6px 14px; border-radius:999px;">
+          💳 QUÉT MÃ QR ĐĂNG KÝ LỚP KIẾN TẠO CUỘC SỐNG xAI
+        </span>
+        <button class="btn-hud-action" style="background:#0f172a; color:#fff;" onclick="closeQrModal()">✕ Đóng</button>
+      </div>
+      <img src="https://img.vietqr.io/image/ACB-102168268-compact2.png?amount=468468&addInfo=KTCSxAI%20Ten%20SDT&accountName=NGUYEN%20ANH%20TUAN" alt="Siêu Mã QR ACB 102168268" style="width:360px; height:360px; max-width:78vw; object-fit:contain; margin:0 auto; display:block; border:3px solid #005baa; border-radius:18px; padding:8px;" />
+      <div style="font-size:1.7rem; font-weight:900; color:#cf2030; margin-top:8px;">
+        HỌC PHÍ ƯU ĐÃI TRẢI NGHIỆM 1 THÁNG: 468.468 VND
+      </div>
+      <div style="font-size:1.08rem; font-weight:800; color:#005baa; margin-top:4px;">
+        🏦 Ngân hàng ACB Khánh Hòa • STK: 102 168 268 • Chủ TK: NGUYEN ANH TUAN
+      </div>
+      <div style="font-size:0.96rem; font-weight:800; color:#0f172a; margin-top:6px;">
+        Nội dung chuyển khoản: <span style="background:#fef08a; color:#cf2030; padding:2px 8px; border-radius:6px;">KTCSxAI Ten SDT</span>
+      </div>
+      <div style="margin-top:10px;">
+        <button class="interactive-btn-lg" onclick="copyRawText('102168268', 'Đã sao chép STK ACB: 102 168 268')">
+          📋 Sao Chép Số Tài Khoản ACB: 102 168 268
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (window.pdfjsLib) {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    }
+
+    const DEFAULT_MASTER_SLIDES = /*__DEFAULT_SLIDES_START__*/[
+  {
+    "id": 1,
+    "tag": "🏛️ KTCSxAI • QUẢN TRỊ CẢM XÚC",
+    "title": "01. LÀM CHỦ KHU VƯỜN TÂM TRÍ – ĐÂY ĐO ĐỜI!",
+    "flipCards": [
+      {
+        "frontTitle": "ĐỂ NGOẠI CẢNH ĐO MÌNH",
+        "frontText": "Một lời khen làm ta bay bổng, một câu chê khiến ta mất ngủ cả đêm dài.",
+        "backTitle": "ĐÂY ĐO ĐỜI TỪ TÂM",
+        "backText": "Tự thiết lập thước đo nội lực; bình thản mỉm cười trước mọi khen chê ngoại cảnh."
+      },
+      {
+        "frontTitle": "THẢ TRÔI CẢM XÚC",
+        "frontText": "Ai ném gì vào tâm trí cũng nhận, biến khu vườn của mình thành bãi chứa rác.",
+        "backTitle": "NGƯỜI GÁC CỔNG TÂM TRÍ",
+        "backText": "Chủ động chọn lọc năng lượng tích cực; chỉ cho phép những hạt mầm tử tế đi vào."
+      },
+      {
+        "frontTitle": "ĐỒNG HÓA VỚI CƠN GIẬN",
+        "frontText": "Nghĩ rằng 'Tôi là cơn giận', để sự nóng nảy thiêu rụi các mối quan hệ.",
+        "backTitle": "NGƯỜI QUAN SÁT TỈNH THỨC",
+        "backText": "Nhận biết: Cảm xúc chỉ là những đám mây lướt qua, bầu trời tâm thức vẫn vĩnh hằng."
+      },
+      {
+        "frontTitle": "ĐỐI ĐẦU BẠO LỰC",
+        "frontText": "Dùng sự gay gắt để dập tắt gay gắt, làm đám cháy bùng phát dữ dội hơn.",
+        "backTitle": "CHUYỂN HÓA BẰNG TÌNH THƯƠNG",
+        "backText": "Lấy sự tĩnh lặng và bao dung làm nước mát dập tắt mọi ngọn lửa sân hận."
+      }
+    ],
+    "bullets": [
+      "🔹 Tâm trí bạn như một khu vườn màu mỡ: <strong>Nếu không chủ động gieo hạt giống hoa thơm, cỏ dại và rác rưởi sẽ tự động mọc đầy</strong>.",
+      "🔹 Tuyên ngôn bản thể: <strong>ĐÂY ĐO ĐỜI, ĐẾCH ĐỂ ĐỜI ĐO</strong> — Lấy lại quyền làm chủ công trình cảm xúc của chính mình."
+    ],
+    "stateOld": "😮‍💨 Biến tâm trí thành bãi rác của thị phi bên ngoài",
+    "bridgeVerb": "TRỞ THÀNH",
+    "stateNew": "👑 Người làm chủ canh giữ khu vườn tâm trí an vui",
+    "image": "",
+    "visualTheme": "compass_ruler",
+    "widgetType": "none",
+    "script": "Chào mừng các anh chị đến với chuyên đề Quản trị Cảm xúc. Tuyên ngôn của chúng ta là: Đây đo đời, đếch để đời đo! Một người để ngoại cảnh dẫn dắt sẽ như con thuyền không bánh lái giữa biển động. Nhưng khi trở thành người gác cổng tỉnh thức, ta sẽ bảo vệ khu vườn tâm trí luôn ngát hương thơm."
+  },
+  {
+    "id": 2,
+    "tag": "🧠 KHOA HỌC NÃO BỘ",
+    "title": "02. HẠCH HẠNH NHÂN (AMYGDALA) & CƠ CHẾ NÔI BẬT CƠN GIẬN",
+    "flipCards": [
+      {
+        "frontTitle": "BẮT CÓC CẢM XÚC (HIJACK)",
+        "frontText": "Hạch hạnh nhân kích hoạt phản ứng chiến hay biến chỉ trong 0.08 giây khiến ta mất kiểm soát.",
+        "backTitle": "KÍCH HOẠT VỎ NÃO TRƯỚC TRÁN",
+        "backText": "Hít thở sâu 6 giây để máu dồn về thùy trán, đưa lý trí và sự thông tuệ vào điều phối."
+      },
+      {
+        "frontTitle": "PHẢN ỨNG BỘP CHỘP",
+        "frontText": "Nói ngay câu cay nghiệt khi đang nóng giận, để lại vết thương lòng khó lành.",
+        "backTitle": "KHOẢNG DỪNG HOÀNG GIA",
+        "backText": "Im lặng 10 giây trước khi phản hồi; biến phản xạ bản năng thành hành động có chiến lược."
+      },
+      {
+        "frontTitle": "CORTISOL BÀO MÒN CƠ THỂ",
+        "frontText": "Căng thẳng kéo dài làm co mạch máu, suy giảm trí nhớ và đẩy nhanh lão hóa.",
+        "backTitle": "TIẾT OXYTOCIN & ENDORPHIN",
+        "backText": "Nuôi dưỡng cảm giác biết ơn và nụ cười ấm áp giúp tái tạo tế bào não Neurogenesis."
+      },
+      {
+        "frontTitle": "ĐÈ NÉN CẢM XÚC",
+        "frontText": "Cố gồng mình chịu đựng trong ấm ức, khiến khối ung nhọt tâm lý ngày càng phình to.",
+        "backTitle": "GỌI TÊN CẢM XÚC ĐỂ THÔNG",
+        "backText": "'Tôi thấy mình đang giận' — Gọi đúng tên cảm xúc sẽ làm năng lượng tiêu cực tự tan biến."
+      }
+    ],
+    "bullets": [
+      "🔹 Hiện tượng <strong>Amygdala Hijack</strong> (Bắt cóc cảm xúc): Bản năng sinh tồn cổ xưa khiến não phản ứng trước khi kịp suy nghĩ.",
+      "🔹 Chỉ cần <strong>khoảng dừng 6 giây</strong> cùng 3 hơi thở sâu, bạn sẽ chuyển quyền điều khiển từ hạch hạnh nhân về <strong>Vỏ não trước trán (Prefrontal Cortex)</strong>."
+    ],
+    "stateOld": "💥 Để hạch hạnh nhân bắt cóc và hành động mất kiểm soát",
+    "bridgeVerb": "CHUYỂN HÓA THÀNH",
+    "stateNew": "🧘 Làm chủ vỏ não trước trán với khoảng dừng 6 giây thông tuệ",
+    "image": "",
+    "visualTheme": "neuroplasticity_stairs",
+    "widgetType": "none",
+    "script": "Tiến sĩ tâm lý Daniel Goleman chỉ ra rằng: khi bị bắt cóc cảm xúc, hạch hạnh nhân sẽ cướp quyền điều khiển não bộ trong chưa đầy một phần mười giây. Bí quyết của bậc làm chủ là tạo ra khoảng dừng sáu giây để vỏ não trước trán kịp thời lấy lại tay lái trí tuệ."
+  },
+  {
+    "id": 3,
+    "tag": "💡 BẬC THẦY TÂM THỨC • VIKTOR FRANKL",
+    "title": "03. KHOẢNG TRỐNG TỰ DO: GIỮA KÍCH THÍCH VÀ PHẢN ỨNG",
+    "flipCards": [
+      {
+        "frontTitle": "CƠ CHẾ NẠP ĐẠN BẮN NGAY",
+        "frontText": "Ai kích động là nổ tung tức thì, tự biến mình thành con rối để kẻ khác giật dây.",
+        "backTitle": "QUYỀN NĂNG LỰA CHỌN",
+        "backText": "Giữa kích thích và phản ứng luôn có một khoảng trống; trong khoảng trống đó là tự do lớn nhất."
+      },
+      {
+        "frontTitle": "TÂM LÝ NẠN NHÂN",
+        "frontText": "'Tại ông ấy làm tôi tức, tại hoàn cảnh ép tôi phải nổi điên' — hoàn toàn bất lực.",
+        "backTitle": "TÂM THỨC CHỦ NHÂN",
+        "backText": "'Không ai có thể làm tôi tổn thương nếu không có sự đồng thuận từ chính tôi' (Eleanor Roosevelt)."
+      },
+      {
+        "frontTitle": "TÙ NHÂN CẢNH NGỘ",
+        "frontText": "Bị giam cầm trong sự oán hận và tiếc nuối những điều đã diễn ra trong quá khứ.",
+        "backTitle": "TỰ DO Ý CHÍ TUYỆT ĐỐI",
+        "backText": "Viktor Frankl trong trại tập trung phát xít: Mọi thứ có thể bị tước đoạt, trừ thái độ sống!"
+      },
+      {
+        "frontTitle": "TẬP TRUNG NGOÀI TẦM TAY",
+        "frontText": "Lo lắng về thời tiết, thị trường, lời đồn — những thứ ta không thể can thiệp.",
+        "backTitle": "TẬP TRUNG VÒNG ẢNH HƯỞNG",
+        "backText": "Dành 100% tâm sức vào hơi thở, suy nghĩ và hành động tử tế của chính mình ngay lúc này."
+      }
+    ],
+    "bullets": [
+      "🔹 Danh ngôn bất hủ của <strong>Viktor Frankl</strong> (Tác giả cuốn <em>Đi Tìm Lẽ Sống</em>): <strong>Giữa kích thích và phản ứng có một khoảng trống. Trong khoảng trống đó chứa đựng tự do và sức mạnh lựa chọn của chúng ta.</strong>",
+      "🔹 Hạnh phúc hay đau khổ không nằm ở sự việc xảy ra, mà nằm ở <strong>lăng kính bạn diễn giải sự việc đó</strong>."
+    ],
+    "stateOld": "⛓️ Làm nô lệ phản ứng tự động theo kích thích bên ngoài",
+    "bridgeVerb": "VƯỢT LÊN THÀNH",
+    "stateNew": "🕊️ Khai mở khoảng trống tự do lựa chọn thái độ sống cao quý",
+    "image": "",
+    "visualTheme": "logical_pyramid_svg",
+    "widgetType": "none",
+    "script": "Trong cuốn sách kinh điển Đi Tìm Lẽ Sống, giáo sư Viktor Frankl đã chứng minh ngay giữa trại tập trung khốc liệt nhất: Người ta có thể tước đoạt của bạn mọi thứ vật chất, nhưng không ai có thể tước đi quyền lựa chọn thái độ sống của bạn trước mọi nghịch cảnh."
+  },
+  {
+    "id": 4,
+    "tag": "🪷 NGHỆ THUẬT CHUYỂN HÓA",
+    "title": "04. CÔNG THỨC Ủ PHÂN HỮU CƠ: BIẾN RÁC THÀNH HOA",
+    "flipCards": [
+      {
+        "frontTitle": "GHÊ SỢ NGHỊCH CẢNH",
+        "frontText": "Xem biến cố, thất bại là tai họa xui xẻo, tìm cách trốn chạy hoặc giấu giếm.",
+        "backTitle": "NGUYÊN LIỆU ĐỔI MỚI",
+        "backText": "Nhà nông thông thái nhìn đống rác như phân bón hữu cơ tốt nhất để nuôi lớn đóa hoa sen."
+      },
+      {
+        "frontTitle": "NÉM RÁC QUA LẠI",
+        "frontText": "Bị sếp mắng về trút giận lên vợ con; gia đình biến thành bãi rác dây chuyền.",
+        "backTitle": "TRẠM CHUYỂN HÓA RÁC TÂM",
+        "backText": "Tiếp nhận năng lượng tiêu cực, dùng lò luyện từ bi và trí tuệ để lọc sạch trước khi tỏa ra ngoài."
+      },
+      {
+        "frontTitle": "BẤT BÌNH TRƯỚC SỰ BẤT TOÀN",
+        "frontText": "Đòi hỏi mọi việc phải hoàn hảo theo ý mình, liên tục thất vọng và bực dọc.",
+        "backTitle": "CHẤP NHẬN TỰ NHIÊN (WABI-SABI)",
+        "backText": "Hiểu rằng bùn nhơ chính là điều kiện thiết yếu để đóa sen tỏa hương tinh khiết nhất."
+      },
+      {
+        "frontTitle": "CHỜ ĐỢI SỰ HOÀN HẢO",
+        "frontText": "Chờ hết khó khăn mới chịu sống vui vẻ và hạnh phúc.",
+        "backTitle": "AN TRÚ NGAY TRONG BÙN",
+        "backText": "Gần bùn mà chẳng hôi tanh mùi bùn; nở nụ cười bình an ngay giữa dòng đời xáo động."
+      }
+    ],
+    "bullets": [
+      "🔹 Không có bùn thì không có sen (<strong>No mud, no lotus</strong>) — Nghịch cảnh không sinh ra để tiêu diệt bạn, nó sinh ra để rèn luyện gân cốt nội tâm.",
+      "🔹 Quy trình ủ phân tâm thức: <strong>Nhận diện (Bùn rác) ➔ Chấp nhận (Không chối bỏ) ➔ Ôm ấp bằng lòng từ ➔ Chuyển hóa thành bài học trí tuệ</strong>."
+    ],
+    "stateOld": "🗑️ Hoảng loạn xua đuổi bùn rác và nghịch cảnh",
+    "bridgeVerb": "CHUYỂN HÓA THÀNH",
+    "stateNew": "🪷 Bậc thầy ủ phân hữu cơ biến gian truân thành hoa thơm trí tuệ",
+    "image": "",
+    "visualTheme": "lotus_sunrise",
+    "widgetType": "music_poetry_stage",
+    "script": "Người làm vườn giỏi không bao giờ sợ rác hữu cơ, bởi họ biết cách ủ rác thành phân bón nuôi cây trĩu quả. Cũng vậy, người có trí tuệ không chạy trốn nghịch cảnh, mà biết dùng lò lửa nội tâm biến mọi va vấp thành chất dinh dưỡng nuôi lớn đóa hoa tự tại."
+  },
+  {
+    "id": 5,
+    "tag": "✈️ ĐỘ CAO TÂM THỨC",
+    "title": "05. BAY LÊN TẦNG BÌNH LƯU: THOÁT KHỎI NHIỄU ĐỘNG THỊ PHI",
+    "flipCards": [
+      {
+        "frontTitle": "TẦNG ĐỐI LƯU (DƯỚI 10.000M)",
+        "frontText": "Đầy mây giông, sét đánh, lực cản và gió lốc — tâm trí vướng vào cãi vã vặt vãnh.",
+        "backTitle": "TẦNG BÌNH LƯU (TRÊN 11.000M)",
+        "backText": "Không khí tĩnh lặng, bầu trời rực rỡ nắng vàng; máy bay lướt êm với hiệu suất cao nhất."
+      },
+      {
+        "frontTitle": "TRANH CÃI Ở CÙNG TẦNG",
+        "frontText": "Cố đôi co phân bua đúng sai với người say hoặc kẻ ác ý; càng cãi càng kiệt sức.",
+        "backTitle": "NÂNG CẦN LÁI NHẬN THỨC",
+        "backText": "Albert Einstein: Không thể giải quyết vấn đề bằng cùng tầng tư duy đã tạo ra nó!"
+      },
+      {
+        "frontTitle": "CHẾT CHÌM TRONG TIỂU TIẾT",
+        "frontText": "Bị vướng mắc bởi một câu nói xóc hông của đồng nghiệp suốt cả tuần lễ.",
+        "backTitle": "TẦM NHÌN TỪ TRÊN CAO",
+        "backText": "Từ độ cao vạn dặm, mọi chuyện thị phi bên dưới chỉ còn bé nhỏ như một hạt cát phù du."
+      },
+      {
+        "frontTitle": "SỢ ÁP LỰC NGƯỢC GIÓ",
+        "frontText": "Gặp lời đàm tiếu là chùn bước, muốn dừng lại rút lui.",
+        "backTitle": "MƯỢN GIÓ ĐẨY ĐÔI CÁNH",
+        "backText": "Máy bay cất cánh luôn ngược chiều gió — chính áp lực đẩy bạn vút thẳng lên tầng cao mới."
+      }
+    ],
+    "bullets": [
+      "🔹 Mọi đám mây đen và bão tố sấm chớp chỉ tồn tại ở <strong>Tầng Đối Lưu</strong>; trên <strong>Tầng Bình Lưu</strong> bầu trời luôn chan hòa ánh sáng mặt trời.",
+      "🔹 Đừng tốn năng lượng để xua đuổi mây mù; hãy tập trung tăng tốc độ và <strong>kéo cần lái tâm thức vượt lên trên độ cao 11.000 mét</strong>."
+    ],
+    "stateOld": "⛈️ Chìm trong mưa giông cãi vã ở tầng đối lưu thấp",
+    "bridgeVerb": "VƯỢT LÊN THÀNH",
+    "stateNew": "✈️ Phi cơ tâm thức tự tại bay lượn trên tầng bình lưu ngập nắng",
+    "image": "",
+    "visualTheme": "stratosphere_jet",
+    "widgetType": "altitude_sim",
+    "script": "Khi lái máy bay trong giông bão, người phi công kinh nghiệm không dừng lại giữa đám mây để phàn nàn, mà dồn lực kéo cần lái vươn lên tầng bình lưu tĩnh lặng. Nâng tầm nhận thức của bạn lên cao hơn vấn đề, tự khắc mọi sự nhiễu loạn đều nằm lại phía dưới chân."
+  },
+  {
+    "id": 6,
+    "tag": "🚛 BÀI HỌC CUỘC SỐNG",
+    "title": "06. ĐẠO LÝ CHIẾC XE RÁC: NỤ CƯỜI TỰ TẠI TRƯỚC SỰ GÂY HẤN",
+    "flipCards": [
+      {
+        "frontTitle": "XE RÁC CHỰC CHỜ XẢ",
+        "frontText": "Rất nhiều người ngoài kia mang đầy rác thất vọng, tức tối và chỉ chờ trút vào ai đó gần nhất.",
+        "backTitle": "KHÔNG NHẬN RÁC VÀO MÌNH",
+        "backText": "Hiểu rằng đó là rác của họ, không phải lỗi của mình; ta hoàn toàn có quyền từ chối tiếp nhận."
+      },
+      {
+        "frontTitle": "ĂN MIẾNG TRẢ MIẾNG",
+        "frontText": "Bị tạt đầu xe liền bấm còi chửi bới, đuổi theo ăn thua đủ dẫn đến xô xát đáng tiếc.",
+        "backTitle": "MỈM CƯỜI VẪY TAY CHÚC PHÚC",
+        "backText": "Mỉm cười, vẫy tay nhường đường, chúc họ bình an rồi tiếp tục hành trình của đời mình."
+      },
+      {
+        "frontTitle": "GIỮ CỤC THAN HỒNG",
+        "frontText": "Nuôi lòng oán hận kẻ xúc phạm mình như ôm chặt cục than hồng định ném người khác.",
+        "backTitle": "BUÔNG TAY ĐỂ TỰ GIẢI THOÁT",
+        "backText": "Buông bỏ không phải là nhu nhược, mà là sự khôn ngoan để đôi bàn tay mình không bị bỏng."
+      },
+      {
+        "frontTitle": "LÃNG PHÍ THỜI GIAN VÀNG",
+        "frontText": "Dành hàng giờ đồng hồ để đôi co trên mạng xã hội với những tài khoản ẩn danh.",
+        "backTitle": "TẬP TRUNG VÀO SỨ MỆNH",
+        "backText": "Thời gian và sinh mệnh có hạn — chỉ dành cho gia đình, học tập AI và phụng sự giá trị thật."
+      }
+    ],
+    "bullets": [
+      "🔹 <strong>Quy luật chiếc xe rác (Law of the Garbage Truck)</strong> của David J. Pollay: Người thành công không để chiếc xe rác phá hủy một ngày tươi đẹp của họ.",
+      "🔹 Cuộc sống chỉ có <strong>10% là những gì xảy đến với bạn</strong>, còn <strong>90% còn lại là cách bạn phản ứng</strong> trước những điều đó."
+    ],
+    "stateOld": "🤬 Trở thành thùng rác cho người khác trút bỏ bực tức",
+    "bridgeVerb": "CHUYỂN HÓA THÀNH",
+    "stateNew": "🌟 Bậc thầy phong thái: Mỉm cười vẫy tay chúc phúc và đi tiếp",
+    "image": "",
+    "visualTheme": "harvard_hearts",
+    "widgetType": "none",
+    "script": "Trong bài học Chiếc Xe Rác nổi tiếng, tác giả David Pollay nhắc nhở: có những người như chiếc xe chở đầy rác bức bối, họ chạy vòng quanh tìm nơi xả. Nếu bạn mỉm cười, vẫy tay chúc họ bình an rồi tiếp tục công việc của mình, bạn sẽ giữ trọn niềm hạnh phúc suốt cả ngày."
+  },
+  {
+    "id": 7,
+    "tag": "🏃 THIỀN ĐỘNG THỰC CHIẾN",
+    "title": "07. MARATHON & VẬN ĐỘNG: ĐÀO THẢI CORTISOL QUA TỪNG BƯỚC CHẠY",
+    "flipCards": [
+      {
+        "frontTitle": "NGỒI MỘT CHỖ GẶM NHẤM",
+        "frontText": "Khi buồn bực nằm co ro trong phòng tối, khiến luồng suy nghĩ tiêu cực quay cuồng cuốn sâu.",
+        "backTitle": "XỎ GIÀY BƯỚC RA ĐƯỜNG",
+        "backText": "Vận động thể chất kích thích lưu thông máu, phá vỡ thế bế tắc của tâm trí tức thì."
+      },
+      {
+        "frontTitle": "Ứ ĐỌNG ĐỘC TỐ STRESS",
+        "frontText": "Axit Lactic và hoóc-môn Cortisol ứ đọng làm cơ bắp căng cứng, đầu óc nặng nề.",
+        "backTitle": "BƠM ĐẨY DOPAMINE & ENDORPHIN",
+        "backText": "Sau 20 phút chạy bộ hoặc bơi biển, cơ thể tự nhiên tiết ra hoóc-môn hưng phấn và hạnh phúc."
+      },
+      {
+        "frontTitle": "TÂM TRÍ PHÂN TÁN",
+        "frontText": "Nghĩ về hàng trăm việc chưa xong, loay hoay trong nỗi âu lo mơ hồ.",
+        "backTitle": "ĐỊNH TÂM TRÊN TỪNG BƯỚC CHÂN",
+        "backText": "Chạy bộ như một hình thức thiền động: Hít vào chân trái chạm đất, thở ra chân phải lướt qua."
+      },
+      {
+        "frontTitle": "LƯỜI BIẾNG BỎ CUỘC",
+        "frontText": "Ngại mồ hôi, sợ đau chân ở tuổi trung niên 39–58.",
+        "backTitle": "VƯỢT NGƯỠNG CHIẾN BINH",
+        "backText": "Chinh phục 5km, 10km, 21km rèn luyện ý chí sắt đá: Nếu tôi chạy được, tôi làm được mọi việc!"
+      }
+    ],
+    "bullets": [
+      "🔹 Nghiên cứu thần kinh học chứng minh: <strong>Vận động nhịp điệu (Cardio) là phương thuốc giải độc tâm lý tự nhiên nhanh nhất</strong>.",
+      "🔹 Mỗi giọt mồ hôi rơi trên đường chạy là một giọt căng thẳng được tống khứ; mỗi bước chạy là một lần củng cố bản lĩnh <strong>ĐÂY ĐO ĐỜI</strong>."
+    ],
+    "stateOld": "🛋️ Nằm ôm nỗi sầu não và để Cortisol tàn phá cơ thể",
+    "bridgeVerb": "BỨT PHÁ THÀNH",
+    "stateNew": "🏃 Chiến binh Marathon chuyển hóa stress thành năng lượng đỉnh cao",
+    "image": "",
+    "visualTheme": "marathon_stadium",
+    "widgetType": "none",
+    "script": "Cơ thể và tâm trí là một thể thống nhất. Khi tâm trí bị tắc nghẽn bởi phiền muộn, cách nhanh nhất là dùng cơ thể để giải phóng. Chỉ cần xỏ giày chạy năm kilômét trong sáng sớm, từng tế bào sẽ được tắm trong endorphin và sự tự tin lập tức quay trở lại."
+  },
+  {
+    "id": 8,
+    "tag": "🌅 KẾT NỐI BẤT BIẾN",
+    "title": "08. ĐÂY ĐO ĐỜI: TÂM BẤT BIẾN GIỮA DÒNG ĐỜI VẠN BIẾN",
+    "flipCards": [
+      {
+        "frontTitle": "CẢM XÚC PHỤ THUỘC",
+        "frontText": "Chờ người khác tử tế thì mình mới tử tế; chờ cuộc đời dịu dàng mới nở nụ cười.",
+        "backTitle": "CHỦ ĐỘNG TỎA SÁNG",
+        "backText": "Mặt trời chiếu sáng vì bản chất nó là ánh sáng, không phụ thuộc vào việc ai đó có đón nhận hay không."
+      },
+      {
+        "frontTitle": "OÁN TRÁCH SỐ PHẬN",
+        "frontText": "'Sao những chuyện tồi tệ này lại xảy đến với tôi?' — Bất lực và cay đắng.",
+        "backTitle": "BIẾT ƠN VÌ ĐƯỢC RÈN LUYỆN",
+        "backText": "'Điều này đến để dạy cho tôi bài học gì để tôi trở nên mạnh mẽ và bao dung hơn?'"
+      },
+      {
+        "frontTitle": "ĐƠN ĐỘC VẬT LỘN",
+        "frontText": "Giữ kín nỗi đau một mình, tự gặm nhấm trong bóng tối.",
+        "backTitle": "HÒA MÌNH CÙNG CỘNG ĐỒNG",
+        "backText": "Gắn kết trong môi trường KTCSxAI tối Thứ Tư & Thứ Bảy: Đồng hành cùng tiến bộ mỗi ngày."
+      },
+      {
+        "frontTitle": "DO DỰ CHỜ NGÀY MAI",
+        "frontText": "Hẹn khi nào hết bận mới bắt đầu học cách làm chủ cảm xúc.",
+        "backTitle": "LÀM CHỦ NGAY HÔM NAY",
+        "backText": "Bắt đầu bằng một hơi thở sâu, một lời nói hòa ái và một nụ cười biết ơn ngay lúc này!"
+      }
+    ],
+    "bullets": [
+      "🔹 Thông điệp chung cuộc: <strong>TÂM AN VẠN SỰ AN • TÂM BÌNH THẾ GIỚI BÌNH</strong> — Khi bạn đo đời bằng tình yêu thương và trí tuệ, thế giới sẽ phản chiếu lại sự an lành.",
+      "🔹 Đồng hành cùng chương trình <strong>Kiến Tạo Cuộc Sống xAI</strong>: Rèn Thân khỏe mạnh – Giữ Tâm an tĩnh – Bồi Trí sáng suốt cùng Đội thợ AI thực chiến."
+    ],
+    "stateOld": "🍂 Chiếc lá rụng phó mặc cho gió cuốn chao đảo",
+    "bridgeVerb": "TÁI SINH THÀNH",
+    "stateNew": "🌳 Ngọn đại thụ cội rễ vững bền: ĐÂY ĐO ĐỜI, ĐẾCH ĐỂ ĐỜI ĐO!",
+    "image": "",
+    "visualTheme": "master_architecture",
+    "widgetType": "none",
+    "script": "Kính thưa các anh chị, tâm an thì vạn sự an. Khi đứng vững trên đôi chân của mình, giữ trọn chữ tín và lòng biết ơn, chúng ta chính là ngọn đại thụ tỏa bóng mát cho gia đình và cuộc đời. Với tinh thần Đây đo đời, đếch để đời đo, chúc tất cả chúng ta luôn an nhiên tự tại giữa dòng đời vạn biến!"
+  }
+]/*__DEFAULT_SLIDES_END__*/;
+
+    let SLIDES_DATA = /*__SLIDES_DATA_START__*/[
+  {
+    "id": 1,
+    "tag": "🏛️ KTCSxAI • QUẢN TRỊ CẢM XÚC",
+    "title": "01. LÀM CHỦ KHU VƯỜN TÂM TRÍ – ĐÂY ĐO ĐỜI!",
+    "flipCards": [
+      {
+        "frontTitle": "ĐỂ NGOẠI CẢNH ĐO MÌNH",
+        "frontText": "Một lời khen làm ta bay bổng, một câu chê khiến ta mất ngủ cả đêm dài.",
+        "backTitle": "ĐÂY ĐO ĐỜI TỪ TÂM",
+        "backText": "Tự thiết lập thước đo nội lực; bình thản mỉm cười trước mọi khen chê ngoại cảnh."
+      },
+      {
+        "frontTitle": "THẢ TRÔI CẢM XÚC",
+        "frontText": "Ai ném gì vào tâm trí cũng nhận, biến khu vườn của mình thành bãi chứa rác.",
+        "backTitle": "NGƯỜI GÁC CỔNG TÂM TRÍ",
+        "backText": "Chủ động chọn lọc năng lượng tích cực; chỉ cho phép những hạt mầm tử tế đi vào."
+      },
+      {
+        "frontTitle": "ĐỒNG HÓA VỚI CƠN GIẬN",
+        "frontText": "Nghĩ rằng 'Tôi là cơn giận', để sự nóng nảy thiêu rụi các mối quan hệ.",
+        "backTitle": "NGƯỜI QUAN SÁT TỈNH THỨC",
+        "backText": "Nhận biết: Cảm xúc chỉ là những đám mây lướt qua, bầu trời tâm thức vẫn vĩnh hằng."
+      },
+      {
+        "frontTitle": "ĐỐI ĐẦU BẠO LỰC",
+        "frontText": "Dùng sự gay gắt để dập tắt gay gắt, làm đám cháy bùng phát dữ dội hơn.",
+        "backTitle": "CHUYỂN HÓA BẰNG TÌNH THƯƠNG",
+        "backText": "Lấy sự tĩnh lặng và bao dung làm nước mát dập tắt mọi ngọn lửa sân hận."
+      }
+    ],
+    "bullets": [
+      "🔹 Tâm trí bạn như một khu vườn màu mỡ: <strong>Nếu không chủ động gieo hạt giống hoa thơm, cỏ dại và rác rưởi sẽ tự động mọc đầy</strong>.",
+      "🔹 Tuyên ngôn bản thể: <strong>ĐÂY ĐO ĐỜI, ĐẾCH ĐỂ ĐỜI ĐO</strong> — Lấy lại quyền làm chủ công trình cảm xúc của chính mình."
+    ],
+    "stateOld": "😮‍💨 Biến tâm trí thành bãi rác của thị phi bên ngoài",
+    "bridgeVerb": "TRỞ THÀNH",
+    "stateNew": "👑 Người làm chủ canh giữ khu vườn tâm trí an vui",
+    "image": "",
+    "visualTheme": "compass_ruler",
+    "widgetType": "none",
+    "script": "Chào mừng các anh chị đến với chuyên đề Quản trị Cảm xúc. Tuyên ngôn của chúng ta là: Đây đo đời, đếch để đời đo! Một người để ngoại cảnh dẫn dắt sẽ như con thuyền không bánh lái giữa biển động. Nhưng khi trở thành người gác cổng tỉnh thức, ta sẽ bảo vệ khu vườn tâm trí luôn ngát hương thơm."
+  },
+  {
+    "id": 2,
+    "tag": "🧠 KHOA HỌC NÃO BỘ",
+    "title": "02. HẠCH HẠNH NHÂN (AMYGDALA) & CƠ CHẾ NÔI BẬT CƠN GIẬN",
+    "flipCards": [
+      {
+        "frontTitle": "BẮT CÓC CẢM XÚC (HIJACK)",
+        "frontText": "Hạch hạnh nhân kích hoạt phản ứng chiến hay biến chỉ trong 0.08 giây khiến ta mất kiểm soát.",
+        "backTitle": "KÍCH HOẠT VỎ NÃO TRƯỚC TRÁN",
+        "backText": "Hít thở sâu 6 giây để máu dồn về thùy trán, đưa lý trí và sự thông tuệ vào điều phối."
+      },
+      {
+        "frontTitle": "PHẢN ỨNG BỘP CHỘP",
+        "frontText": "Nói ngay câu cay nghiệt khi đang nóng giận, để lại vết thương lòng khó lành.",
+        "backTitle": "KHOẢNG DỪNG HOÀNG GIA",
+        "backText": "Im lặng 10 giây trước khi phản hồi; biến phản xạ bản năng thành hành động có chiến lược."
+      },
+      {
+        "frontTitle": "CORTISOL BÀO MÒN CƠ THỂ",
+        "frontText": "Căng thẳng kéo dài làm co mạch máu, suy giảm trí nhớ và đẩy nhanh lão hóa.",
+        "backTitle": "TIẾT OXYTOCIN & ENDORPHIN",
+        "backText": "Nuôi dưỡng cảm giác biết ơn và nụ cười ấm áp giúp tái tạo tế bào não Neurogenesis."
+      },
+      {
+        "frontTitle": "ĐÈ NÉN CẢM XÚC",
+        "frontText": "Cố gồng mình chịu đựng trong ấm ức, khiến khối ung nhọt tâm lý ngày càng phình to.",
+        "backTitle": "GỌI TÊN CẢM XÚC ĐỂ THÔNG",
+        "backText": "'Tôi thấy mình đang giận' — Gọi đúng tên cảm xúc sẽ làm năng lượng tiêu cực tự tan biến."
+      }
+    ],
+    "bullets": [
+      "🔹 Hiện tượng <strong>Amygdala Hijack</strong> (Bắt cóc cảm xúc): Bản năng sinh tồn cổ xưa khiến não phản ứng trước khi kịp suy nghĩ.",
+      "🔹 Chỉ cần <strong>khoảng dừng 6 giây</strong> cùng 3 hơi thở sâu, bạn sẽ chuyển quyền điều khiển từ hạch hạnh nhân về <strong>Vỏ não trước trán (Prefrontal Cortex)</strong>."
+    ],
+    "stateOld": "💥 Để hạch hạnh nhân bắt cóc và hành động mất kiểm soát",
+    "bridgeVerb": "CHUYỂN HÓA THÀNH",
+    "stateNew": "🧘 Làm chủ vỏ não trước trán với khoảng dừng 6 giây thông tuệ",
+    "image": "",
+    "visualTheme": "neuroplasticity_stairs",
+    "widgetType": "none",
+    "script": "Tiến sĩ tâm lý Daniel Goleman chỉ ra rằng: khi bị bắt cóc cảm xúc, hạch hạnh nhân sẽ cướp quyền điều khiển não bộ trong chưa đầy một phần mười giây. Bí quyết của bậc làm chủ là tạo ra khoảng dừng sáu giây để vỏ não trước trán kịp thời lấy lại tay lái trí tuệ."
+  },
+  {
+    "id": 3,
+    "tag": "💡 BẬC THẦY TÂM THỨC • VIKTOR FRANKL",
+    "title": "03. KHOẢNG TRỐNG TỰ DO: GIỮA KÍCH THÍCH VÀ PHẢN ỨNG",
+    "flipCards": [
+      {
+        "frontTitle": "CƠ CHẾ NẠP ĐẠN BẮN NGAY",
+        "frontText": "Ai kích động là nổ tung tức thì, tự biến mình thành con rối để kẻ khác giật dây.",
+        "backTitle": "QUYỀN NĂNG LỰA CHỌN",
+        "backText": "Giữa kích thích và phản ứng luôn có một khoảng trống; trong khoảng trống đó là tự do lớn nhất."
+      },
+      {
+        "frontTitle": "TÂM LÝ NẠN NHÂN",
+        "frontText": "'Tại ông ấy làm tôi tức, tại hoàn cảnh ép tôi phải nổi điên' — hoàn toàn bất lực.",
+        "backTitle": "TÂM THỨC CHỦ NHÂN",
+        "backText": "'Không ai có thể làm tôi tổn thương nếu không có sự đồng thuận từ chính tôi' (Eleanor Roosevelt)."
+      },
+      {
+        "frontTitle": "TÙ NHÂN CẢNH NGỘ",
+        "frontText": "Bị giam cầm trong sự oán hận và tiếc nuối những điều đã diễn ra trong quá khứ.",
+        "backTitle": "TỰ DO Ý CHÍ TUYỆT ĐỐI",
+        "backText": "Viktor Frankl trong trại tập trung phát xít: Mọi thứ có thể bị tước đoạt, trừ thái độ sống!"
+      },
+      {
+        "frontTitle": "TẬP TRUNG NGOÀI TẦM TAY",
+        "frontText": "Lo lắng về thời tiết, thị trường, lời đồn — những thứ ta không thể can thiệp.",
+        "backTitle": "TẬP TRUNG VÒNG ẢNH HƯỞNG",
+        "backText": "Dành 100% tâm sức vào hơi thở, suy nghĩ và hành động tử tế của chính mình ngay lúc này."
+      }
+    ],
+    "bullets": [
+      "🔹 Danh ngôn bất hủ của <strong>Viktor Frankl</strong> (Tác giả cuốn <em>Đi Tìm Lẽ Sống</em>): <strong>Giữa kích thích và phản ứng có một khoảng trống. Trong khoảng trống đó chứa đựng tự do và sức mạnh lựa chọn của chúng ta.</strong>",
+      "🔹 Hạnh phúc hay đau khổ không nằm ở sự việc xảy ra, mà nằm ở <strong>lăng kính bạn diễn giải sự việc đó</strong>."
+    ],
+    "stateOld": "⛓️ Làm nô lệ phản ứng tự động theo kích thích bên ngoài",
+    "bridgeVerb": "VƯỢT LÊN THÀNH",
+    "stateNew": "🕊️ Khai mở khoảng trống tự do lựa chọn thái độ sống cao quý",
+    "image": "",
+    "visualTheme": "logical_pyramid_svg",
+    "widgetType": "none",
+    "script": "Trong cuốn sách kinh điển Đi Tìm Lẽ Sống, giáo sư Viktor Frankl đã chứng minh ngay giữa trại tập trung khốc liệt nhất: Người ta có thể tước đoạt của bạn mọi thứ vật chất, nhưng không ai có thể tước đi quyền lựa chọn thái độ sống của bạn trước mọi nghịch cảnh."
+  },
+  {
+    "id": 4,
+    "tag": "🪷 NGHỆ THUẬT CHUYỂN HÓA",
+    "title": "04. CÔNG THỨC Ủ PHÂN HỮU CƠ: BIẾN RÁC THÀNH HOA",
+    "flipCards": [
+      {
+        "frontTitle": "GHÊ SỢ NGHỊCH CẢNH",
+        "frontText": "Xem biến cố, thất bại là tai họa xui xẻo, tìm cách trốn chạy hoặc giấu giếm.",
+        "backTitle": "NGUYÊN LIỆU ĐỔI MỚI",
+        "backText": "Nhà nông thông thái nhìn đống rác như phân bón hữu cơ tốt nhất để nuôi lớn đóa hoa sen."
+      },
+      {
+        "frontTitle": "NÉM RÁC QUA LẠI",
+        "frontText": "Bị sếp mắng về trút giận lên vợ con; gia đình biến thành bãi rác dây chuyền.",
+        "backTitle": "TRẠM CHUYỂN HÓA RÁC TÂM",
+        "backText": "Tiếp nhận năng lượng tiêu cực, dùng lò luyện từ bi và trí tuệ để lọc sạch trước khi tỏa ra ngoài."
+      },
+      {
+        "frontTitle": "BẤT BÌNH TRƯỚC SỰ BẤT TOÀN",
+        "frontText": "Đòi hỏi mọi việc phải hoàn hảo theo ý mình, liên tục thất vọng và bực dọc.",
+        "backTitle": "CHẤP NHẬN TỰ NHIÊN (WABI-SABI)",
+        "backText": "Hiểu rằng bùn nhơ chính là điều kiện thiết yếu để đóa sen tỏa hương tinh khiết nhất."
+      },
+      {
+        "frontTitle": "CHỜ ĐỢI SỰ HOÀN HẢO",
+        "frontText": "Chờ hết khó khăn mới chịu sống vui vẻ và hạnh phúc.",
+        "backTitle": "AN TRÚ NGAY TRONG BÙN",
+        "backText": "Gần bùn mà chẳng hôi tanh mùi bùn; nở nụ cười bình an ngay giữa dòng đời xáo động."
+      }
+    ],
+    "bullets": [
+      "🔹 Không có bùn thì không có sen (<strong>No mud, no lotus</strong>) — Nghịch cảnh không sinh ra để tiêu diệt bạn, nó sinh ra để rèn luyện gân cốt nội tâm.",
+      "🔹 Quy trình ủ phân tâm thức: <strong>Nhận diện (Bùn rác) ➔ Chấp nhận (Không chối bỏ) ➔ Ôm ấp bằng lòng từ ➔ Chuyển hóa thành bài học trí tuệ</strong>."
+    ],
+    "stateOld": "🗑️ Hoảng loạn xua đuổi bùn rác và nghịch cảnh",
+    "bridgeVerb": "CHUYỂN HÓA THÀNH",
+    "stateNew": "🪷 Bậc thầy ủ phân hữu cơ biến gian truân thành hoa thơm trí tuệ",
+    "image": "",
+    "visualTheme": "lotus_sunrise",
+    "widgetType": "music_poetry_stage",
+    "script": "Người làm vườn giỏi không bao giờ sợ rác hữu cơ, bởi họ biết cách ủ rác thành phân bón nuôi cây trĩu quả. Cũng vậy, người có trí tuệ không chạy trốn nghịch cảnh, mà biết dùng lò lửa nội tâm biến mọi va vấp thành chất dinh dưỡng nuôi lớn đóa hoa tự tại."
+  },
+  {
+    "id": 5,
+    "tag": "✈️ ĐỘ CAO TÂM THỨC",
+    "title": "05. BAY LÊN TẦNG BÌNH LƯU: THOÁT KHỎI NHIỄU ĐỘNG THỊ PHI",
+    "flipCards": [
+      {
+        "frontTitle": "TẦNG ĐỐI LƯU (DƯỚI 10.000M)",
+        "frontText": "Đầy mây giông, sét đánh, lực cản và gió lốc — tâm trí vướng vào cãi vã vặt vãnh.",
+        "backTitle": "TẦNG BÌNH LƯU (TRÊN 11.000M)",
+        "backText": "Không khí tĩnh lặng, bầu trời rực rỡ nắng vàng; máy bay lướt êm với hiệu suất cao nhất."
+      },
+      {
+        "frontTitle": "TRANH CÃI Ở CÙNG TẦNG",
+        "frontText": "Cố đôi co phân bua đúng sai với người say hoặc kẻ ác ý; càng cãi càng kiệt sức.",
+        "backTitle": "NÂNG CẦN LÁI NHẬN THỨC",
+        "backText": "Albert Einstein: Không thể giải quyết vấn đề bằng cùng tầng tư duy đã tạo ra nó!"
+      },
+      {
+        "frontTitle": "CHẾT CHÌM TRONG TIỂU TIẾT",
+        "frontText": "Bị vướng mắc bởi một câu nói xóc hông của đồng nghiệp suốt cả tuần lễ.",
+        "backTitle": "TẦM NHÌN TỪ TRÊN CAO",
+        "backText": "Từ độ cao vạn dặm, mọi chuyện thị phi bên dưới chỉ còn bé nhỏ như một hạt cát phù du."
+      },
+      {
+        "frontTitle": "SỢ ÁP LỰC NGƯỢC GIÓ",
+        "frontText": "Gặp lời đàm tiếu là chùn bước, muốn dừng lại rút lui.",
+        "backTitle": "MƯỢN GIÓ ĐẨY ĐÔI CÁNH",
+        "backText": "Máy bay cất cánh luôn ngược chiều gió — chính áp lực đẩy bạn vút thẳng lên tầng cao mới."
+      }
+    ],
+    "bullets": [
+      "🔹 Mọi đám mây đen và bão tố sấm chớp chỉ tồn tại ở <strong>Tầng Đối Lưu</strong>; trên <strong>Tầng Bình Lưu</strong> bầu trời luôn chan hòa ánh sáng mặt trời.",
+      "🔹 Đừng tốn năng lượng để xua đuổi mây mù; hãy tập trung tăng tốc độ và <strong>kéo cần lái tâm thức vượt lên trên độ cao 11.000 mét</strong>."
+    ],
+    "stateOld": "⛈️ Chìm trong mưa giông cãi vã ở tầng đối lưu thấp",
+    "bridgeVerb": "VƯỢT LÊN THÀNH",
+    "stateNew": "✈️ Phi cơ tâm thức tự tại bay lượn trên tầng bình lưu ngập nắng",
+    "image": "",
+    "visualTheme": "stratosphere_jet",
+    "widgetType": "altitude_sim",
+    "script": "Khi lái máy bay trong giông bão, người phi công kinh nghiệm không dừng lại giữa đám mây để phàn nàn, mà dồn lực kéo cần lái vươn lên tầng bình lưu tĩnh lặng. Nâng tầm nhận thức của bạn lên cao hơn vấn đề, tự khắc mọi sự nhiễu loạn đều nằm lại phía dưới chân."
+  },
+  {
+    "id": 6,
+    "tag": "🚛 BÀI HỌC CUỘC SỐNG",
+    "title": "06. ĐẠO LÝ CHIẾC XE RÁC: NỤ CƯỜI TỰ TẠI TRƯỚC SỰ GÂY HẤN",
+    "flipCards": [
+      {
+        "frontTitle": "XE RÁC CHỰC CHỜ XẢ",
+        "frontText": "Rất nhiều người ngoài kia mang đầy rác thất vọng, tức tối và chỉ chờ trút vào ai đó gần nhất.",
+        "backTitle": "KHÔNG NHẬN RÁC VÀO MÌNH",
+        "backText": "Hiểu rằng đó là rác của họ, không phải lỗi của mình; ta hoàn toàn có quyền từ chối tiếp nhận."
+      },
+      {
+        "frontTitle": "ĂN MIẾNG TRẢ MIẾNG",
+        "frontText": "Bị tạt đầu xe liền bấm còi chửi bới, đuổi theo ăn thua đủ dẫn đến xô xát đáng tiếc.",
+        "backTitle": "MỈM CƯỜI VẪY TAY CHÚC PHÚC",
+        "backText": "Mỉm cười, vẫy tay nhường đường, chúc họ bình an rồi tiếp tục hành trình của đời mình."
+      },
+      {
+        "frontTitle": "GIỮ CỤC THAN HỒNG",
+        "frontText": "Nuôi lòng oán hận kẻ xúc phạm mình như ôm chặt cục than hồng định ném người khác.",
+        "backTitle": "BUÔNG TAY ĐỂ TỰ GIẢI THOÁT",
+        "backText": "Buông bỏ không phải là nhu nhược, mà là sự khôn ngoan để đôi bàn tay mình không bị bỏng."
+      },
+      {
+        "frontTitle": "LÃNG PHÍ THỜI GIAN VÀNG",
+        "frontText": "Dành hàng giờ đồng hồ để đôi co trên mạng xã hội với những tài khoản ẩn danh.",
+        "backTitle": "TẬP TRUNG VÀO SỨ MỆNH",
+        "backText": "Thời gian và sinh mệnh có hạn — chỉ dành cho gia đình, học tập AI và phụng sự giá trị thật."
+      }
+    ],
+    "bullets": [
+      "🔹 <strong>Quy luật chiếc xe rác (Law of the Garbage Truck)</strong> của David J. Pollay: Người thành công không để chiếc xe rác phá hủy một ngày tươi đẹp của họ.",
+      "🔹 Cuộc sống chỉ có <strong>10% là những gì xảy đến với bạn</strong>, còn <strong>90% còn lại là cách bạn phản ứng</strong> trước những điều đó."
+    ],
+    "stateOld": "🤬 Trở thành thùng rác cho người khác trút bỏ bực tức",
+    "bridgeVerb": "CHUYỂN HÓA THÀNH",
+    "stateNew": "🌟 Bậc thầy phong thái: Mỉm cười vẫy tay chúc phúc và đi tiếp",
+    "image": "",
+    "visualTheme": "harvard_hearts",
+    "widgetType": "none",
+    "script": "Trong bài học Chiếc Xe Rác nổi tiếng, tác giả David Pollay nhắc nhở: có những người như chiếc xe chở đầy rác bức bối, họ chạy vòng quanh tìm nơi xả. Nếu bạn mỉm cười, vẫy tay chúc họ bình an rồi tiếp tục công việc của mình, bạn sẽ giữ trọn niềm hạnh phúc suốt cả ngày."
+  },
+  {
+    "id": 7,
+    "tag": "🏃 THIỀN ĐỘNG THỰC CHIẾN",
+    "title": "07. MARATHON & VẬN ĐỘNG: ĐÀO THẢI CORTISOL QUA TỪNG BƯỚC CHẠY",
+    "flipCards": [
+      {
+        "frontTitle": "NGỒI MỘT CHỖ GẶM NHẤM",
+        "frontText": "Khi buồn bực nằm co ro trong phòng tối, khiến luồng suy nghĩ tiêu cực quay cuồng cuốn sâu.",
+        "backTitle": "XỎ GIÀY BƯỚC RA ĐƯỜNG",
+        "backText": "Vận động thể chất kích thích lưu thông máu, phá vỡ thế bế tắc của tâm trí tức thì."
+      },
+      {
+        "frontTitle": "Ứ ĐỌNG ĐỘC TỐ STRESS",
+        "frontText": "Axit Lactic và hoóc-môn Cortisol ứ đọng làm cơ bắp căng cứng, đầu óc nặng nề.",
+        "backTitle": "BƠM ĐẨY DOPAMINE & ENDORPHIN",
+        "backText": "Sau 20 phút chạy bộ hoặc bơi biển, cơ thể tự nhiên tiết ra hoóc-môn hưng phấn và hạnh phúc."
+      },
+      {
+        "frontTitle": "TÂM TRÍ PHÂN TÁN",
+        "frontText": "Nghĩ về hàng trăm việc chưa xong, loay hoay trong nỗi âu lo mơ hồ.",
+        "backTitle": "ĐỊNH TÂM TRÊN TỪNG BƯỚC CHÂN",
+        "backText": "Chạy bộ như một hình thức thiền động: Hít vào chân trái chạm đất, thở ra chân phải lướt qua."
+      },
+      {
+        "frontTitle": "LƯỜI BIẾNG BỎ CUỘC",
+        "frontText": "Ngại mồ hôi, sợ đau chân ở tuổi trung niên 39–58.",
+        "backTitle": "VƯỢT NGƯỠNG CHIẾN BINH",
+        "backText": "Chinh phục 5km, 10km, 21km rèn luyện ý chí sắt đá: Nếu tôi chạy được, tôi làm được mọi việc!"
+      }
+    ],
+    "bullets": [
+      "🔹 Nghiên cứu thần kinh học chứng minh: <strong>Vận động nhịp điệu (Cardio) là phương thuốc giải độc tâm lý tự nhiên nhanh nhất</strong>.",
+      "🔹 Mỗi giọt mồ hôi rơi trên đường chạy là một giọt căng thẳng được tống khứ; mỗi bước chạy là một lần củng cố bản lĩnh <strong>ĐÂY ĐO ĐỜI</strong>."
+    ],
+    "stateOld": "🛋️ Nằm ôm nỗi sầu não và để Cortisol tàn phá cơ thể",
+    "bridgeVerb": "BỨT PHÁ THÀNH",
+    "stateNew": "🏃 Chiến binh Marathon chuyển hóa stress thành năng lượng đỉnh cao",
+    "image": "",
+    "visualTheme": "marathon_stadium",
+    "widgetType": "none",
+    "script": "Cơ thể và tâm trí là một thể thống nhất. Khi tâm trí bị tắc nghẽn bởi phiền muộn, cách nhanh nhất là dùng cơ thể để giải phóng. Chỉ cần xỏ giày chạy năm kilômét trong sáng sớm, từng tế bào sẽ được tắm trong endorphin và sự tự tin lập tức quay trở lại."
+  },
+  {
+    "id": 8,
+    "tag": "🌅 KẾT NỐI BẤT BIẾN",
+    "title": "08. ĐÂY ĐO ĐỜI: TÂM BẤT BIẾN GIỮA DÒNG ĐỜI VẠN BIẾN",
+    "flipCards": [
+      {
+        "frontTitle": "CẢM XÚC PHỤ THUỘC",
+        "frontText": "Chờ người khác tử tế thì mình mới tử tế; chờ cuộc đời dịu dàng mới nở nụ cười.",
+        "backTitle": "CHỦ ĐỘNG TỎA SÁNG",
+        "backText": "Mặt trời chiếu sáng vì bản chất nó là ánh sáng, không phụ thuộc vào việc ai đó có đón nhận hay không."
+      },
+      {
+        "frontTitle": "OÁN TRÁCH SỐ PHẬN",
+        "frontText": "'Sao những chuyện tồi tệ này lại xảy đến với tôi?' — Bất lực và cay đắng.",
+        "backTitle": "BIẾT ƠN VÌ ĐƯỢC RÈN LUYỆN",
+        "backText": "'Điều này đến để dạy cho tôi bài học gì để tôi trở nên mạnh mẽ và bao dung hơn?'"
+      },
+      {
+        "frontTitle": "ĐƠN ĐỘC VẬT LỘN",
+        "frontText": "Giữ kín nỗi đau một mình, tự gặm nhấm trong bóng tối.",
+        "backTitle": "HÒA MÌNH CÙNG CỘNG ĐỒNG",
+        "backText": "Gắn kết trong môi trường KTCSxAI tối Thứ Tư & Thứ Bảy: Đồng hành cùng tiến bộ mỗi ngày."
+      },
+      {
+        "frontTitle": "DO DỰ CHỜ NGÀY MAI",
+        "frontText": "Hẹn khi nào hết bận mới bắt đầu học cách làm chủ cảm xúc.",
+        "backTitle": "LÀM CHỦ NGAY HÔM NAY",
+        "backText": "Bắt đầu bằng một hơi thở sâu, một lời nói hòa ái và một nụ cười biết ơn ngay lúc này!"
+      }
+    ],
+    "bullets": [
+      "🔹 Thông điệp chung cuộc: <strong>TÂM AN VẠN SỰ AN • TÂM BÌNH THẾ GIỚI BÌNH</strong> — Khi bạn đo đời bằng tình yêu thương và trí tuệ, thế giới sẽ phản chiếu lại sự an lành.",
+      "🔹 Đồng hành cùng chương trình <strong>Kiến Tạo Cuộc Sống xAI</strong>: Rèn Thân khỏe mạnh – Giữ Tâm an tĩnh – Bồi Trí sáng suốt cùng Đội thợ AI thực chiến."
+    ],
+    "stateOld": "🍂 Chiếc lá rụng phó mặc cho gió cuốn chao đảo",
+    "bridgeVerb": "TÁI SINH THÀNH",
+    "stateNew": "🌳 Ngọn đại thụ cội rễ vững bền: ĐÂY ĐO ĐỜI, ĐẾCH ĐỂ ĐỜI ĐO!",
+    "image": "",
+    "visualTheme": "master_architecture",
+    "widgetType": "none",
+    "script": "Kính thưa các anh chị, tâm an thì vạn sự an. Khi đứng vững trên đôi chân của mình, giữ trọn chữ tín và lòng biết ơn, chúng ta chính là ngọn đại thụ tỏa bóng mát cho gia đình và cuộc đời. Với tinh thần Đây đo đời, đếch để đời đo, chúc tất cả chúng ta luôn an nhiên tự tại giữa dòng đời vạn biến!"
+  }
+]/*__SLIDES_DATA_END__*/;
+    let currentSlide = 0;
+    let currentMode = "horizontal";
+    let currentWorkspace = "deck";
+    let isWide16x9Stage = false;
+    let hiddenSlides = new Set();
+    const HIDE_STORAGE_KEY = "ktcs_html4d_studio_hidden_v04";
+    const SLIDES_STORAGE_KEY = "ktcs_html4d_studio_slides_v04";
+
+    function buildAnimatedVisual4D(slide, idx) {
+      const theme = slide.visualTheme || "auto";
+      const h = (idx * 38 + 200) % 360;
+
+      if (theme === "compass_ruler" || idx === 0) {
+        return `<svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="glow0" cx="50%" cy="50%" r="55%">
+              <stop offset="0%" stop-color="#f5c451" stop-opacity="0.38"/>
+              <stop offset="100%" stop-color="#040711" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffe9ad"/><stop offset="50%" stop-color="#f5c451"/><stop offset="100%" stop-color="#c48a10"/>
+            </linearGradient>
+          </defs>
+          <rect width="960" height="540" fill="url(#glow0)"/>
+          <g class="anim-spin" style="transform-origin:480px 250px;">
+            <circle cx="480" cy="250" r="195" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="10 14" opacity="0.7"/>
+            <circle cx="480" cy="250" r="162" fill="none" stroke="#f5c451" stroke-width="2" stroke-dasharray="4 10" opacity="0.85"/>
+          </g>
+          <g class="anim-spin-rev" style="transform-origin:480px 250px;">
+            <polygon points="480,60 504,226 670,250 504,274 480,440 456,274 290,250 456,226" fill="url(#g)" opacity="0.9"/>
+          </g>
+          <circle cx="480" cy="250" r="74" fill="#081530" stroke="#ffe9ad" stroke-width="4" class="anim-pulse"/>
+          <text x="480" y="242" text-anchor="middle" fill="#ffe9ad" font-size="22" font-weight="900">ĐÂY ĐO ĐỜI</text>
+          <text x="480" y="268" text-anchor="middle" fill="#34d399" font-size="14" font-weight="800">CHỦ CÔNG TRÌNH</text>
+          <g class="anim-float">
+            <rect x="85" y="135" width="165" height="75" rx="14" fill="rgba(207,32,48,0.25)" stroke="#fb7185" stroke-width="2"/>
+            <text x="167" y="168" text-anchor="middle" fill="#fda4af" font-size="14" font-weight="900">ĐỂ ĐỜI ĐO</text>
+            <text x="167" y="190" text-anchor="middle" fill="#cbd5e1" font-size="12">Phụ thuộc ngoại cảnh</text>
+
+            <rect x="710" y="135" width="165" height="75" rx="14" fill="rgba(16,185,129,0.25)" stroke="#34d399" stroke-width="2.5"/>
+            <text x="792" y="168" text-anchor="middle" fill="#6ee7b7" font-size="14" font-weight="900">ĐÂY ĐO ĐỜI</text>
+            <text x="792" y="190" text-anchor="middle" fill="#e2e8f0" font-size="12">Làm chủ thước đo</text>
+
+            <rect x="180" y="458" width="600" height="38" rx="9" fill="#0d2147" stroke="#f5c451" stroke-width="2.5"/>
+            <text x="480" y="482" text-anchor="middle" fill="#ffe9ad" font-size="15" font-weight="900">THƯỚC ĐO KIẾN TẠO: THÂN KHỎE • TÂM AN • TRÍ SÁNG • AI</text>
+          </g>
+        </svg>`;
+      }
+
+      if (theme === "stratosphere_jet" || idx === 1) {
+        return `<svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="skyStrat" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.38"/>
+              <stop offset="48%" stop-color="#1e293b" stop-opacity="0.52"/>
+              <stop offset="100%" stop-color="#450a0a" stop-opacity="0.72"/>
+            </linearGradient>
+          </defs>
+          <rect width="960" height="540" fill="url(#skyStrat)"/>
+          <circle cx="800" cy="95" r="56" fill="#facc15" class="anim-pulse"/>
+          <circle cx="800" cy="95" r="82" fill="none" stroke="#fde047" stroke-width="2" stroke-dasharray="6 8" class="anim-spin" style="transform-origin:800px 95px;"/>
+          <text x="60" y="75" fill="#fde047" font-size="23" font-weight="900">🌤️ TẦNG BÌNH LƯU (&gt;11.000m) — TĨNH LẶNG &amp; TỰ TẠI</text>
+          <line x1="40" y1="265" x2="920" y2="265" stroke="#38bdf8" stroke-width="3" class="anim-dash"/>
+          <text x="480" y="254" text-anchor="middle" fill="#38bdf8" font-size="15" font-weight="800">RANH GIỚI CHUYỂN TẦNG NHẬN THỨC</text>
+          <g class="anim-float">
+            <path d="M220,190 L640,115 L612,152 L685,168 L600,182 L568,215 L528,176 L220,190 Z" fill="#f5c451" stroke="#fff" stroke-width="2.5"/>
+            <path d="M90,210 Q155,198 220,190" fill="none" stroke="#34d399" stroke-width="5" class="anim-dash"/>
+          </g>
+          <g opacity="0.88">
+            <ellipse cx="240" cy="390" rx="145" ry="44" fill="#334155"/>
+            <ellipse cx="490" cy="410" rx="165" ry="50" fill="#1e293b"/>
+            <ellipse cx="740" cy="385" rx="140" ry="42" fill="#334155"/>
+            <polygon points="260,415 235,465 265,465 240,515 300,450 268,450" fill="#fb7185" class="anim-pulse"/>
+            <polygon points="670,410 645,460 675,460 650,510 710,445 678,445" fill="#fb7185" class="anim-pulse"/>
+            <text x="480" y="498" text-anchor="middle" fill="#fda4af" font-size="21" font-weight="900">⛈️ TẦNG ĐỐI LƯU (0–10.000m) — MÂY MÙ &amp; NHIỄU ĐỘNG</text>
+          </g>
+        </svg>`;
+      }
+
+      const pair = [slide.title ? slide.title.slice(0, 32) : "KIẾN TẠO CUỘC SỐNG", slide.stateNew ? slide.stateNew.replace(/^[^\wÀ-ỹ]+/, "") : "ĐÂY ĐO ĐỜI"];
+
+      return `<svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="rg_${idx}" cx="50%" cy="50%" r="55%">
+            <stop offset="0%" stop-color="hsl(${h},85%,55%)" stop-opacity="0.34"/>
+            <stop offset="100%" stop-color="#040711" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="960" height="540" fill="url(#rg_${idx})"/>
+        <g class="anim-spin" style="transform-origin:480px 260px;">
+          <circle cx="480" cy="260" r="195" fill="none" stroke="#f5c451" stroke-width="2.5" stroke-dasharray="14 10" opacity="0.72"/>
+          <rect x="340" y="120" width="280" height="280" rx="28" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.58"/>
+        </g>
+        <g class="anim-spin-rev" style="transform-origin:480px 260px;">
+          <rect x="340" y="120" width="280" height="280" rx="28" fill="none" stroke="#34d399" stroke-width="2.5" opacity="0.68" transform="rotate(45 480 260)"/>
+        </g>
+        <circle cx="480" cy="260" r="105" fill="#081530" stroke="#ffe9ad" stroke-width="4" class="anim-pulse"/>
+        <text x="480" y="252" text-anchor="middle" fill="#ffe9ad" font-size="20" font-weight="900">${pair[0]}</text>
+        <text x="480" y="280" text-anchor="middle" fill="#34d399" font-size="14" font-weight="800">${pair[1]}</text>
+      </svg>`;
+    }
+
+    function buildSlideWidgetHtml(slide, idx) {
+      const wType = slide.widgetType || "none";
+      if (wType === "altitude_sim") {
+        return `<div class="widget-box-4d">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <strong style="color:#ffe9ad; font-size:0.82rem;">✈️ Độ cao Tâm thức: <span id="altMeterVal_${idx}">11.500m (Tầng Bình Lưu)</span></strong>
+            <span id="altStatusBox_${idx}" style="font-size:0.78rem; color:#34d399; font-weight:800;">🌤️ Bầu trời quang đãng</span>
+          </div>
+          <input type="range" min="1000" max="12000" step="500" value="11500" style="width:100%; accent-color:#38bdf8; cursor:pointer;" oninput="setAltitudeSim(${idx}, this.value)" />
+        </div>`;
+      }
+      return "";
+    }
+
+    function ensureSlideFlipCards(slide, idx) {
+      if (Array.isArray(slide.flipCards) && slide.flipCards.length >= 4) {
+        return slide.flipCards;
+      }
+      const existing = Array.isArray(slide.flipCards) ? slide.flipCards.slice() : [];
+      const defaults = [
+        {
+          frontTitle: "GÓC NHÌN BỊ ĐỘNG",
+          frontText: "Tiếp nhận thông tin rời rạc, chờ hoàn cảnh bên ngoài định đoạt.",
+          backTitle: "ĐÂY ĐO ĐỜI",
+          backText: "Chủ động cầm thước đo Thân – Tâm – Trí, làm chủ bản thiết kế cuộc đời."
+        },
+        {
+          frontTitle: "PHẢN ỨNG NGẮN HẠN",
+          frontText: "Nghe lý thuyết suông rồi để trôi qua mà không lặp lại.",
+          backTitle: "CHUYỂN HÓA BỀN VỮNG",
+          backText: "Kiên trì rèn luyện mỗi ngày tạo kết nối thần kinh mới vững chắc."
+        },
+        {
+          frontTitle: "LÀM THỦ CÔNG ĐƠN LẺ",
+          frontText: "Tốn nhiều thời gian loay hoay với công cụ cũ.",
+          backTitle: "ĐỘI THỢ AI THỰC CHIẾN",
+          backText: "Ứng dụng công thức Lệnh Vàng để tăng tốc hiệu suất gấp bội."
+        },
+        {
+          frontTitle: "TRÌ HOÃN CHỜ ĐỢI",
+          frontText: "Hẹn ngày mai mới bắt đầu thay đổi thói quen.",
+          backTitle: "HÀNH ĐỘNG NGAY 15 PHÚT",
+          backText: "Khởi công kỳ quan cuộc đời ngay từ bước chân đầu tiên hôm nay."
+        }
+      ];
+      while (existing.length < 4) {
+        existing.push(defaults[existing.length]);
+      }
+      return existing;
+    }
+
+    function renderAllSlides() {
+      const track = document.getElementById("slidesTrack");
+      const jumpSelect = document.getElementById("slideJumpSelect");
+      const dotsContainer = document.getElementById("dotsContainer");
+      const totalBadge = document.getElementById("totalSlidesBadge");
+      if (!track || !jumpSelect || !dotsContainer) return;
+
+      totalBadge.textContent = String(SLIDES_DATA.length);
+      track.innerHTML = "";
+      jumpSelect.innerHTML = "";
+      dotsContainer.innerHTML = "";
+
+      SLIDES_DATA.forEach((slide, idx) => {
+        const isHidden = hiddenSlides.has(idx);
+        const sec = document.createElement("section");
+        sec.className = "slide" + (idx === currentSlide ? " active-slide" : "") + (isHidden ? " is-hidden" : "");
+
+        let cleanTitle = (slide.title || "").replace(/Tinh Hoa Bài Giảng NotebookLM\s*[–-]\s*/gi, "").trim();
+        if (!cleanTitle || /^(\d+\.\s*)?Trang\s+\d+$/i.test(cleanTitle)) {
+          cleanTitle = `${String(idx + 1).padStart(2, "0")}. BÀI GIẢNG 4D`;
+        }
+
+        const hasCustomOrPdfImg = Boolean(slide.image && slide.image.trim().length > 0);
+        const safeImgSrc = hasCustomOrPdfImg ? slide.image : "";
+
+        const visualStageContent = hasCustomOrPdfImg
+          ? `<div class="pdf-image-16x9-wrapper" onmousemove="onPdfStageMouseMove(event, ${idx})" onmouseleave="onPdfStageMouseLeave(${idx})" onclick="onPdfStageClickRipple(event, ${idx})">
+               <img class="bg-photo" id="slideImg_${idx}" src="${safeImgSrc}" alt="${cleanTitle.replace(/"/g, '&quot;')}" />
+               <canvas class="fx-living-overlay-canvas" id="fxCanvas_${idx}"></canvas>
+               <div class="magnifier-lens-4d" id="magLens_${idx}"></div>
+               <div class="hotspot-layer-4d">
+                 <div class="hotspot-pin-4d" style="left:22%; top:26%;" onclick="event.stopPropagation(); toggleZoomQuadrant(${idx}, 0)" title="Phóng to góc trên trái">1</div>
+                 <div class="hotspot-pin-4d" style="left:78%; top:26%;" onclick="event.stopPropagation(); toggleZoomQuadrant(${idx}, 1)" title="Phóng to góc trên phải">2</div>
+                 <div class="hotspot-pin-4d" style="left:22%; top:74%;" onclick="event.stopPropagation(); toggleZoomQuadrant(${idx}, 2)" title="Phóng to góc dưới trái">3</div>
+                 <div class="hotspot-pin-4d" style="left:78%; top:74%;" onclick="event.stopPropagation(); toggleZoomQuadrant(${idx}, 3)" title="Phóng to góc dưới phải">4</div>
+               </div>
+             </div>`
+          : `<div class="visual-svg-stage" onclick="onPdfStageClickRipple(event, ${idx})">
+               ${buildAnimatedVisual4D(slide, idx)}
+               <canvas class="fx-living-overlay-canvas" id="fxCanvas_${idx}"></canvas>
+             </div>`;
+
+        const cards = ensureSlideFlipCards(slide, idx);
+        const flipCardsHtml = cards.slice(0, 4).map((c, cIdx) => {
+          const sliceThumbHtml = c.sliceImg
+            ? `<img class="flip-slice-thumb" src="${c.sliceImg}" alt="${(c.frontTitle || '').replace(/"/g, '&quot;')}" />`
+            : "";
+          return `
+            <div class="flip-card-3d" id="flipCard_${idx}_${cIdx}" onclick="onFlipCardClick(this, ${idx}, ${cIdx})">
+              <div class="flip-card-inner">
+                <div class="flip-face flip-front">
+                  <div>
+                    <div class="flip-badge"><span>⚡ TƯƠNG PHẢN ${cIdx + 1}</span><span>⇄</span></div>
+                    ${sliceThumbHtml}
+                    <div class="flip-title">${c.frontTitle || "GÓC NHÌN CŨ"}</div>
+                    <div class="flip-desc">${c.frontText || ""}</div>
+                  </div>
+                </div>
+                <div class="flip-face flip-back">
+                  <div>
+                    <div class="flip-badge"><span>🌟 CHUYỂN HÓA ${cIdx + 1}</span><span>✓</span></div>
+                    ${sliceThumbHtml}
+                    <div class="flip-title">${c.backTitle || "CHUYỂN HÓA MỚI"}</div>
+                    <div class="flip-desc">${c.backText || ""}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        const filteredBullets = (slide.bullets || []).filter(b =>
+          !/Nội dung trích xuất trực tiếp từ Trang/i.test(b) &&
+          !/Quan sát hình ảnh thật sắc nét bên trái/i.test(b)
+        );
+        const bulletsHtml = filteredBullets.map(b => `<div class="bullet-item-4d">${b}</div>`).join("");
+        const widgetHtml = buildSlideWidgetHtml(slide, idx);
+
+        sec.innerHTML = `
+          <div class="slide-inner">
+            <div class="slide-header">
+              <div class="slide-title-wrap">
+                <span class="slide-num-pill">TRANG ${String(idx + 1).padStart(2, "0")} / ${String(SLIDES_DATA.length).padStart(2, "0")}</span>
+                <h1 class="slide-title">${cleanTitle}</h1>
+              </div>
+              <div class="slide-header-actions">
+                <button class="btn-hud-action" onclick="toggleMagnifierForSlide(${idx})" id="btnLens_${idx}" title="Bật/Tắt Kính lúp 4D soi chi tiết trên ảnh">
+                  🔍 Kính Lúp 4D
+                </button>
+                <button class="btn-hud-action" onclick="resetZoomQuadrant(${idx})" title="Khôi phục khung ảnh 16:9 toàn cảnh">
+                  🖼️ Toàn Cảnh 16:9
+                </button>
+                <label class="header-hide-label">
+                  <input type="checkbox" ${!isHidden ? "checked" : ""} onchange="toggleShowSlide(${idx}, this.checked)" />
+                  ✓ Hiển thị trang này
+                </label>
+                <button class="btn-slide-voice" onclick="speakSingleSlide(${idx})">🔊 Giảng Trang Này</button>
+              </div>
+            </div>
+
+            <div class="senior-stage">
+              <div class="senior-panel visual-panel-16x9">
+                <div class="giant-art-frame" id="artFrame_${idx}">
+                  ${visualStageContent}
+                  <div class="photo-tools">
+                    <button onclick="toggleMagnifierForSlide(${idx})">🔍 Soi 2.2x</button>
+                    <button onclick="cycleZoomQuadrant(${idx})">🎯 Zoom Vùng</button>
+                    <label>
+                      🖼 Đổi Ảnh 16:9
+                      <input type="file" accept="image/*" style="display:none;" onchange="uploadSlideCustomPhoto(event, ${idx})" />
+                    </label>
+                    <button onclick="resetSlideDefaultArt(${idx})">↺ Đồ Họa 4D</button>
+                  </div>
+                </div>
+                <div class="transform-row-large" style="width:100%;" onclick="flipAllCardsForSlide(${idx})">
+                  <span class="state-old-lg">${slide.stateOld || "😮‍💨 Trạng thái cũ"}</span>
+                  <span class="verb-bridge-lg">${slide.bridgeVerb || "TRỞ THÀNH"}</span>
+                  <span class="state-new-lg">${slide.stateNew || "👑 Chuyển hóa mới"}</span>
+                </div>
+              </div>
+
+              <div class="senior-panel">
+                <div style="display:flex; flex-direction:column; height:100%; justify-content:space-between; gap:8px;">
+                  <div class="right-panel-header">
+                    <span class="slide-tag">🎴 BỘ 4 THẺ BÀI LẬT TƯƠNG PHẢN</span>
+                    <button class="btn-flip-all" onclick="flipAllCardsForSlide(${idx})">🔄 Lật 4 Thẻ</button>
+                  </div>
+                  <div class="flip-cards-grid" id="flipGrid_${idx}">
+                    ${flipCardsHtml}
+                  </div>
+                  ${widgetHtml}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        track.appendChild(sec);
+
+        const opt = document.createElement("option");
+        opt.value = String(idx);
+        opt.textContent = (isHidden ? "🙈 [ẨN] " : "") + cleanTitle;
+        jumpSelect.appendChild(opt);
+
+        const dot = document.createElement("div");
+        dot.className = "slide-dot" + (idx === currentSlide ? " active" : "") + (isHidden ? " is-hidden" : "");
+        dot.title = cleanTitle;
+        dot.onclick = () => goToSlide(idx, true);
+        dotsContainer.appendChild(dot);
+      });
+
+      initLivingOverlayCanvases();
+      updateSlidePosition();
+    }
+
+    let overlayAnimControllers = [];
+    let activeZoomQuadrantBySlide = {};
+
+    function initLivingOverlayCanvases() {
+      overlayAnimControllers = [];
+      SLIDES_DATA.forEach((_, idx) => {
+        const cv = document.getElementById("fxCanvas_" + idx);
+        if (!cv) return;
+        cv.width = 960;
+        cv.height = 540;
+        const ctx = cv.getContext("2d");
+        const nodes = [];
+        for (let i = 0; i < 26; i++) {
+          nodes.push({
+            x: Math.random() * 960,
+            y: Math.random() * 540,
+            vx: (Math.random() - 0.5) * 0.9,
+            vy: (Math.random() - 0.5) * 0.9,
+            r: Math.random() * 2.8 + 1.2,
+            alpha: Math.random() * 0.55 + 0.2
+          });
+        }
+        overlayAnimControllers.push({
+          idx,
+          cv,
+          ctx,
+          nodes,
+          ripples: [],
+          scanX: 0
+        });
+      });
+    }
+
+    function animateLivingOverlaysLoop() {
+      overlayAnimControllers.forEach(ctrl => {
+        if (currentMode !== "scroll" && ctrl.idx !== currentSlide) return;
+        const { ctx, cv, nodes, ripples } = ctrl;
+        const w = cv.width;
+        const h = cv.height;
+        ctx.clearRect(0, 0, w, h);
+
+        ctrl.scanX = (ctrl.scanX + 2.2) % (w + 260);
+        const grad = ctx.createLinearGradient(ctrl.scanX - 240, 0, ctrl.scanX, h * 0.4);
+        grad.addColorStop(0, "rgba(56, 189, 248, 0)");
+        grad.addColorStop(0.5, "rgba(245, 196, 81, 0.06)");
+        grad.addColorStop(1, "rgba(56, 189, 248, 0)");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        for (let i = 0; i < nodes.length; i++) {
+          const p = nodes[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx = -p.vx;
+          if (p.y < 0 || p.y > h) p.vy = -p.vy;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(245, 196, 81, ${p.alpha})`;
+          ctx.fill();
+
+          for (let j = i + 1; j < nodes.length; j++) {
+            const q = nodes[j];
+            const dx = p.x - q.x;
+            const dy = p.y - q.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 115) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - dist / 115) * 0.16})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+
+        for (let r = ripples.length - 1; r >= 0; r--) {
+          const rp = ripples[r];
+          rp.radius += 3.8;
+          rp.alpha -= 0.022;
+          if (rp.alpha <= 0) {
+            ripples.splice(r, 1);
+          } else {
+            ctx.beginPath();
+            ctx.arc(rp.x, rp.y, rp.radius, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(52, 211, 153, ${rp.alpha})`;
+            ctx.lineWidth = 3;
+            ctx.stroke();
+          }
+        }
+      });
+      requestAnimationFrame(animateLivingOverlaysLoop);
+    }
+
+    function onPdfStageClickRipple(ev, slideIdx) {
+      const ctrl = overlayAnimControllers.find(c => c.idx === slideIdx);
+      if (!ctrl) return;
+      const rect = ctrl.cv.getBoundingClientRect();
+      const x = ((ev.clientX - rect.left) / Math.max(1, rect.width)) * ctrl.cv.width;
+      const y = ((ev.clientY - rect.top) / Math.max(1, rect.height)) * ctrl.cv.height;
+      ctrl.ripples.push({ x, y, radius: 6, alpha: 0.95 });
+      ctrl.ripples.push({ x, y, radius: 18, alpha: 0.65 });
+      sfxChime();
+    }
+
+    function toggleMagnifierForSlide(slideIdx) {
+      const frame = document.getElementById("artFrame_" + slideIdx);
+      const btn = document.getElementById("btnLens_" + slideIdx);
+      if (!frame) return;
+      const isNowOn = !frame.classList.contains("lens-active");
+      frame.classList.toggle("lens-active", isNowOn);
+      if (btn) btn.classList.toggle("active", isNowOn);
+      showVoiceToast(isNowOn ? "🔍 Đã bật Kính Lúp 4D" : "🔍 Đã tắt Kính Lúp 4D");
+    }
+
+    function onPdfStageMouseMove(ev, slideIdx) {
+      const frame = document.getElementById("artFrame_" + slideIdx);
+      const lens = document.getElementById("magLens_" + slideIdx);
+      const img = document.getElementById("slideImg_" + slideIdx);
+      if (!frame || !lens || !img || !frame.classList.contains("lens-active")) return;
+
+      const rect = frame.getBoundingClientRect();
+      const relX = ev.clientX - rect.left;
+      const relY = ev.clientY - rect.top;
+      const pctX = Math.max(0, Math.min(100, (relX / rect.width) * 100));
+      const pctY = Math.max(0, Math.min(100, (relY / rect.height) * 100));
+
+      lens.style.left = relX + "px";
+      lens.style.top = relY + "px";
+      lens.style.backgroundImage = `url('${img.src}')`;
+      lens.style.backgroundSize = `${rect.width * 2.2}px ${rect.height * 2.2}px`;
+      lens.style.backgroundPosition = `${pctX}% ${pctY}%`;
+    }
+
+    function onPdfStageMouseLeave(slideIdx) {
+      const lens = document.getElementById("magLens_" + slideIdx);
+      if (lens) lens.style.left = "-9999px";
+    }
+
+    function toggleZoomQuadrant(slideIdx, qIdx) {
+      const frame = document.getElementById("artFrame_" + slideIdx);
+      if (!frame) return;
+      const cls = "zoom-focus-" + qIdx;
+      const already = frame.classList.contains(cls);
+      frame.classList.remove("zoom-focus-0", "zoom-focus-1", "zoom-focus-2", "zoom-focus-3");
+      if (!already) {
+        frame.classList.add(cls);
+        activeZoomQuadrantBySlide[slideIdx] = qIdx;
+      } else {
+        delete activeZoomQuadrantBySlide[slideIdx];
+      }
+      sfxChime();
+    }
+
+    function cycleZoomQuadrant(slideIdx) {
+      const cur = activeZoomQuadrantBySlide[slideIdx];
+      const next = cur === undefined ? 0 : (cur + 1) % 5;
+      if (next === 4) resetZoomQuadrant(slideIdx);
+      else toggleZoomQuadrant(slideIdx, next);
+    }
+
+    function resetZoomQuadrant(slideIdx) {
+      const frame = document.getElementById("artFrame_" + slideIdx);
+      if (!frame) return;
+      frame.classList.remove("zoom-focus-0", "zoom-focus-1", "zoom-focus-2", "zoom-focus-3");
+      delete activeZoomQuadrantBySlide[slideIdx];
+      sfxChime();
+    }
+
+    function toggleWide16x9Stage() {
+      isWide16x9Stage = !isWide16x9Stage;
+      document.body.classList.toggle("stage-wide-16x9", isWide16x9Stage);
+      const btn = document.getElementById("btnToggleWide16x9");
+      if (btn) btn.classList.toggle("active", isWide16x9Stage);
+      showVoiceToast(isWide16x9Stage ? "📺 Khung Hình 16:9 Cực Đại" : "🎬 Cân Đối 16:9 + Bộ 4 Thẻ Lật");
+    }
+
+    function onFlipCardClick(cardEl, slideIdx, cardIdx) {
+      if (!cardEl) return;
+      cardEl.classList.toggle("flipped");
+      const inner = cardEl.querySelector(".flip-card-inner");
+      if (inner) {
+        inner.style.animation = "none";
+        void inner.offsetWidth;
+        inner.style.animation = "flipBounceIn 0.42s cubic-bezier(0.22, 1, 0.36, 1)";
+      }
+      sfxChime();
+    }
+
+    function flipAllCardsForSlide(slideIdx) {
+      const grid = document.getElementById("flipGrid_" + slideIdx);
+      if (!grid) return;
+      const cards = grid.querySelectorAll(".flip-card-3d");
+      const anyUnflipped = Array.from(cards).some(c => !c.classList.contains("flipped"));
+      cards.forEach(c => c.classList.toggle("flipped", anyUnflipped));
+      sfxChime();
+    }
+
+    function flipAllCardsOnCurrentSlide() {
+      flipAllCardsForSlide(currentSlide);
+    }
+
+    function initPdfDropZone() {
+      const dz = document.getElementById("pdfDropZone");
+      if (!dz) return;
+      dz.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dz.classList.add("dragover");
+      });
+      dz.addEventListener("dragleave", () => {
+        dz.classList.remove("dragover");
+      });
+      dz.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dz.classList.remove("dragover");
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+          processNotebookPdfFile(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    function handlePdfFileSelect(event) {
+      const file = event.target.files && event.target.files[0];
+      if (file) processNotebookPdfFile(file);
+    }
+
+    function normalizeSpokenArrows(str, bridgeVerb) {
+      if (!str) return "";
+      const verbLower = (bridgeVerb || "trở thành").toLowerCase();
+      return str.replace(/==>|->|➔|⇒/g, " " + verbLower + " ");
+    }
+
+    function extractFourVisualSlicesFromCanvas(sourceCanvas) {
+      const w = sourceCanvas.width;
+      const h = sourceCanvas.height;
+      const regions = [
+        { sx: Math.floor(w * 0.04), sy: Math.floor(h * 0.12), sw: Math.floor(w * 0.44), sh: Math.floor(h * 0.38) },
+        { sx: Math.floor(w * 0.52), sy: Math.floor(h * 0.12), sw: Math.floor(w * 0.44), sh: Math.floor(h * 0.38) },
+        { sx: Math.floor(w * 0.04), sy: Math.floor(h * 0.52), sw: Math.floor(w * 0.44), sh: Math.floor(h * 0.38) },
+        { sx: Math.floor(w * 0.52), sy: Math.floor(h * 0.52), sw: Math.floor(w * 0.44), sh: Math.floor(h * 0.38) }
+      ];
+      return regions.map(rg => {
+        const c = document.createElement("canvas");
+        c.width = 320;
+        c.height = 140;
+        c.getContext("2d").drawImage(sourceCanvas, rg.sx, rg.sy, rg.sw, rg.sh, 0, 0, 320, 140);
+        return c.toDataURL("image/jpeg", 0.82);
+      });
+    }
+
+    function parseNotebookPageText(rawItems, pageNum, totalPages, courseTag, bridgeVerb, sliceThumbs) {
+      const lines = [];
+      let currentLine = "";
+      let lastY = null;
+
+      rawItems.forEach(item => {
+        const txt = (item.str || "").trim();
+        if (!txt) return;
+        const y = item.transform ? Math.round(item.transform[5]) : null;
+        if (lastY !== null && y !== null && Math.abs(y - lastY) > 6) {
+          if (currentLine.trim()) lines.push(currentLine.trim());
+          currentLine = txt;
+        } else {
+          currentLine = (currentLine + " " + txt).trim();
+        }
+        if (y !== null) lastY = y;
+      });
+      if (currentLine.trim()) lines.push(currentLine.trim());
+
+      const cleanLines = lines
+        .map(l => normalizeSpokenArrows(l, bridgeVerb))
+        .filter(l => l.length > 1 && !/^page\s*\d+$/i.test(l));
+
+      const numPrefix = String(pageNum).padStart(2, "0") + ". ";
+      const rawTitle = cleanLines[0] || `BÀI GIẢNG 4D • MỤC ${String(pageNum).padStart(2, "0")}`;
+      const title = rawTitle.startsWith(String(pageNum)) ? rawTitle : (numPrefix + rawTitle.slice(0, 72));
+
+      const bodyCandidates = cleanLines.slice(1);
+      let bullets = [];
+      if (bodyCandidates.length > 0) {
+        const chunked = [];
+        let buf = "";
+        bodyCandidates.forEach(line => {
+          if ((buf + " " + line).trim().length <= 150) {
+            buf = (buf + " " + line).trim();
+          } else {
+            if (buf) chunked.push(buf);
+            buf = line;
+          }
+        });
+        if (buf) chunked.push(buf);
+        bullets = chunked.slice(0, 2).map(c => "🔹 " + c);
+      }
+
+      let stateOld = "😮‍💨 Tiếp nhận thụ động";
+      let stateNew = "👑 Chủ động kiến tạo";
+      const arrowLine = cleanLines.find(l => /trở thành|tạo nên|trở nên|vượt lên/i.test(l));
+      if (arrowLine) {
+        const parts = arrowLine.split(/trở thành|tạo nên|trở nên|vượt lên/i);
+        if (parts.length >= 2 && parts[0].trim() && parts[1].trim()) {
+          stateOld = "😮‍💨 " + parts[0].trim().slice(0, 48);
+          stateNew = "👑 " + parts[1].trim().slice(0, 48);
+        }
+      }
+
+      const thumbs = Array.isArray(sliceThumbs) ? sliceThumbs : ["", "", "", ""];
+      const flipCards = [
+        {
+          frontTitle: "GÓC NHÌN CŨ",
+          frontText: (cleanLines[1] || "Tư duy giới hạn.").slice(0, 95),
+          backTitle: "CHUYỂN HÓA 1",
+          backText: (cleanLines[2] || "Mở rộng nhận thức.").slice(0, 95),
+          sliceImg: thumbs[0]
+        },
+        {
+          frontTitle: "PHẢN ỨNG NGẮN HẠN",
+          frontText: (cleanLines[3] || "Biết lý thuyết bề nổi.").slice(0, 95),
+          backTitle: "CHUYỂN HÓA 2",
+          backText: (cleanLines[4] || "Kiên trì rèn luyện tạo thói quen.").slice(0, 95),
+          sliceImg: thumbs[1]
+        },
+        {
+          frontTitle: "RÀO CẢN NỘI TẠI",
+          frontText: "Ngại đổi mới thói quen.",
+          backTitle: "CHUYỂN HÓA 3",
+          backText: stateNew.replace(/^[^\wÀ-ỹ]+/, ""),
+          sliceImg: thumbs[2]
+        },
+        {
+          frontTitle: "LÀM VIỆC RỜI RẠC",
+          frontText: "Thiếu công cụ hỗ trợ.",
+          backTitle: "CHUYỂN HÓA 4",
+          backText: "Hợp lực cùng đội ngũ và công nghệ AI.",
+          sliceImg: thumbs[3]
+        }
+      ];
+
+      const plainBullets = bullets.map(b => b.replace(/<[^>]+>/g, "").replace(/^🔹\s*/, "")).join(". ");
+      const script = `${rawTitle}. ${plainBullets ? plainBullets + ". " : ""}Từ ${stateOld.replace(/^[^\wÀ-ỹ]+/, "")}, chúng ta ${bridgeVerb.toLowerCase()} ${stateNew.replace(/^[^\wÀ-ỹ]+/, "")}.`;
+
+      return {
+        id: pageNum,
+        tag: courseTag || "🏛️ BÀI GIẢNG 4D",
+        title,
+        flipCards,
+        bullets,
+        stateOld,
+        bridgeVerb: bridgeVerb || "TRỞ THÀNH",
+        stateNew,
+        visualTheme: "auto",
+        widgetType: "none",
+        script
+      };
+    }
+
+    async function processNotebookPdfFile(file) {
+      const statusEl = document.getElementById("pdfProgressStatus");
+      if (!window.pdfjsLib) {
+        showVoiceToast("⚠️ Thư viện pdf.js đang khởi tạo!");
+        return;
+      }
+
+      try {
+        statusEl.textContent = `⏳ Đang đọc file PDF 16:9 "${file.name}"...`;
+        const arrayBuf = await file.arrayBuffer();
+        const pdfDoc = await window.pdfjsLib.getDocument({ data: arrayBuf }).promise;
+        const numPages = pdfDoc.numPages;
+
+        const scaleVal = parseFloat(document.getElementById("pdfScaleSelect").value || "2.0");
+        const cropMode = document.getElementById("pdfCropModeSelect").value || "full";
+        const courseTag = document.getElementById("pdfCourseTagInput").value.trim() || "🏛️ KIẾN TẠO CUỘC SỐNG xAI";
+        const bridgeVerb = document.getElementById("pdfBridgeVerbSelect").value || "TRỞ THÀNH";
+
+        const extractedSlides = [];
+
+        for (let p = 1; p <= numPages; p++) {
+          statusEl.textContent = `⚡ Trích xuất Trang ${p} / ${numPages}...`;
+          const page = await pdfDoc.getPage(p);
+          const viewport = page.getViewport({ scale: scaleVal });
+
+          const offCanvas = document.createElement("canvas");
+          offCanvas.width = viewport.width;
+          offCanvas.height = viewport.height;
+          const offCtx = offCanvas.getContext("2d");
+
+          await page.render({ canvasContext: offCtx, viewport }).promise;
+
+          let finalDataUrl = "";
+          if (cropMode === "full") {
+            finalDataUrl = offCanvas.toDataURL("image/jpeg", 0.9);
+          } else {
+            const cropCanvas = document.createElement("canvas");
+            let sx = 0, sy = 0, sw = viewport.width, sh = viewport.height;
+            if (cropMode === "right_half") {
+              sx = Math.floor(viewport.width * 0.45);
+              sw = viewport.width - sx;
+            } else if (cropMode === "left_half") {
+              sw = Math.floor(viewport.width * 0.55);
+            } else if (cropMode === "center_art") {
+              sx = Math.floor(viewport.width * 0.05);
+              sy = Math.floor(viewport.height * 0.06);
+              sw = Math.floor(viewport.width * 0.90);
+              sh = Math.floor(viewport.height * 0.88);
+            }
+            cropCanvas.width = sw;
+            cropCanvas.height = sh;
+            cropCanvas.getContext("2d").drawImage(offCanvas, sx, sy, sw, sh, 0, 0, sw, sh);
+            finalDataUrl = cropCanvas.toDataURL("image/jpeg", 0.9);
+          }
+
+          const sliceThumbs = extractFourVisualSlicesFromCanvas(offCanvas);
+          const textContent = await page.getTextContent();
+          const parsed = parseNotebookPageText(textContent.items || [], p, numPages, courseTag, bridgeVerb, sliceThumbs);
+          parsed.image = finalDataUrl;
+          extractedSlides.push(parsed);
+        }
+
+        SLIDES_DATA = extractedSlides;
+        currentSlide = 0;
+        hiddenSlides.clear();
+        saveSlidesToStorage();
+        renderExtractedPagesEditor();
+        renderAllSlides();
+
+        statusEl.innerHTML = `<strong style="color:#34d399;">✅ Đã chuyển hóa ${numPages} trang 16:9 từ "${file.name}"!</strong>`;
+        showVoiceToast(`🎉 Đã nạp ${numPages} trang 16:9 thành công!`);
+      } catch (err) {
+        statusEl.textContent = "⚠️ Không thể đọc file PDF. Vui lòng kiểm tra lại.";
+        showVoiceToast("⚠️ Lỗi giải nén PDF!");
+      }
+    }
+
+    function renderExtractedPagesEditor() {
+      const container = document.getElementById("extractedPagesContainer");
+      if (!container) return;
+      container.innerHTML = "";
+
+      SLIDES_DATA.forEach((slide, idx) => {
+        const card = document.createElement("div");
+        card.className = "page-editor-card";
+        const cards = ensureSlideFlipCards(slide, idx);
+        slide.flipCards = cards;
+
+        const bulletsPlain = (slide.bullets || [])
+          .map(b => b.replace(/^🔹\s*/, "").replace(/<[^>]+>/g, ""))
+          .join("\n");
+
+        const visualPreviewHtml = (slide.image && slide.image.trim().length > 0)
+          ? `<img class="thumb-preview" src="${slide.image}" alt="Slide ${idx + 1}" />`
+          : `<div style="aspect-ratio:16/9; width:100%; border-radius:10px; overflow:hidden; border:1px solid rgba(56,189,248,0.45); background:#020611;">${buildAnimatedVisual4D(slide, idx)}</div>`;
+
+        card.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="slide-tag">TRANG ${idx + 1} / ${SLIDES_DATA.length} (KHUNG 16:9)</span>
+            <div style="display:flex; gap:6px;">
+              <button class="btn-hud-action" onclick="previewSingleSlideFromStudio(${idx})">👁 Xem 4D</button>
+              <button class="btn-hud-action" style="border-color:#fb7185; color:#fecdd3;" onclick="deleteSlideAtIndex(${idx})">🗑 Xóa</button>
+            </div>
+          </div>
+          ${visualPreviewHtml}
+          <div>
+            <label style="font-size:0.74rem; color:#ffe9ad; font-weight:700;">Tiêu đề Slide:</label>
+            <input type="text" value="${(slide.title || "").replace(/"/g, '&quot;')}" oninput="updateSlideField(${idx}, 'title', this.value)" />
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+            <div>
+              <label style="font-size:0.72rem; color:#fda4af; font-weight:700;">Thẻ 1 Trước (Cũ):</label>
+              <input type="text" value="${(cards[0].frontText || "").replace(/"/g, '&quot;')}" oninput="updateFlipCardField(${idx}, 0, 'frontText', this.value)" />
+            </div>
+            <div>
+              <label style="font-size:0.72rem; color:#6ee7b7; font-weight:700;">Thẻ 1 Sau (Mới):</label>
+              <input type="text" value="${(cards[0].backText || "").replace(/"/g, '&quot;')}" oninput="updateFlipCardField(${idx}, 0, 'backText', this.value)" />
+            </div>
+          </div>
+          <div>
+            <label style="font-size:0.74rem; color:#38bdf8; font-weight:700;">Luận điểm:</label>
+            <textarea oninput="updateSlideBullets(${idx}, this.value)">${bulletsPlain}</textarea>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:6px; align-items:center;">
+            <input type="text" value="${(slide.stateOld || "").replace(/"/g, '&quot;')}" oninput="updateSlideField(${idx}, 'stateOld', this.value)" />
+            <span style="font-size:0.72rem; font-weight:900; color:#f5c451;">➔</span>
+            <input type="text" value="${(slide.stateNew || "").replace(/"/g, '&quot;')}" oninput="updateSlideField(${idx}, 'stateNew', this.value)" />
+          </div>
+          <div>
+            <label style="font-size:0.74rem; color:#34d399; font-weight:700;">Lời giảng Teleprompter:</label>
+            <textarea oninput="updateSlideField(${idx}, 'script', this.value)">${slide.script || ""}</textarea>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function updateSlideField(idx, field, val) {
+      if (!SLIDES_DATA[idx]) return;
+      SLIDES_DATA[idx][field] = val;
+      saveSlidesToStorage();
+    }
+
+    function updateFlipCardField(slideIdx, cardIdx, key, val) {
+      if (!SLIDES_DATA[slideIdx]) return;
+      const cards = ensureSlideFlipCards(SLIDES_DATA[slideIdx], slideIdx);
+      if (cards[cardIdx]) {
+        cards[cardIdx][key] = val;
+        SLIDES_DATA[slideIdx].flipCards = cards;
+        saveSlidesToStorage();
+      }
+    }
+
+    function updateSlideBullets(idx, rawText) {
+      if (!SLIDES_DATA[idx]) return;
+      const lines = rawText.split(/\n+/).map(s => s.trim()).filter(Boolean);
+      SLIDES_DATA[idx].bullets = lines.map(l => l.startsWith("🔹") ? l : ("🔹 " + l));
+      saveSlidesToStorage();
+    }
+
+    function previewSingleSlideFromStudio(idx) {
+      renderAllSlides();
+      switchWorkspace("deck");
+      goToSlide(idx, true);
+    }
+
+    function deleteSlideAtIndex(idx) {
+      if (SLIDES_DATA.length <= 1) {
+        showVoiceToast("⚠️ Cần ít nhất 1 trang!");
+        return;
+      }
+      SLIDES_DATA.splice(idx, 1);
+      if (currentSlide >= SLIDES_DATA.length) currentSlide = SLIDES_DATA.length - 1;
+      saveSlidesToStorage();
+      renderExtractedPagesEditor();
+      renderAllSlides();
+      showVoiceToast(`🗑 Đã xóa trang ${idx + 1}`);
+    }
+
+    function addBlankCustomSlide() {
+      const newIdx = SLIDES_DATA.length + 1;
+      SLIDES_DATA.push({
+        id: newIdx,
+        tag: document.getElementById("pdfCourseTagInput").value || "🏛️ BÀI GIẢNG 4D",
+        title: `${String(newIdx).padStart(2, "0")}. TIÊU ĐỀ BÀI GIẢNG`,
+        flipCards: ensureSlideFlipCards({}, newIdx),
+        bullets: [
+          "🔹 Luận điểm 1.",
+          "🔹 Luận điểm 2."
+        ],
+        stateOld: "😮‍💨 Trạng thái cũ",
+        bridgeVerb: "TRỞ THÀNH",
+        stateNew: "👑 Chuyển hóa mới",
+        image: "",
+        visualTheme: "compass_ruler",
+        widgetType: "none",
+        script: `Trang ${newIdx}. Kính mời quý vị cùng tìm hiểu nội dung bài giảng.`
+      });
+      saveSlidesToStorage();
+      renderExtractedPagesEditor();
+      renderAllSlides();
+      showVoiceToast(`➕ Đã thêm Trang ${newIdx}!`);
+    }
+
+    function resetToDefaultMasterDeck() {
+      SLIDES_DATA = JSON.parse(JSON.stringify(DEFAULT_MASTER_SLIDES));
+      currentSlide = 0;
+      hiddenSlides.clear();
+      try { localStorage.removeItem(SLIDES_STORAGE_KEY); } catch (e) {}
+      renderExtractedPagesEditor();
+      renderAllSlides();
+      showVoiceToast("🔄 Đã khôi phục dữ liệu gốc!");
+    }
+
+    function applyExtractedToLiveDeck() {
+      renderAllSlides();
+      switchWorkspace("deck");
+      goToSlide(0, false);
+      showVoiceToast("🎬 Đã chuyển sang Trình Chiếu 4D!");
+    }
+
+    function saveSlidesToStorage() {
+      try {
+        localStorage.setItem(SLIDES_STORAGE_KEY, JSON.stringify(SLIDES_DATA));
+      } catch (e) {}
+    }
+
+    function loadSlidesFromStorage() {
+      try {
+        const raw = localStorage.getItem(SLIDES_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            SLIDES_DATA = parsed;
+          }
+        }
+      } catch (e) {}
+    }
+
+    function uploadSlideCustomPhoto(event, idx) {
+      const file = event.target.files && event.target.files[0];
+      if (!file || !SLIDES_DATA[idx]) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        SLIDES_DATA[idx].image = e.target.result;
+        saveSlidesToStorage();
+        renderAllSlides();
+        renderExtractedPagesEditor();
+        showVoiceToast(`🖼 Đã cập nhật ảnh 16:9 cho Trang ${idx + 1}!`);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetSlideDefaultArt(idx) {
+      if (!SLIDES_DATA[idx]) return;
+      SLIDES_DATA[idx].image = "";
+      saveSlidesToStorage();
+      renderAllSlides();
+      renderExtractedPagesEditor();
+      showVoiceToast(`↺ Đã chuyển sang Đồ Họa Động 4D cho Trang ${idx + 1}!`);
+    }
+
+    function switchWorkspace(ws) {
+      currentWorkspace = ws;
+      document.body.classList.remove("workspace-deck", "workspace-converter", "workspace-skill");
+      document.documentElement.classList.remove("workspace-deck", "workspace-converter", "workspace-skill");
+      document.body.classList.add("workspace-" + ws);
+      document.documentElement.classList.add("workspace-" + ws);
+
+      document.getElementById("tabBtnDeck").classList.toggle("active", ws === "deck");
+      document.getElementById("tabBtnConverter").classList.toggle("active", ws === "converter");
+      document.getElementById("tabBtnSkill").classList.toggle("active", ws === "skill");
+
+      if (ws === "converter") {
+        renderExtractedPagesEditor();
+      } else if (ws === "skill") {
+        updateGitHubPowerShellBox();
+      } else {
+        updateSlidePosition();
+      }
+    }
+
+    function setVisualArtStyle(styleKey) {
+      document.body.classList.remove(
+        "style-cinematic",
+        "style-realistic",
+        "style-infographic",
+        "style-painting",
+        "style-handdrawn"
+      );
+      document.body.classList.add("style-" + styleKey);
+      sfxChime();
+      renderAllSlides();
+      const labels = {
+        cinematic: "🎬 Điện Ảnh 4D",
+        realistic: "📸 Chân Thực Sắc Nét",
+        infographic: "📊 Đồ Họa Infographic",
+        painting: "🎨 Bức Vẽ Nghệ Thuật",
+        handdrawn: "✍️ Viết Tay Sketchnote"
+      };
+      showVoiceToast("🎨 Phong cách: " + (labels[styleKey] || styleKey));
+    }
+
+    function setDeckMode(mode) {
+      currentMode = mode;
+      document.documentElement.classList.remove("mode-horizontal", "mode-vertical", "mode-scroll");
+      document.body.classList.remove("mode-horizontal", "mode-vertical", "mode-scroll");
+      document.documentElement.classList.add("mode-" + mode);
+      document.body.classList.add("mode-" + mode);
+
+      document.getElementById("btnModeHorizontal").classList.toggle("active", mode === "horizontal");
+      document.getElementById("btnModeVertical").classList.toggle("active", mode === "vertical");
+      document.getElementById("btnModeScroll").classList.toggle("active", mode === "scroll");
+
+      if (currentWorkspace !== "deck") switchWorkspace("deck");
+      updateSlidePosition();
+    }
+
+    function visibleCount() {
+      return Math.max(1, SLIDES_DATA.length - hiddenSlides.size);
+    }
+
+    function findVisibleSlide(fromIdx, dir) {
+      for (let i = fromIdx + dir; i >= 0 && i < SLIDES_DATA.length; i += dir) {
+        if (!hiddenSlides.has(i)) return i;
+      }
+      return -1;
+    }
+
+    function visiblePosition(idx) {
+      let n = 0;
+      for (let i = 0; i <= idx && i < SLIDES_DATA.length; i++) {
+        if (!hiddenSlides.has(i)) n++;
+      }
+      return Math.max(1, n);
+    }
+
+    function updateSlidePosition() {
+      const track = document.getElementById("slidesTrack");
+      const jumpSelect = document.getElementById("slideJumpSelect");
+      const dotsContainer = document.getElementById("dotsContainer");
+      if (!track) return;
+
+      if (jumpSelect) jumpSelect.value = String(currentSlide);
+
+      document.querySelectorAll(".slide").forEach((s, idx) => {
+        s.classList.toggle("active-slide", idx === currentSlide);
+        s.classList.toggle("is-hidden", hiddenSlides.has(idx));
+      });
+
+      if (dotsContainer) {
+        dotsContainer.querySelectorAll(".slide-dot").forEach((d, idx) => {
+          d.classList.toggle("active", idx === currentSlide);
+          d.classList.toggle("is-hidden", hiddenSlides.has(idx));
+        });
+      }
+
+      const chkBottom = document.getElementById("chkShowCurrent");
+      if (chkBottom) chkBottom.checked = !hiddenSlides.has(currentSlide);
+
+      const badge = document.getElementById("hideCountBadge");
+      if (badge) {
+        badge.textContent = String(hiddenSlides.size);
+        badge.classList.toggle("zero", hiddenSlides.size === 0);
+      }
+
+      const bar = document.getElementById("deckProgress");
+      if (bar) {
+        bar.style.width = ((visiblePosition(currentSlide) / visibleCount()) * 100).toFixed(1) + "%";
+      }
+
+      const tele = document.getElementById("teleprompterText");
+      if (tele && !isAutoLecturing && SLIDES_DATA[currentSlide]) {
+        tele.textContent = "🎙️ " + SLIDES_DATA[currentSlide].script;
+      }
+
+      if (currentMode === "scroll") {
+        track.style.transform = "none";
+        return;
+      }
+      if (currentMode === "horizontal") {
+        track.style.transform = `translate3d(-${currentSlide * 100}vw, 0, 0)`;
+      } else {
+        track.style.transform = `translate3d(0, -${currentSlide * 100}%, 0)`;
+      }
+    }
+
+    function goToSlide(index, manualTrigger) {
+      if (index < 0) index = 0;
+      if (index >= SLIDES_DATA.length) index = SLIDES_DATA.length - 1;
+      if (hiddenSlides.has(index) && index !== currentSlide) {
+        let nextVis = findVisibleSlide(index, index > currentSlide ? 1 : -1);
+        if (nextVis === -1) nextVis = findVisibleSlide(index, index > currentSlide ? -1 : 1);
+        if (nextVis === -1) return;
+        index = nextVis;
+      }
+      const changed = currentSlide !== index;
+      currentSlide = index;
+      if (changed) sfxWhoosh();
+      updateSlidePosition();
+
+      if (currentMode === "scroll") {
+        const slides = document.querySelectorAll(".slide");
+        if (slides[currentSlide]) slides[currentSlide].scrollIntoView({ behavior: "smooth" });
+      }
+      if (manualTrigger && isAutoLecturing) {
+        playSlideNarration(currentSlide, true, 0);
+      }
+    }
+
+    function nextSlide() {
+      const target = findVisibleSlide(currentSlide, 1);
+      if (target !== -1) goToSlide(target, true);
+    }
+
+    function prevSlide() {
+      const target = findVisibleSlide(currentSlide, -1);
+      if (target !== -1) goToSlide(target, true);
+    }
+
+    function toggleShowSlide(idx, shouldShow) {
+      const shouldHide = !shouldShow;
+      if (shouldHide && !hiddenSlides.has(idx) && visibleCount() <= 1) {
+        showVoiceToast("⚠️ Cần giữ lại ít nhất 1 trang!");
+        renderAllSlides();
+        return;
+      }
+      if (shouldHide) hiddenSlides.add(idx);
+      else hiddenSlides.delete(idx);
+
+      try {
+        localStorage.setItem(HIDE_STORAGE_KEY, JSON.stringify(Array.from(hiddenSlides)));
+      } catch (e) {}
+
+      if (shouldHide && idx === currentSlide) {
+        let nextVis = findVisibleSlide(currentSlide, 1);
+        if (nextVis === -1) nextVis = findVisibleSlide(currentSlide, -1);
+        if (nextVis !== -1) currentSlide = nextVis;
+      }
+
+      renderAllSlides();
+      if (document.getElementById("hideModal").classList.contains("open")) {
+        renderHideModalList();
+      }
+      showVoiceToast(shouldHide ? `🙈 Đã ẩn Trang ${idx + 1}` : `👁 Đã hiện Trang ${idx + 1}`);
+    }
+
+    function openHideModal() {
+      renderHideModalList();
+      document.getElementById("hideModal").classList.add("open");
+    }
+
+    function closeHideModal() {
+      document.getElementById("hideModal").classList.remove("open");
+    }
+
+    function renderHideModalList() {
+      const list = document.getElementById("hideListContainer");
+      const summary = document.getElementById("hideSummaryText");
+      if (!list) return;
+      list.innerHTML = "";
+      SLIDES_DATA.forEach((s, idx) => {
+        const isHidden = hiddenSlides.has(idx);
+        const row = document.createElement("label");
+        row.className = "hide-row" + (isHidden ? " is-hidden" : "");
+        row.innerHTML = `
+          <input type="checkbox" ${!isHidden ? "checked" : ""} onchange="toggleShowSlide(${idx}, this.checked)" style="width:18px; height:18px; accent-color:#34d399;" />
+          <span class="hide-row-title" style="flex:1;">${s.title}</span>
+          <span style="font-size:0.76rem; color:${isHidden ? '#fb7185' : '#34d399'};">${isHidden ? '🙈 ĐÃ ẨN' : '✔ HIỂN THỊ'}</span>
+        `;
+        list.appendChild(row);
+      });
+      if (summary) {
+        summary.textContent = `Đang hiển thị ${visibleCount()} / ${SLIDES_DATA.length} trang • Đã ẩn ${hiddenSlides.size} trang.`;
+      }
+    }
+
+    function showAllSlides() {
+      hiddenSlides.clear();
+      try { localStorage.setItem(HIDE_STORAGE_KEY, "[]"); } catch (e) {}
+      renderAllSlides();
+      renderHideModalList();
+      showVoiceToast("👁 Đã hiện tất cả các trang!");
+    }
+
+    function hideAllExceptCurrent() {
+      hiddenSlides.clear();
+      SLIDES_DATA.forEach((_, idx) => {
+        if (idx !== currentSlide) hiddenSlides.add(idx);
+      });
+      try { localStorage.setItem(HIDE_STORAGE_KEY, JSON.stringify(Array.from(hiddenSlides))); } catch (e) {}
+      renderAllSlides();
+      renderHideModalList();
+      showVoiceToast("🎯 Đã giữ lại trang hiện tại!");
+    }
+
+    function invertHiddenSlides() {
+      const nextSet = new Set();
+      SLIDES_DATA.forEach((_, idx) => {
+        if (!hiddenSlides.has(idx)) nextSet.add(idx);
+      });
+      if (nextSet.size >= SLIDES_DATA.length) return;
+      hiddenSlides = nextSet;
+      if (hiddenSlides.has(currentSlide)) {
+        const firstVis = findVisibleSlide(-1, 1);
+        if (firstVis !== -1) currentSlide = firstVis;
+      }
+      try { localStorage.setItem(HIDE_STORAGE_KEY, JSON.stringify(Array.from(hiddenSlides))); } catch (e) {}
+      renderAllSlides();
+      renderHideModalList();
+    }
+
+    function resyncCurrentSlideLock() {
+      const lockedIdx = currentSlide;
+      const track = document.getElementById("slidesTrack");
+      if (!track) return;
+      track.style.transition = "none";
+      currentSlide = lockedIdx;
+      updateSlidePosition();
+      void track.offsetWidth;
+      track.style.transition = "";
+    }
+
+    document.addEventListener("fullscreenchange", () => {
+      [0, 60, 180, 450].forEach(ms => setTimeout(resyncCurrentSlideLock, ms));
+    });
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    let isAutoLecturing = false;
+    let voiceGender = "male";
+    let speechRate = 1.0;
+    let speechSessionId = 0;
+    let currentUtterance = null;
+    let currentCharOffset = 0;
+    let currentFullSpokenText = "";
+    let speechStartedAtMs = 0;
+    let baseOffsetAtStart = 0;
+    let activeTimers = [];
+
+    function toSpokenVietnameseText(raw) {
+      if (!raw) return "";
+      return raw
+        .replace(/==>|->|➔|⇒/g, " trở thành ")
+        .replace(/468\.468\s*(VND|đ)/gi, "bốn trăm sáu mươi tám nghìn bốn trăm sáu mươi tám đồng")
+        .replace(/102\s*168\s*268/g, "một không hai, một sáu tám, hai sáu tám")
+        .replace(/KTCSxAI/gi, "Kiến tạo cuộc sống ích Ây Ai")
+        .replace(/4D/g, "bốn đê")
+        .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "");
+    }
+
+    function cancelSpeechSession() {
+      speechSessionId++;
+      activeTimers.forEach(t => clearTimeout(t));
+      activeTimers = [];
+      if (currentUtterance) {
+        currentUtterance.onend = null;
+        currentUtterance.onerror = null;
+        currentUtterance.onboundary = null;
+        currentUtterance = null;
+      }
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+      return speechSessionId;
+    }
+
+    function estimateCurrentCharOffset() {
+      if (currentCharOffset > baseOffsetAtStart) return currentCharOffset;
+      if (!speechStartedAtMs || !currentFullSpokenText) return baseOffsetAtStart;
+      const elapsedSec = (performance.now() - speechStartedAtMs) / 1000;
+      const charsPerSec = 13.5 * speechRate;
+      const est = baseOffsetAtStart + Math.floor(elapsedSec * charsPerSec);
+      return Math.min(currentFullSpokenText.length - 1, Math.max(baseOffsetAtStart, est));
+    }
+
+    function snapToNextWordBoundary(fullText, approxIdx) {
+      if (!fullText || approxIdx <= 0) return 0;
+      if (approxIdx >= fullText.length) return fullText.length;
+      const spaceIdx = fullText.indexOf(" ", approxIdx);
+      return spaceIdx !== -1 ? spaceIdx + 1 : approxIdx;
+    }
+
+    function selectSystemVoice(gender) {
+      if (!("speechSynthesis" in window)) return null;
+      const voices = window.speechSynthesis.getVoices() || [];
+      const viVoices = voices.filter(v => v.lang && v.lang.toLowerCase().includes("vi"));
+      if (gender === "female") {
+        return viVoices.find(v => /hoaimy|linh|female|nữ|nu|google/i.test(v.name) && !/\ban\b/i.test(v.name)) || viVoices[0] || null;
+      }
+      return viVoices.find(v => /namminh|\ban\b|male|nam/i.test(v.name)) || viVoices[0] || null;
+    }
+
+    function playSlideNarration(slideIdx, autoAdvance, startCharIndex) {
+      const mySession = cancelSpeechSession();
+      if (!isAutoLecturing || !SLIDES_DATA[slideIdx]) return;
+
+      const rawScript = SLIDES_DATA[slideIdx].script || SLIDES_DATA[slideIdx].title;
+      currentFullSpokenText = toSpokenVietnameseText(rawScript);
+      baseOffsetAtStart = Math.max(0, Math.min(startCharIndex || 0, currentFullSpokenText.length - 1));
+      currentCharOffset = baseOffsetAtStart;
+
+      const remainingText = currentFullSpokenText.slice(baseOffsetAtStart).trim();
+      document.getElementById("teleprompterText").textContent = "🎙️ " + (remainingText || rawScript);
+
+      document.querySelectorAll(".slide-inner").forEach((el, idx) => {
+        el.classList.toggle("narrating-glow", idx === slideIdx);
+      });
+
+      if (!("speechSynthesis" in window) || !remainingText) return;
+
+      const utter = new SpeechSynthesisUtterance(remainingText);
+      utter.lang = "vi-VN";
+      utter.rate = speechRate;
+      const matchedVoice = selectSystemVoice(voiceGender);
+      if (matchedVoice) utter.voice = matchedVoice;
+      utter.pitch = voiceGender === "female" ? 1.22 : 0.88;
+
+      speechStartedAtMs = performance.now();
+
+      utter.onboundary = (ev) => {
+        if (mySession !== speechSessionId) return;
+        if (typeof ev.charIndex === "number") {
+          currentCharOffset = baseOffsetAtStart + ev.charIndex;
+        }
+      };
+
+      utter.onend = () => {
+        if (mySession !== speechSessionId || !isAutoLecturing) return;
+        const nextVis = findVisibleSlide(slideIdx, 1);
+        if (autoAdvance && nextVis !== -1) {
+          const tid = setTimeout(() => {
+            if (mySession !== speechSessionId || !isAutoLecturing) return;
+            goToSlide(nextVis, false);
+            playSlideNarration(nextVis, true, 0);
+          }, 650);
+          activeTimers.push(tid);
+        } else {
+          stopAutoLecture();
+        }
+      };
+
+      utter.onerror = () => {};
+      currentUtterance = utter;
+      window.speechSynthesis.speak(utter);
+    }
+
+    function resumeMidSentenceOnVoiceOrSpeedChange() {
+      if (!isAutoLecturing) return;
+      const resumeIdx = snapToNextWordBoundary(currentFullSpokenText, estimateCurrentCharOffset());
+      playSlideNarration(currentSlide, true, resumeIdx);
+    }
+
+    function setVoiceGender(gender, userClicked) {
+      voiceGender = gender;
+      document.getElementById("btnVoiceMale").classList.toggle("active", gender === "male");
+      document.getElementById("btnVoiceFemale").classList.toggle("active", gender === "female");
+      showVoiceToast(gender === "male" ? `👨 Giọng Nam (${speechRate.toFixed(2)}x)` : `👩 Giọng Nữ (${speechRate.toFixed(2)}x)`);
+      if (isAutoLecturing) {
+        resumeMidSentenceOnVoiceOrSpeedChange();
+      } else if (userClicked) {
+        sfxChime();
+      }
+    }
+
+    function onTopSpeedInput(val) {
+      speechRate = Math.max(0.5, Math.min(1.8, parseFloat(val)));
+      document.getElementById("topSpeedVal").textContent = speechRate.toFixed(2) + "x";
+    }
+
+    function onTopSpeedCommit(val) {
+      onTopSpeedInput(val);
+      showVoiceToast(`⚡ Tốc độ: ${speechRate.toFixed(2)}x`);
+      if (isAutoLecturing) {
+        resumeMidSentenceOnVoiceOrSpeedChange();
+      }
+    }
+
+    function stepSpeechSpeed(delta) {
+      const nextVal = Math.round((speechRate + delta) * 100) / 100;
+      document.getElementById("topSpeedSlider").value = String(Math.max(0.5, Math.min(1.8, nextVal)));
+      onTopSpeedCommit(nextVal);
+    }
+
+    function toggleAutoLecture() {
+      if (isAutoLecturing) stopAutoLecture();
+      else startAutoLecture();
+    }
+
+    function startAutoLecture() {
+      if (currentWorkspace !== "deck") switchWorkspace("deck");
+      isAutoLecturing = true;
+      document.getElementById("btnMasterSpeak").classList.add("speaking");
+      document.getElementById("speakIcon").textContent = "⏹";
+      document.getElementById("speakLabel").textContent = "ĐANG GIẢNG (DỪNG)";
+      document.getElementById("teleprompterBar").classList.add("active-speaking");
+      document.getElementById("btnStopInline").style.display = "inline-block";
+      playSlideNarration(currentSlide, true, 0);
+    }
+
+    function speakSingleSlide(idx) {
+      if (currentWorkspace !== "deck") switchWorkspace("deck");
+      if (currentSlide !== idx) goToSlide(idx, false);
+      isAutoLecturing = true;
+      document.getElementById("btnMasterSpeak").classList.add("speaking");
+      document.getElementById("speakIcon").textContent = "⏹";
+      document.getElementById("speakLabel").textContent = "ĐANG GIẢNG (DỪNG)";
+      document.getElementById("teleprompterBar").classList.add("active-speaking");
+      document.getElementById("btnStopInline").style.display = "inline-block";
+      playSlideNarration(idx, false, 0);
+    }
+
+    function stopAutoLecture() {
+      isAutoLecturing = false;
+      cancelSpeechSession();
+      document.getElementById("btnMasterSpeak").classList.remove("speaking");
+      document.getElementById("speakIcon").textContent = "🎙️";
+      document.getElementById("speakLabel").textContent = "BẤM NÚT NÓI";
+      document.getElementById("teleprompterBar").classList.remove("active-speaking");
+      document.getElementById("btnStopInline").style.display = "none";
+      document.querySelectorAll(".slide-inner").forEach(el => el.classList.remove("narrating-glow"));
+    }
+
+    let AC = null;
+    let musicGain = null;
+    let musicOn = false;
+    let musicTimer = null;
+    let sfxOn = true;
+    let musicVolPct = 35;
+
+    function ensureAudioCtx() {
+      if (!AC) {
+        AC = new (window.AudioContext || window.webkitAudioContext)();
+        musicGain = AC.createGain();
+        musicGain.connect(AC.destination);
+        updateMusicGainLevel();
+      }
+      if (AC.state === "suspended") AC.resume();
+    }
+
+    function updateMusicGainLevel() {
+      if (!musicGain || !AC) return;
+      const duck = isAutoLecturing ? 0.4 : 1.0;
+      musicGain.gain.setTargetAtTime((musicVolPct / 100) * 0.24 * duck, AC.currentTime, 0.3);
+    }
+
+    function playAmbientChord(freqs, dur) {
+      if (!AC) return;
+      const now = AC.currentTime;
+      freqs.forEach(f => {
+        const osc = AC.createOscillator();
+        const g = AC.createGain();
+        osc.type = "triangle";
+        osc.frequency.value = f;
+        g.gain.setValueAtTime(0, now);
+        g.gain.linearRampToValueAtTime(0.35, now + dur * 0.3);
+        g.gain.exponentialRampToValueAtTime(0.001, now + dur);
+        osc.connect(g);
+        g.connect(musicGain);
+        osc.start(now);
+        osc.stop(now + dur + 0.1);
+      });
+    }
+
+    function toggleMusic() {
+      ensureAudioCtx();
+      musicOn = !musicOn;
+      document.getElementById("btnMusicToggle").classList.toggle("active", musicOn);
+      if (musicOn) {
+        const chords = [
+          [220, 261.63, 329.63],
+          [174.61, 220, 261.63],
+          [261.63, 329.63, 392.0],
+          [196.0, 246.94, 293.66]
+        ];
+        let cIdx = 0;
+        playAmbientChord(chords[0], 6.5);
+        musicTimer = setInterval(() => {
+          if (!musicOn) return;
+          cIdx = (cIdx + 1) % chords.length;
+          playAmbientChord(chords[cIdx], 6.5);
+        }, 6500);
+        showVoiceToast("🎵 Đã bật nhạc 432Hz");
+      } else {
+        clearInterval(musicTimer);
+        showVoiceToast("🔇 Đã tắt nhạc");
+      }
+    }
+
+    function setMusicVol(val) {
+      musicVolPct = parseFloat(val);
+      updateMusicGainLevel();
+    }
+
+    function toggleSfx() {
+      sfxOn = !sfxOn;
+      document.getElementById("btnSfxToggle").classList.toggle("active", sfxOn);
+      showVoiceToast(sfxOn ? "🔔 Đã bật SFX" : "🔕 Đã tắt SFX");
+    }
+
+    function sfxChime() {
+      if (!sfxOn) return;
+      try {
+        ensureAudioCtx();
+        [528, 792].forEach((freq, i) => {
+          const t = AC.currentTime + i * 0.09;
+          const o = AC.createOscillator();
+          const g = AC.createGain();
+          o.type = "sine";
+          o.frequency.value = freq;
+          g.gain.setValueAtTime(0, t);
+          g.gain.linearRampToValueAtTime(0.12, t + 0.02);
+          g.gain.exponentialRampToValueAtTime(0.001, t + 0.7);
+          o.connect(g);
+          g.connect(AC.destination);
+          o.start(t);
+          o.stop(t + 0.75);
+        });
+      } catch (e) {}
+    }
+
+    function sfxWhoosh() {
+      if (!sfxOn) return;
+      try {
+        ensureAudioCtx();
+        const t = AC.currentTime;
+        const o = AC.createOscillator();
+        const g = AC.createGain();
+        o.type = "sine";
+        o.frequency.setValueAtTime(280, t);
+        o.frequency.exponentialRampToValueAtTime(520, t + 0.16);
+        g.gain.setValueAtTime(0.07, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+        o.connect(g);
+        g.connect(AC.destination);
+        o.start(t);
+        o.stop(t + 0.2);
+      } catch (e) {}
+    }
+
+    function exportStandaloneHtml4D() {
+      const currentHtml = document.documentElement.outerHTML;
+      const serializedSlides = JSON.stringify(SLIDES_DATA);
+      const updatedHtml = currentHtml.replace(
+        /\/\*__SLIDES_DATA_START__\*\/[\s\S]*?\/\*__SLIDES_DATA_END__\*\//,
+        `/*__SLIDES_DATA_START__*/[
+  {
+    "id": 1,
+    "tag": "🏛️ KTCSxAI • QUẢN TRỊ CẢM XÚC",
+    "title": "01. LÀM CHỦ KHU VƯỜN TÂM TRÍ – ĐÂY ĐO ĐỜI!",
+    "flipCards": [
+      {
+        "frontTitle": "ĐỂ NGOẠI CẢNH ĐO MÌNH",
+        "frontText": "Một lời khen làm ta bay bổng, một câu chê khiến ta mất ngủ cả đêm dài.",
+        "backTitle": "ĐÂY ĐO ĐỜI TỪ TÂM",
+        "backText": "Tự thiết lập thước đo nội lực; bình thản mỉm cười trước mọi khen chê ngoại cảnh."
+      },
+      {
+        "frontTitle": "THẢ TRÔI CẢM XÚC",
+        "frontText": "Ai ném gì vào tâm trí cũng nhận, biến khu vườn của mình thành bãi chứa rác.",
+        "backTitle": "NGƯỜI GÁC CỔNG TÂM TRÍ",
+        "backText": "Chủ động chọn lọc năng lượng tích cực; chỉ cho phép những hạt mầm tử tế đi vào."
+      },
+      {
+        "frontTitle": "ĐỒNG HÓA VỚI CƠN GIẬN",
+        "frontText": "Nghĩ rằng 'Tôi là cơn giận', để sự nóng nảy thiêu rụi các mối quan hệ.",
+        "backTitle": "NGƯỜI QUAN SÁT TỈNH THỨC",
+        "backText": "Nhận biết: Cảm xúc chỉ là những đám mây lướt qua, bầu trời tâm thức vẫn vĩnh hằng."
+      },
+      {
+        "frontTitle": "ĐỐI ĐẦU BẠO LỰC",
+        "frontText": "Dùng sự gay gắt để dập tắt gay gắt, làm đám cháy bùng phát dữ dội hơn.",
+        "backTitle": "CHUYỂN HÓA BẰNG TÌNH THƯƠNG",
+        "backText": "Lấy sự tĩnh lặng và bao dung làm nước mát dập tắt mọi ngọn lửa sân hận."
+      }
+    ],
+    "bullets": [
+      "🔹 Tâm trí bạn như một khu vườn màu mỡ: <strong>Nếu không chủ động gieo hạt giống hoa thơm, cỏ dại và rác rưởi sẽ tự động mọc đầy</strong>.",
+      "🔹 Tuyên ngôn bản thể: <strong>ĐÂY ĐO ĐỜI, ĐẾCH ĐỂ ĐỜI ĐO</strong> — Lấy lại quyền làm chủ công trình cảm xúc của chính mình."
+    ],
+    "stateOld": "😮‍💨 Biến tâm trí thành bãi rác của thị phi bên ngoài",
+    "bridgeVerb": "TRỞ THÀNH",
+    "stateNew": "👑 Người làm chủ canh giữ khu vườn tâm trí an vui",
+    "image": "",
+    "visualTheme": "compass_ruler",
+    "widgetType": "none",
+    "script": "Chào mừng các anh chị đến với chuyên đề Quản trị Cảm xúc. Tuyên ngôn của chúng ta là: Đây đo đời, đếch để đời đo! Một người để ngoại cảnh dẫn dắt sẽ như con thuyền không bánh lái giữa biển động. Nhưng khi trở thành người gác cổng tỉnh thức, ta sẽ bảo vệ khu vườn tâm trí luôn ngát hương thơm."
+  },
+  {
+    "id": 2,
+    "tag": "🧠 KHOA HỌC NÃO BỘ",
+    "title": "02. HẠCH HẠNH NHÂN (AMYGDALA) & CƠ CHẾ NÔI BẬT CƠN GIẬN",
+    "flipCards": [
+      {
+        "frontTitle": "BẮT CÓC CẢM XÚC (HIJACK)",
+        "frontText": "Hạch hạnh nhân kích hoạt phản ứng chiến hay biến chỉ trong 0.08 giây khiến ta mất kiểm soát.",
+        "backTitle": "KÍCH HOẠT VỎ NÃO TRƯỚC TRÁN",
+        "backText": "Hít thở sâu 6 giây để máu dồn về thùy trán, đưa lý trí và sự thông tuệ vào điều phối."
+      },
+      {
+        "frontTitle": "PHẢN ỨNG BỘP CHỘP",
+        "frontText": "Nói ngay câu cay nghiệt khi đang nóng giận, để lại vết thương lòng khó lành.",
+        "backTitle": "KHOẢNG DỪNG HOÀNG GIA",
+        "backText": "Im lặng 10 giây trước khi phản hồi; biến phản xạ bản năng thành hành động có chiến lược."
+      },
+      {
+        "frontTitle": "CORTISOL BÀO MÒN CƠ THỂ",
+        "frontText": "Căng thẳng kéo dài làm co mạch máu, suy giảm trí nhớ và đẩy nhanh lão hóa.",
+        "backTitle": "TIẾT OXYTOCIN & ENDORPHIN",
+        "backText": "Nuôi dưỡng cảm giác biết ơn và nụ cười ấm áp giúp tái tạo tế bào não Neurogenesis."
+      },
+      {
+        "frontTitle": "ĐÈ NÉN CẢM XÚC",
+        "frontText": "Cố gồng mình chịu đựng trong ấm ức, khiến khối ung nhọt tâm lý ngày càng phình to.",
+        "backTitle": "GỌI TÊN CẢM XÚC ĐỂ THÔNG",
+        "backText": "'Tôi thấy mình đang giận' — Gọi đúng tên cảm xúc sẽ làm năng lượng tiêu cực tự tan biến."
+      }
+    ],
+    "bullets": [
+      "🔹 Hiện tượng <strong>Amygdala Hijack</strong> (Bắt cóc cảm xúc): Bản năng sinh tồn cổ xưa khiến não phản ứng trước khi kịp suy nghĩ.",
+      "🔹 Chỉ cần <strong>khoảng dừng 6 giây</strong> cùng 3 hơi thở sâu, bạn sẽ chuyển quyền điều khiển từ hạch hạnh nhân về <strong>Vỏ não trước trán (Prefrontal Cortex)</strong>."
+    ],
+    "stateOld": "💥 Để hạch hạnh nhân bắt cóc và hành động mất kiểm soát",
+    "bridgeVerb": "CHUYỂN HÓA THÀNH",
+    "stateNew": "🧘 Làm chủ vỏ não trước trán với khoảng dừng 6 giây thông tuệ",
+    "image": "",
+    "visualTheme": "neuroplasticity_stairs",
+    "widgetType": "none",
+    "script": "Tiến sĩ tâm lý Daniel Goleman chỉ ra rằng: khi bị bắt cóc cảm xúc, hạch hạnh nhân sẽ cướp quyền điều khiển não bộ trong chưa đầy một phần mười giây. Bí quyết của bậc làm chủ là tạo ra khoảng dừng sáu giây để vỏ não trước trán kịp thời lấy lại tay lái trí tuệ."
+  },
+  {
+    "id": 3,
+    "tag": "💡 BẬC THẦY TÂM THỨC • VIKTOR FRANKL",
+    "title": "03. KHOẢNG TRỐNG TỰ DO: GIỮA KÍCH THÍCH VÀ PHẢN ỨNG",
+    "flipCards": [
+      {
+        "frontTitle": "CƠ CHẾ NẠP ĐẠN BẮN NGAY",
+        "frontText": "Ai kích động là nổ tung tức thì, tự biến mình thành con rối để kẻ khác giật dây.",
+        "backTitle": "QUYỀN NĂNG LỰA CHỌN",
+        "backText": "Giữa kích thích và phản ứng luôn có một khoảng trống; trong khoảng trống đó là tự do lớn nhất."
+      },
+      {
+        "frontTitle": "TÂM LÝ NẠN NHÂN",
+        "frontText": "'Tại ông ấy làm tôi tức, tại hoàn cảnh ép tôi phải nổi điên' — hoàn toàn bất lực.",
+        "backTitle": "TÂM THỨC CHỦ NHÂN",
+        "backText": "'Không ai có thể làm tôi tổn thương nếu không có sự đồng thuận từ chính tôi' (Eleanor Roosevelt)."
+      },
+      {
+        "frontTitle": "TÙ NHÂN CẢNH NGỘ",
+        "frontText": "Bị giam cầm trong sự oán hận và tiếc nuối những điều đã diễn ra trong quá khứ.",
+        "backTitle": "TỰ DO Ý CHÍ TUYỆT ĐỐI",
+        "backText": "Viktor Frankl trong trại tập trung phát xít: Mọi thứ có thể bị tước đoạt, trừ thái độ sống!"
+      },
+      {
+        "frontTitle": "TẬP TRUNG NGOÀI TẦM TAY",
+        "frontText": "Lo lắng về thời tiết, thị trường, lời đồn — những thứ ta không thể can thiệp.",
+        "backTitle": "TẬP TRUNG VÒNG ẢNH HƯỞNG",
+        "backText": "Dành 100% tâm sức vào hơi thở, suy nghĩ và hành động tử tế của chính mình ngay lúc này."
+      }
+    ],
+    "bullets": [
+      "🔹 Danh ngôn bất hủ của <strong>Viktor Frankl</strong> (Tác giả cuốn <em>Đi Tìm Lẽ Sống</em>): <strong>Giữa kích thích và phản ứng có một khoảng trống. Trong khoảng trống đó chứa đựng tự do và sức mạnh lựa chọn của chúng ta.</strong>",
+      "🔹 Hạnh phúc hay đau khổ không nằm ở sự việc xảy ra, mà nằm ở <strong>lăng kính bạn diễn giải sự việc đó</strong>."
+    ],
+    "stateOld": "⛓️ Làm nô lệ phản ứng tự động theo kích thích bên ngoài",
+    "bridgeVerb": "VƯỢT LÊN THÀNH",
+    "stateNew": "🕊️ Khai mở khoảng trống tự do lựa chọn thái độ sống cao quý",
+    "image": "",
+    "visualTheme": "logical_pyramid_svg",
+    "widgetType": "none",
+    "script": "Trong cuốn sách kinh điển Đi Tìm Lẽ Sống, giáo sư Viktor Frankl đã chứng minh ngay giữa trại tập trung khốc liệt nhất: Người ta có thể tước đoạt của bạn mọi thứ vật chất, nhưng không ai có thể tước đi quyền lựa chọn thái độ sống của bạn trước mọi nghịch cảnh."
+  },
+  {
+    "id": 4,
+    "tag": "🪷 NGHỆ THUẬT CHUYỂN HÓA",
+    "title": "04. CÔNG THỨC Ủ PHÂN HỮU CƠ: BIẾN RÁC THÀNH HOA",
+    "flipCards": [
+      {
+        "frontTitle": "GHÊ SỢ NGHỊCH CẢNH",
+        "frontText": "Xem biến cố, thất bại là tai họa xui xẻo, tìm cách trốn chạy hoặc giấu giếm.",
+        "backTitle": "NGUYÊN LIỆU ĐỔI MỚI",
+        "backText": "Nhà nông thông thái nhìn đống rác như phân bón hữu cơ tốt nhất để nuôi lớn đóa hoa sen."
+      },
+      {
+        "frontTitle": "NÉM RÁC QUA LẠI",
+        "frontText": "Bị sếp mắng về trút giận lên vợ con; gia đình biến thành bãi rác dây chuyền.",
+        "backTitle": "TRẠM CHUYỂN HÓA RÁC TÂM",
+        "backText": "Tiếp nhận năng lượng tiêu cực, dùng lò luyện từ bi và trí tuệ để lọc sạch trước khi tỏa ra ngoài."
+      },
+      {
+        "frontTitle": "BẤT BÌNH TRƯỚC SỰ BẤT TOÀN",
+        "frontText": "Đòi hỏi mọi việc phải hoàn hảo theo ý mình, liên tục thất vọng và bực dọc.",
+        "backTitle": "CHẤP NHẬN TỰ NHIÊN (WABI-SABI)",
+        "backText": "Hiểu rằng bùn nhơ chính là điều kiện thiết yếu để đóa sen tỏa hương tinh khiết nhất."
+      },
+      {
+        "frontTitle": "CHỜ ĐỢI SỰ HOÀN HẢO",
+        "frontText": "Chờ hết khó khăn mới chịu sống vui vẻ và hạnh phúc.",
+        "backTitle": "AN TRÚ NGAY TRONG BÙN",
+        "backText": "Gần bùn mà chẳng hôi tanh mùi bùn; nở nụ cười bình an ngay giữa dòng đời xáo động."
+      }
+    ],
+    "bullets": [
+      "🔹 Không có bùn thì không có sen (<strong>No mud, no lotus</strong>) — Nghịch cảnh không sinh ra để tiêu diệt bạn, nó sinh ra để rèn luyện gân cốt nội tâm.",
+      "🔹 Quy trình ủ phân tâm thức: <strong>Nhận diện (Bùn rác) ➔ Chấp nhận (Không chối bỏ) ➔ Ôm ấp bằng lòng từ ➔ Chuyển hóa thành bài học trí tuệ</strong>."
+    ],
+    "stateOld": "🗑️ Hoảng loạn xua đuổi bùn rác và nghịch cảnh",
+    "bridgeVerb": "CHUYỂN HÓA THÀNH",
+    "stateNew": "🪷 Bậc thầy ủ phân hữu cơ biến gian truân thành hoa thơm trí tuệ",
+    "image": "",
+    "visualTheme": "lotus_sunrise",
+    "widgetType": "music_poetry_stage",
+    "script": "Người làm vườn giỏi không bao giờ sợ rác hữu cơ, bởi họ biết cách ủ rác thành phân bón nuôi cây trĩu quả. Cũng vậy, người có trí tuệ không chạy trốn nghịch cảnh, mà biết dùng lò lửa nội tâm biến mọi va vấp thành chất dinh dưỡng nuôi lớn đóa hoa tự tại."
+  },
+  {
+    "id": 5,
+    "tag": "✈️ ĐỘ CAO TÂM THỨC",
+    "title": "05. BAY LÊN TẦNG BÌNH LƯU: THOÁT KHỎI NHIỄU ĐỘNG THỊ PHI",
+    "flipCards": [
+      {
+        "frontTitle": "TẦNG ĐỐI LƯU (DƯỚI 10.000M)",
+        "frontText": "Đầy mây giông, sét đánh, lực cản và gió lốc — tâm trí vướng vào cãi vã vặt vãnh.",
+        "backTitle": "TẦNG BÌNH LƯU (TRÊN 11.000M)",
+        "backText": "Không khí tĩnh lặng, bầu trời rực rỡ nắng vàng; máy bay lướt êm với hiệu suất cao nhất."
+      },
+      {
+        "frontTitle": "TRANH CÃI Ở CÙNG TẦNG",
+        "frontText": "Cố đôi co phân bua đúng sai với người say hoặc kẻ ác ý; càng cãi càng kiệt sức.",
+        "backTitle": "NÂNG CẦN LÁI NHẬN THỨC",
+        "backText": "Albert Einstein: Không thể giải quyết vấn đề bằng cùng tầng tư duy đã tạo ra nó!"
+      },
+      {
+        "frontTitle": "CHẾT CHÌM TRONG TIỂU TIẾT",
+        "frontText": "Bị vướng mắc bởi một câu nói xóc hông của đồng nghiệp suốt cả tuần lễ.",
+        "backTitle": "TẦM NHÌN TỪ TRÊN CAO",
+        "backText": "Từ độ cao vạn dặm, mọi chuyện thị phi bên dưới chỉ còn bé nhỏ như một hạt cát phù du."
+      },
+      {
+        "frontTitle": "SỢ ÁP LỰC NGƯỢC GIÓ",
+        "frontText": "Gặp lời đàm tiếu là chùn bước, muốn dừng lại rút lui.",
+        "backTitle": "MƯỢN GIÓ ĐẨY ĐÔI CÁNH",
+        "backText": "Máy bay cất cánh luôn ngược chiều gió — chính áp lực đẩy bạn vút thẳng lên tầng cao mới."
+      }
+    ],
+    "bullets": [
+      "🔹 Mọi đám mây đen và bão tố sấm chớp chỉ tồn tại ở <strong>Tầng Đối Lưu</strong>; trên <strong>Tầng Bình Lưu</strong> bầu trời luôn chan hòa ánh sáng mặt trời.",
+      "🔹 Đừng tốn năng lượng để xua đuổi mây mù; hãy tập trung tăng tốc độ và <strong>kéo cần lái tâm thức vượt lên trên độ cao 11.000 mét</strong>."
+    ],
+    "stateOld": "⛈️ Chìm trong mưa giông cãi vã ở tầng đối lưu thấp",
+    "bridgeVerb": "VƯỢT LÊN THÀNH",
+    "stateNew": "✈️ Phi cơ tâm thức tự tại bay lượn trên tầng bình lưu ngập nắng",
+    "image": "",
+    "visualTheme": "stratosphere_jet",
+    "widgetType": "altitude_sim",
+    "script": "Khi lái máy bay trong giông bão, người phi công kinh nghiệm không dừng lại giữa đám mây để phàn nàn, mà dồn lực kéo cần lái vươn lên tầng bình lưu tĩnh lặng. Nâng tầm nhận thức của bạn lên cao hơn vấn đề, tự khắc mọi sự nhiễu loạn đều nằm lại phía dưới chân."
+  },
+  {
+    "id": 6,
+    "tag": "🚛 BÀI HỌC CUỘC SỐNG",
+    "title": "06. ĐẠO LÝ CHIẾC XE RÁC: NỤ CƯỜI TỰ TẠI TRƯỚC SỰ GÂY HẤN",
+    "flipCards": [
+      {
+        "frontTitle": "XE RÁC CHỰC CHỜ XẢ",
+        "frontText": "Rất nhiều người ngoài kia mang đầy rác thất vọng, tức tối và chỉ chờ trút vào ai đó gần nhất.",
+        "backTitle": "KHÔNG NHẬN RÁC VÀO MÌNH",
+        "backText": "Hiểu rằng đó là rác của họ, không phải lỗi của mình; ta hoàn toàn có quyền từ chối tiếp nhận."
+      },
+      {
+        "frontTitle": "ĂN MIẾNG TRẢ MIẾNG",
+        "frontText": "Bị tạt đầu xe liền bấm còi chửi bới, đuổi theo ăn thua đủ dẫn đến xô xát đáng tiếc.",
+        "backTitle": "MỈM CƯỜI VẪY TAY CHÚC PHÚC",
+        "backText": "Mỉm cười, vẫy tay nhường đường, chúc họ bình an rồi tiếp tục hành trình của đời mình."
+      },
+      {
+        "frontTitle": "GIỮ CỤC THAN HỒNG",
+        "frontText": "Nuôi lòng oán hận kẻ xúc phạm mình như ôm chặt cục than hồng định ném người khác.",
+        "backTitle": "BUÔNG TAY ĐỂ TỰ GIẢI THOÁT",
+        "backText": "Buông bỏ không phải là nhu nhược, mà là sự khôn ngoan để đôi bàn tay mình không bị bỏng."
+      },
+      {
+        "frontTitle": "LÃNG PHÍ THỜI GIAN VÀNG",
+        "frontText": "Dành hàng giờ đồng hồ để đôi co trên mạng xã hội với những tài khoản ẩn danh.",
+        "backTitle": "TẬP TRUNG VÀO SỨ MỆNH",
+        "backText": "Thời gian và sinh mệnh có hạn — chỉ dành cho gia đình, học tập AI và phụng sự giá trị thật."
+      }
+    ],
+    "bullets": [
+      "🔹 <strong>Quy luật chiếc xe rác (Law of the Garbage Truck)</strong> của David J. Pollay: Người thành công không để chiếc xe rác phá hủy một ngày tươi đẹp của họ.",
+      "🔹 Cuộc sống chỉ có <strong>10% là những gì xảy đến với bạn</strong>, còn <strong>90% còn lại là cách bạn phản ứng</strong> trước những điều đó."
+    ],
+    "stateOld": "🤬 Trở thành thùng rác cho người khác trút bỏ bực tức",
+    "bridgeVerb": "CHUYỂN HÓA THÀNH",
+    "stateNew": "🌟 Bậc thầy phong thái: Mỉm cười vẫy tay chúc phúc và đi tiếp",
+    "image": "",
+    "visualTheme": "harvard_hearts",
+    "widgetType": "none",
+    "script": "Trong bài học Chiếc Xe Rác nổi tiếng, tác giả David Pollay nhắc nhở: có những người như chiếc xe chở đầy rác bức bối, họ chạy vòng quanh tìm nơi xả. Nếu bạn mỉm cười, vẫy tay chúc họ bình an rồi tiếp tục công việc của mình, bạn sẽ giữ trọn niềm hạnh phúc suốt cả ngày."
+  },
+  {
+    "id": 7,
+    "tag": "🏃 THIỀN ĐỘNG THỰC CHIẾN",
+    "title": "07. MARATHON & VẬN ĐỘNG: ĐÀO THẢI CORTISOL QUA TỪNG BƯỚC CHẠY",
+    "flipCards": [
+      {
+        "frontTitle": "NGỒI MỘT CHỖ GẶM NHẤM",
+        "frontText": "Khi buồn bực nằm co ro trong phòng tối, khiến luồng suy nghĩ tiêu cực quay cuồng cuốn sâu.",
+        "backTitle": "XỎ GIÀY BƯỚC RA ĐƯỜNG",
+        "backText": "Vận động thể chất kích thích lưu thông máu, phá vỡ thế bế tắc của tâm trí tức thì."
+      },
+      {
+        "frontTitle": "Ứ ĐỌNG ĐỘC TỐ STRESS",
+        "frontText": "Axit Lactic và hoóc-môn Cortisol ứ đọng làm cơ bắp căng cứng, đầu óc nặng nề.",
+        "backTitle": "BƠM ĐẨY DOPAMINE & ENDORPHIN",
+        "backText": "Sau 20 phút chạy bộ hoặc bơi biển, cơ thể tự nhiên tiết ra hoóc-môn hưng phấn và hạnh phúc."
+      },
+      {
+        "frontTitle": "TÂM TRÍ PHÂN TÁN",
+        "frontText": "Nghĩ về hàng trăm việc chưa xong, loay hoay trong nỗi âu lo mơ hồ.",
+        "backTitle": "ĐỊNH TÂM TRÊN TỪNG BƯỚC CHÂN",
+        "backText": "Chạy bộ như một hình thức thiền động: Hít vào chân trái chạm đất, thở ra chân phải lướt qua."
+      },
+      {
+        "frontTitle": "LƯỜI BIẾNG BỎ CUỘC",
+        "frontText": "Ngại mồ hôi, sợ đau chân ở tuổi trung niên 39–58.",
+        "backTitle": "VƯỢT NGƯỠNG CHIẾN BINH",
+        "backText": "Chinh phục 5km, 10km, 21km rèn luyện ý chí sắt đá: Nếu tôi chạy được, tôi làm được mọi việc!"
+      }
+    ],
+    "bullets": [
+      "🔹 Nghiên cứu thần kinh học chứng minh: <strong>Vận động nhịp điệu (Cardio) là phương thuốc giải độc tâm lý tự nhiên nhanh nhất</strong>.",
+      "🔹 Mỗi giọt mồ hôi rơi trên đường chạy là một giọt căng thẳng được tống khứ; mỗi bước chạy là một lần củng cố bản lĩnh <strong>ĐÂY ĐO ĐỜI</strong>."
+    ],
+    "stateOld": "🛋️ Nằm ôm nỗi sầu não và để Cortisol tàn phá cơ thể",
+    "bridgeVerb": "BỨT PHÁ THÀNH",
+    "stateNew": "🏃 Chiến binh Marathon chuyển hóa stress thành năng lượng đỉnh cao",
+    "image": "",
+    "visualTheme": "marathon_stadium",
+    "widgetType": "none",
+    "script": "Cơ thể và tâm trí là một thể thống nhất. Khi tâm trí bị tắc nghẽn bởi phiền muộn, cách nhanh nhất là dùng cơ thể để giải phóng. Chỉ cần xỏ giày chạy năm kilômét trong sáng sớm, từng tế bào sẽ được tắm trong endorphin và sự tự tin lập tức quay trở lại."
+  },
+  {
+    "id": 8,
+    "tag": "🌅 KẾT NỐI BẤT BIẾN",
+    "title": "08. ĐÂY ĐO ĐỜI: TÂM BẤT BIẾN GIỮA DÒNG ĐỜI VẠN BIẾN",
+    "flipCards": [
+      {
+        "frontTitle": "CẢM XÚC PHỤ THUỘC",
+        "frontText": "Chờ người khác tử tế thì mình mới tử tế; chờ cuộc đời dịu dàng mới nở nụ cười.",
+        "backTitle": "CHỦ ĐỘNG TỎA SÁNG",
+        "backText": "Mặt trời chiếu sáng vì bản chất nó là ánh sáng, không phụ thuộc vào việc ai đó có đón nhận hay không."
+      },
+      {
+        "frontTitle": "OÁN TRÁCH SỐ PHẬN",
+        "frontText": "'Sao những chuyện tồi tệ này lại xảy đến với tôi?' — Bất lực và cay đắng.",
+        "backTitle": "BIẾT ƠN VÌ ĐƯỢC RÈN LUYỆN",
+        "backText": "'Điều này đến để dạy cho tôi bài học gì để tôi trở nên mạnh mẽ và bao dung hơn?'"
+      },
+      {
+        "frontTitle": "ĐƠN ĐỘC VẬT LỘN",
+        "frontText": "Giữ kín nỗi đau một mình, tự gặm nhấm trong bóng tối.",
+        "backTitle": "HÒA MÌNH CÙNG CỘNG ĐỒNG",
+        "backText": "Gắn kết trong môi trường KTCSxAI tối Thứ Tư & Thứ Bảy: Đồng hành cùng tiến bộ mỗi ngày."
+      },
+      {
+        "frontTitle": "DO DỰ CHỜ NGÀY MAI",
+        "frontText": "Hẹn khi nào hết bận mới bắt đầu học cách làm chủ cảm xúc.",
+        "backTitle": "LÀM CHỦ NGAY HÔM NAY",
+        "backText": "Bắt đầu bằng một hơi thở sâu, một lời nói hòa ái và một nụ cười biết ơn ngay lúc này!"
+      }
+    ],
+    "bullets": [
+      "🔹 Thông điệp chung cuộc: <strong>TÂM AN VẠN SỰ AN • TÂM BÌNH THẾ GIỚI BÌNH</strong> — Khi bạn đo đời bằng tình yêu thương và trí tuệ, thế giới sẽ phản chiếu lại sự an lành.",
+      "🔹 Đồng hành cùng chương trình <strong>Kiến Tạo Cuộc Sống xAI</strong>: Rèn Thân khỏe mạnh – Giữ Tâm an tĩnh – Bồi Trí sáng suốt cùng Đội thợ AI thực chiến."
+    ],
+    "stateOld": "🍂 Chiếc lá rụng phó mặc cho gió cuốn chao đảo",
+    "bridgeVerb": "TÁI SINH THÀNH",
+    "stateNew": "🌳 Ngọn đại thụ cội rễ vững bền: ĐÂY ĐO ĐỜI, ĐẾCH ĐỂ ĐỜI ĐO!",
+    "image": "",
+    "visualTheme": "master_architecture",
+    "widgetType": "none",
+    "script": "Kính thưa các anh chị, tâm an thì vạn sự an. Khi đứng vững trên đôi chân của mình, giữ trọn chữ tín và lòng biết ơn, chúng ta chính là ngọn đại thụ tỏa bóng mát cho gia đình và cuộc đời. Với tinh thần Đây đo đời, đếch để đời đo, chúc tất cả chúng ta luôn an nhiên tự tại giữa dòng đời vạn biến!"
+  }
+]/*__SLIDES_DATA_END__*/`
+      );
+      const fullDoc = "<!DOCTYPE html>\n" + updatedHtml;
+      const blob = new Blob([fullDoc], { type: "text/html;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      const dateStr = new Date().toISOString().slice(0, 10);
+      a.download = `bai-giang-html4d-${dateStr}.html`;
+      a.click();
+      showVoiceToast("📥 Đã xuất File HTML 4D Độc Lập!");
+    }
+
+    function exportSlidesJson() {
+      const blob = new Blob([JSON.stringify(SLIDES_DATA, null, 2)], { type: "application/json;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "slides_data_4d.json";
+      a.click();
+      showVoiceToast("📦 Đã xuất JSON!");
+    }
+
+    function importSlidesJson(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            SLIDES_DATA = parsed;
+            currentSlide = 0;
+            hiddenSlides.clear();
+            saveSlidesToStorage();
+            renderExtractedPagesEditor();
+            renderAllSlides();
+            showVoiceToast(`📥 Đã nạp ${parsed.length} trang từ JSON!`);
+          }
+        } catch (err) {
+          showVoiceToast("⚠️ File JSON không hợp lệ!");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function updateGitHubPowerShellBox() {
+      const repoInput = document.getElementById("ghRepoSlugInput");
+      const titleInput = document.getElementById("ghPostTitleInput");
+      const urlBox = document.getElementById("ghLiveUrlBox");
+      const codeBox = document.getElementById("ghPowerShellCode");
+      if (!repoInput || !codeBox) return;
+
+      const slug = (repoInput.value || "ktcs-bai-giang-4d").trim().toLowerCase().replace(/[^a-z0-9-]/g, "-");
+      const postTitle = (titleInput && titleInput.value) ? titleInput.value.trim() : "Bai Giang HTML 4D Moi";
+      if (urlBox) urlBox.textContent = `https://xuanhoa-xedaukeo.github.io/${slug}/`;
+
+      const ps = `$RepoName = "${slug}"
+$PostTitle = "${postTitle}"
+$WorkDir = "$env:USERPROFILE\\WEBSITE"
+New-Item -ItemType Directory -Force -Path $WorkDir | Out-Null
+Set-Location $WorkDir
+if (-not (Test-Path "$WorkDir\\$RepoName")) { gh repo create "xuanhoa-xedaukeo/$RepoName" --public --clone }
+Set-Location "$WorkDir\\$RepoName"
+
+# 1) Lưu bài mới theo ngày không ghi đè bài cũ
+$Stamp = Get-Date -Format "yyyy-MM-dd-HHmm"
+$PostDir = "posts\\$Stamp"
+New-Item -ItemType Directory -Force -Path $PostDir | Out-Null
+$LatestHtml = Get-ChildItem "$env:USERPROFILE\\Downloads\\*html4d*.html" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+Copy-Item $LatestHtml.FullName "$PostDir\\index.html" -Force
+
+# 2) Đẩy bài mới lên đầu danh sách posts.json
+$Posts = @()
+if (Test-Path "posts.json") { $Posts = @(Get-Content "posts.json" -Raw -Encoding UTF8 | ConvertFrom-Json) }
+$NewPost = [pscustomobject]@{ title = $PostTitle; date = $Stamp; path = "posts/$Stamp/" }
+$Posts = @($NewPost) + $Posts
+ConvertTo-Json -InputObject @($Posts) | Set-Content "posts.json" -Encoding UTF8
+
+git add -A
+git commit -m "Them bai giang HTML 4D: $PostTitle ($Stamp)"
+git push -u origin main
+Start-Process "https://xuanhoa-xedaukeo.github.io/$RepoName/posts/$Stamp/"`;
+
+      codeBox.textContent = ps;
+    }
+
+    function openQrModal() {
+      sfxChime();
+      document.getElementById("qrModal").classList.add("open");
+    }
+
+    function closeQrModal() {
+      document.getElementById("qrModal").classList.remove("open");
+    }
+
+    function copyRawText(text, toastMsg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => showVoiceToast("📋 " + toastMsg)).catch(() => fallbackCopyText(text, toastMsg));
+      } else {
+        fallbackCopyText(text, toastMsg);
+      }
+    }
+
+    function copyTextFromElement(elId, toastMsg) {
+      const el = document.getElementById(elId);
+      if (!el) return;
+      copyRawText(el.textContent || "", toastMsg);
+    }
+
+    function fallbackCopyText(text, toastMsg) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      ta.remove();
+      showVoiceToast("📋 " + toastMsg);
+    }
+
+    let toastTimeout = null;
+    function showVoiceToast(msg) {
+      const el = document.getElementById("voiceToast");
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.add("show");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => el.classList.remove("show"), 2300);
+    }
+
+    window.addEventListener("keydown", (e) => {
+      const tag = (e.target && e.target.tagName) || "";
+      if (["INPUT", "TEXTAREA", "SELECT"].includes(tag)) return;
+      if (e.key === "Escape") {
+        closeHideModal();
+        closeQrModal();
+        return;
+      }
+      if (currentWorkspace !== "deck") return;
+      if (["ArrowRight", "ArrowDown", "PageDown", " "].includes(e.key)) {
+        if (currentMode !== "scroll") {
+          e.preventDefault();
+          nextSlide();
+        }
+      } else if (["ArrowLeft", "ArrowUp", "PageUp"].includes(e.key)) {
+        if (currentMode !== "scroll") {
+          e.preventDefault();
+          prevSlide();
+        }
+      } else if ((e.key === "h" || e.key === "H") && !e.ctrlKey && !e.metaKey) {
+        e.preventDefault();
+        toggleShowSlide(currentSlide, hiddenSlides.has(currentSlide));
+      } else if ((e.key === "r" || e.key === "R") && !e.ctrlKey && !e.metaKey) {
+        e.preventDefault();
+        flipAllCardsOnCurrentSlide();
+      } else if ((e.key === "w" || e.key === "W") && !e.ctrlKey && !e.metaKey) {
+        e.preventDefault();
+        toggleWide16x9Stage();
+      }
+    });
+
+    let wheelLock = false;
+    window.addEventListener("wheel", (e) => {
+      if (currentWorkspace !== "deck" || currentMode === "scroll") return;
+      if (document.getElementById("hideModal").classList.contains("open")) return;
+      if (document.getElementById("qrModal").classList.contains("open")) return;
+      if (Math.abs(e.deltaY) < 22 || wheelLock) return;
+      wheelLock = true;
+      if (e.deltaY > 0) nextSlide();
+      else prevSlide();
+      setTimeout(() => { wheelLock = false; }, 600);
+    }, { passive: true });
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    window.addEventListener("touchstart", (e) => {
+      if (!e.touches || !e.touches[0]) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener("touchend", (e) => {
+      if (currentWorkspace !== "deck" || currentMode === "scroll") return;
+      if (!e.changedTouches || !e.changedTouches[0]) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    document.addEventListener("mousemove", (e) => {
+      const frame = e.target.closest && e.target.closest(".giant-art-frame");
+      if (!frame || frame.classList.contains("lens-active")) return;
+      const r = frame.getBoundingClientRect();
+      const rx = -((e.clientY - r.top) / r.height - 0.5) * 6;
+      const ry = ((e.clientX - r.left) / r.width - 0.5) * 6;
+      frame.style.transform = `perspective(1000px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+    });
+    document.addEventListener("mouseout", (e) => {
+      const frame = e.target.closest && e.target.closest(".giant-art-frame");
+      if (frame) frame.style.transform = "";
+    });
+
+    const cosmosCanvas = document.getElementById("cosmosCanvas");
+    const cCtx = cosmosCanvas.getContext("2d");
+    const stars = [];
+
+    function resizeCosmos() {
+      cosmosCanvas.width = window.innerWidth;
+      cosmosCanvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCosmos);
+    resizeCosmos();
+
+    for (let i = 0; i < 85; i++) {
+      stars.push({
+        x: Math.random() * cosmosCanvas.width,
+        y: Math.random() * cosmosCanvas.height,
+        r: Math.random() * 1.6 + 0.4,
+        a: Math.random(),
+        s: Math.random() * 0.012 + 0.003
+      });
+    }
+
+    function animateStars() {
+      cCtx.clearRect(0, 0, cosmosCanvas.width, cosmosCanvas.height);
+      stars.forEach(st => {
+        st.a += st.s;
+        if (st.a > 1 || st.a < 0.2) st.s = -st.s;
+        cCtx.beginPath();
+        cCtx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+        cCtx.fillStyle = `rgba(255, 233, 173, ${st.a * 0.58})`;
+        cCtx.fill();
+      });
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+
+    (function initStudioApp() {
+      try {
+        const savedHidden = localStorage.getItem(HIDE_STORAGE_KEY);
+        if (savedHidden) {
+          JSON.parse(savedHidden).forEach(n => {
+            if (Number.isInteger(n) && n >= 0 && n < SLIDES_DATA.length) hiddenSlides.add(n);
+          });
+        }
+      } catch (e) {}
+      loadSlidesFromStorage();
+      if (hiddenSlides.size >= SLIDES_DATA.length) hiddenSlides.clear();
+      initPdfDropZone();
+      renderAllSlides();
+      renderExtractedPagesEditor();
+      updateGitHubPowerShellBox();
+      animateLivingOverlaysLoop();
+    })();
+  </script>
+</body>
+</html>
